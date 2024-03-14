@@ -5,7 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
-
+import { ToolBarComponent } from '../../shared/tool-bar/tool-bar.component';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -13,7 +13,8 @@ import { MatIconModule } from '@angular/material/icon'
     ButtonModule,
     CarouselModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    ToolBarComponent
   ],
   providers:[
     CarService

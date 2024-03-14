@@ -1,0 +1,16 @@
+.header-options{
+  header{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #101820;
+    height: 90px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+    button{
+      background-color: #fff;
+      color: #101820;
+      margin-top: 1.5%;
+    }
+  }
+}
