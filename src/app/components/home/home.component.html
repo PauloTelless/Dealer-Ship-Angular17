@@ -1,0 +1,22 @@
+<div class="carousel">
+  <p-carousel [value]="carsDatas" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+    <ng-template let-car pTemplate="item">
+        <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+            <div>
+                <img src="{{ car.imagemCarro }}" [alt]="car.modeloCarro" class="w-6 shadow-2" />
+            </div>
+            <div >
+                <h4>{{ car.modeloCarro }}</h4>
+                <h6>{{ '$' + car.precoCarro }}</h6>
+                <div class="mt-5 flex align-items-center justify-content-center gap-2">
+                  <div class="button-group" style="margin: 2% 2%;">
+                      <button mat-mini-fab style="margin-right: 2%; background-color: #2563EB;"><mat-icon style="color: #fff;">add</mat-icon></button>
+                      <button mat-mini-fab style="background-color: #f97316;"><mat-icon style="color: #fff;">star</mat-icon></button>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+  </p-carousel>
+</div>
+
