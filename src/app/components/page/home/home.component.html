@@ -1,5 +1,4 @@
 <app-tool-bar></app-tool-bar>
-
 <div class="carousel">
   <p-carousel  [value]="carsDatas" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
     <ng-template let-car pTemplate="item">
@@ -13,7 +12,7 @@
                 <h4 style="font-weight: bolder;">{{ car.precoCarro | currency:'BRL'}}</h4>
                 <div class="mt-5 flex align-items-center justify-content-center gap-2">
                   <div class="button-group" style="margin: 2% 2%;">
-                      <button mat-mini-fab style="margin-right: 2%; background-color: #2563EB; box-shadow: none;"><mat-icon style="color: #fff;">add</mat-icon></button>
+                      <button (click)="openModalCarInfo(car)" mat-mini-fab style="margin-right: 2%; background-color: #2563EB; box-shadow: none;"><mat-icon style="color: #fff;">add</mat-icon></button>
                       <button mat-mini-fab style="background-color: #f97316; box-shadow: none;"><mat-icon style="color: #fff;">star</mat-icon></button>
                   </div>
                 </div>

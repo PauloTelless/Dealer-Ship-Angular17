@@ -6,6 +6,9 @@ import { CarouselModule } from 'primeng/carousel';
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
 import { ToolBarComponent } from '../../../shared/tool-bar/tool-bar.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog'
+import { CarsInfoComponent } from '../../cars/cars-info/cars-info.component';
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -14,7 +17,8 @@ import { ToolBarComponent } from '../../../shared/tool-bar/tool-bar.component';
     CarouselModule,
     MatButtonModule,
     MatIconModule,
-    ToolBarComponent
+    ToolBarComponent,
+    MatDialogModule
   ],
   providers:[
     CarService
@@ -23,8 +27,10 @@ import { ToolBarComponent } from '../../../shared/tool-bar/tool-bar.component';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit{
+
   public responsiveOptions: any[] | undefined;
   private carService = inject(CarService);
+  private dialogService = inject(MatDialog);
   public carsDatas!: Array<Car>;
 
   ngOnInit(): void {
@@ -54,6 +60,14 @@ export class HomeComponent implements OnInit{
         this.carsDatas = carsReponse;
         console.log(this.carsDatas)
       })
+    })
+  }
+
+  openModalCarInfo(carInfo: Car): void{
+    this.dialogService.open(CarsInfoComponent, {
+      width: '600px',
+      height: '550px',
+      data: carInfo
     })
   }
 }
