@@ -1,7 +1,8 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CarService } from './services/car.service';
+import { CarService } from './services/car/car.service';
+import { SellerService } from './services/seller/seller.service';
 
 
 @Component({
@@ -14,7 +15,8 @@ import { CarService } from './services/car.service';
   ],
   providers:[
     HttpClient,
-    CarService
+    CarService,
+    SellerService
   ],
   host: { ngSkipHydration: 'true'},
   templateUrl: './app.component.html',

@@ -25,4 +25,8 @@ export class ToolBarComponent {
     this.routerService.navigate(['home']);
   }
 
+  redirecionarAdministracao(): void{
+    this.routerService.navigate(['administration'])
+  }
+
 }
