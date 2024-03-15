@@ -30,4 +30,8 @@ export class ToolBarComponent {
     this.routerService.navigate(['administration'])
   }
 
+  redirecionarCarros(): void{
+    this.routerService.navigate(['cars'])
+  }
+
 }

@@ -1,0 +1,30 @@
+<app-tool-bar></app-tool-bar>
+<h1 style="text-align: center; margin-top: 2%;">Carros disponíveis para venda</h1>
+<div class="cars-list" style="display: flex; flex-wrap: wrap; padding: 2% 2%;">
+  @for (car of carsDatas; track $index) {
+      <p-card [header]="car.modeloCarro" subheader="{{car.marcaCarro}}" [style]="{ width: '360px' }" >
+        <ng-template pTemplate="header">
+            <img style="width: 350px; height: 250px;" alt="Card" src="{{car.imagemCarro}}" />
+        </ng-template>
+        <button
+        color="warn"
+        mat-mini-fab
+        >
+        <mat-icon>
+          edit
+        </mat-icon>
+        </button>
+        <button
+        style="margin-left: 2%;
+        background-color: greenyellow;"
+        mat-mini-fab
+        >
+        <mat-icon
+        style="color: #fff;">
+          shopping_cart
+        </mat-icon>
+        </button>
+      </p-card>
+  }
+
+</div>
