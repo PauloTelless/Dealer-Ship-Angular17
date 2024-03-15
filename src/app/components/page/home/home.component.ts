@@ -1,11 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Car } from '../../models/car';
-import { CarService } from '../../services/car.service';
+import { Car } from '../../../models/car/car';
+import { CarService } from '../../../services/car/car.service';
 import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
-import { ToolBarComponent } from '../../shared/tool-bar/tool-bar.component';
+import { ToolBarComponent } from '../../../shared/tool-bar/tool-bar.component';
 @Component({
   selector: 'app-home',
   standalone: true,

@@ -1,0 +1,41 @@
+<app-tool-bar></app-tool-bar>
+<h1 style="text-align: center; margin-top: 2%;">Quadro de funcionários</h1>
+<div class="quadro-funcionarios" style="height: 100vh; display: flex; justify-content: space-evenly;">
+  @for (seller of sellersDatas; track $index) {
+    <p-card [header]="seller.nomeVendedor.length > 20 ? seller.nomeVendedor.substring(0, 20) + '...': seller.nomeVendedor" subheader="Vendedor"  [style]="{ width: '360px', height: '550px'}">
+      <ng-template pTemplate="header">
+          <img src="{{seller.fotoVendedor}}" style="width: 90%; height: 200px; display: flex; justify-content: center; align-items: center;" />
+      </ng-template>
+      <div class="seller-info" style="display: flex; flex-direction: column;">
+        <p>
+          Data de nascimento: {{seller.dataNascimentoVendedor}}
+        </p>
+        <p>
+          CPF: {{seller.cpfVendedor}}
+        </p>
+        <p>
+          Salário: R${{seller.salarioVendedor}}
+        </p>
+      </div>
+      <div class="button-group">
+        <button
+        style="margin-right: 2%; background-color: rgb(245, 185, 76);"
+        mat-mini-fab
+        >
+        <mat-icon style="color: #fff;">
+          edit
+        </mat-icon>
+        </button>
+
+        <button
+        color="warn"
+        mat-mini-fab
+        >
+        <mat-icon>
+          power_settings_new
+        </mat-icon>
+        </button>
+      </div>
+  </p-card>
+  }
+</div>
