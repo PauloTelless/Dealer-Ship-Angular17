@@ -3,22 +3,46 @@
     <img src="https://static.vecteezy.com/system/resources/previews/013/923/543/original/blue-car-logo-png.png">
     <button
     (click)="redirecionarHome()"
-     mat-raised-button>Home
+    mat-raised-button>
+    <i
+    class="pi pi-home"
+    ></i>
+    Home
     </button>
 
     <button
     mat-raised-button
-    >Serviços
+    >
+    <mat-icon>
+    list
+    </mat-icon>
+    Serviços
     </button>
 
     <button
     mat-raised-button
     >Contato
+    <mat-icon>
+    support_agent
+    </mat-icon>
     </button>
 
     <button
     mat-raised-button
-    >Usuário
+    >
+    <i
+    class="pi pi-user"
+    >
+    </i>
+    Usuário
+    </button>
+
+    <button
+    mat-mini-fab
+    >
+    <mat-icon>
+    admin_panel_settings
+    </mat-icon>
     </button>
   </header>
 </div>
