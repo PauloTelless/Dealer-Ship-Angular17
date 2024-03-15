@@ -2,14 +2,15 @@ import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
-
+import {MatMenuModule} from '@angular/material/menu';
 
 @Component({
   selector: 'app-tool-bar',
   standalone: true,
   imports: [
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule
   ],
   templateUrl: './tool-bar.component.html',
   styleUrl: './tool-bar.component.scss'

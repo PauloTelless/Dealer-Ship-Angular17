@@ -1,4 +1,36 @@
 *{
-  height: 100%;
-  background-color: #fff;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.car-info{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5%;
+
+  .ficha-tecnica{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .vendedor-info{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .interesse-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8%;
+
+    button:hover {
+      animation: none;
+      transition: none;
+      background-color: transparent;
+      box-shadow: none;
+    }
+  }
 }

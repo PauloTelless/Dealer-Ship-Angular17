@@ -36,14 +36,25 @@
     </i>
     Usuário
     </button>
-
     <button
-    (click)="redirecionarAdministracao()"
+    [matMenuTriggerFor]="menu"
     mat-mini-fab
     >
     <mat-icon>
     admin_panel_settings
     </mat-icon>
     </button>
+    <mat-menu #menu="matMenu">
+      <button
+      mat-menu-item
+      (click)="redirecionarAdministracao()">
+        <mat-icon>person</mat-icon>
+        <span>Vendedores</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>directions_car</mat-icon>
+        <span>Veículos</span>
+      </button>
+    </mat-menu>
   </header>
 </div>

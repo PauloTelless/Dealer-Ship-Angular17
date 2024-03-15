@@ -5,6 +5,7 @@ import { SellerService } from '../../../services/seller/seller.service';
 import { Seller } from '../../../models/seller/seller';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
 
 @Component({
   selector: 'app-administration',
@@ -13,10 +14,11 @@ import { MatIconModule } from '@angular/material/icon';
     ToolBarComponent,
     CardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule
   ],
-  templateUrl: './administration.component.html',
-  styleUrl: './administration.component.scss'
+  templateUrl: './sellers.component.html',
+  styleUrl: './sellers.component.scss'
 })
 export class AdministrationComponent implements OnInit{
 

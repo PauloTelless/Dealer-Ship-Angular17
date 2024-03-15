@@ -1,1 +1,46 @@
-<h1>{{data.modeloCarro}}</h1>
+<div class="car-info">
+  <div class="ficha-tecnica">
+    <h3 style="font-weight: bolder;">Ficha técnica</h3>
+    <h3 style="text-decoration: underline; cursor: pointer;">Descrição</h3>
+    <h4>Modelo: {{data.modeloCarro}}</h4>
+    <h4>Marca: {{data.marcaCarro}}</h4>
+    <h4>Ano/Modelo: {{data.anoCarro}}</h4>
+    <h4>Cor do modelo: {{data.corCarro}}</h4>
+    <h4>Estado: {{data.estadoCarro}}</h4>
+    <h4>Motor: {{data.motorCarro}}</h4>
+    <h4>Consumo: {{data.consumoCarro}}</h4>
+    <h4>Quilometragem: {{data.quilometragemCarro}}</h4>
+    <h4>Lançamento: {{data.anoLancamento}}</h4>
+    <h4>Placa do veículo: {{data.placaCarro}}</h4>
+  </div>
+
+  <div class="vendedor-info">
+    <h3 style="font-weight: bolder;">Vendedor responsável</h3>
+    <img style="width: 120px; height: 100px; margin-left: 7%;" src="{{fotoVendedor}}">
+    <h4 style="margin-top: 2%;" class="name-seller">Nome: {{nomeVendedor.length > 15 ? nomeVendedor.substring(0, 15) + '...': nomeVendedor}}</h4>
+    <h4>Contato: {{contatoVendedor}}</h4>
+    <h4>Email: {{emailVendedor}}</h4>
+
+    <div class="interesse-info">
+      <h3>Tem interesse ?</h3>
+      <button
+      style="
+      background-color: none;
+      box-shadow: none;
+      :hover{
+        transition: none;
+        animation: none;
+      }
+      "
+      mat-raised-button
+      >
+      <mat-icon>
+        call
+      </mat-icon>
+      Entre em contato
+    </button>
+    </div>
+
+  </div>
+</div>
+

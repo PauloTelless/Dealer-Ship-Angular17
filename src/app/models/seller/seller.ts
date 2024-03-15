@@ -3,6 +3,7 @@ export interface Seller{
   nomeVendedor: string,
   cpfVendedor: string,
   contatoVendedor: string,
+  emailVendedor: string,
   estadoVendedor: string,
   enderecoVendedor: string,
   cidadeVendedor: string,
