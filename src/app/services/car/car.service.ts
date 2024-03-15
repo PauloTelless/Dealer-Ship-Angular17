@@ -17,4 +17,8 @@ export class CarService {
     return this.httpClient.get<Array<Car>>(`${this.API_URL}/carros`);
   }
 
+  postCar(car: Car): Observable<Car>{
+    return this.httpClient.post<Car>(`${this.API_URL}/carros`, car);
+  }
+
 }

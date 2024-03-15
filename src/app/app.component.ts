@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CarService } from './services/car/car.service';
 import { SellerService } from './services/seller/seller.service';
+import { CategorieService } from './services/categorie/categorie.service';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { SellerService } from './services/seller/seller.service';
   providers:[
     HttpClient,
     CarService,
+    CategorieService,
     SellerService
   ],
   host: { ngSkipHydration: 'true'},

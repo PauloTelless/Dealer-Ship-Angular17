@@ -1,8 +1,26 @@
 <app-tool-bar></app-tool-bar>
 <h1 style="text-align: center; margin-top: 2%;">Carros disponíveis para venda</h1>
+
+<div class="button-add" style="padding: 2% 2%;">
+  <button
+  (click)="openCarsForm()"
+  style="
+  display: flex;
+  background-color: #101820;
+  color: #fff;
+  "
+  mat-raised-button>
+  <mat-icon
+  style="color: #fff;">
+    add
+  </mat-icon>
+  Anunciar veículo
+  </button>
+</div>
+
 <div class="cars-list" style="display: flex; flex-wrap: wrap; padding: 2% 2%;">
   @for (car of carsDatas; track $index) {
-      <p-card [header]="car.modeloCarro" subheader="{{car.marcaCarro}}" [style]="{ width: '360px' }" >
+      <p-card [header]="car.modeloCarro" subheader="{{car.marcaCarro}}" [style]="{ width: '360px', margin: '2%' }" >
         <ng-template pTemplate="header">
             <img style="width: 350px; height: 250px;" alt="Card" src="{{car.imagemCarro}}" />
         </ng-template>

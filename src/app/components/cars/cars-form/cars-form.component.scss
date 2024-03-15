@@ -1,0 +1,17 @@
+.car-form{
+  form{
+    mat-form-field{
+      margin: 0.5%;
+      width: 160px;
+    }
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+  }
+  .button-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
