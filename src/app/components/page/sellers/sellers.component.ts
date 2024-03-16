@@ -6,6 +6,8 @@ import { Seller } from '../../../models/seller/seller';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { SellerInfoComponent } from '../../sellers/seller-info/seller-info.component';
 
 @Component({
   selector: 'app-administration',
@@ -15,7 +17,8 @@ import {MatMenuModule} from '@angular/material/menu';
     CardModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule
   ],
   templateUrl: './sellers.component.html',
   styleUrl: './sellers.component.scss'
@@ -23,6 +26,7 @@ import {MatMenuModule} from '@angular/material/menu';
 export class AdministrationComponent implements OnInit{
 
   private sellerService = inject(SellerService);
+  private dialogService = inject(MatDialog);
   public sellersDatas!: Array<Seller>;
 
 
@@ -35,8 +39,15 @@ export class AdministrationComponent implements OnInit{
     this.sellerService.getAllSellers().subscribe({
       next: (sellerResponse => {
         this.sellersDatas = sellerResponse;
-        console.log(this.sellersDatas);
       })
+    });
+  };
+
+  openModalSellerInfo(seller: Seller): void{
+    this.dialogService.open(SellerInfoComponent, {
+      width: '400px',
+      height: '600px',
+      data: seller
     })
   }
 }
