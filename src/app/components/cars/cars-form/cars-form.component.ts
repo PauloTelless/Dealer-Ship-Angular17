@@ -85,28 +85,29 @@ export class CarsFormComponent implements OnInit{
         error: (err => {
           console.log(err)
         })
-        })
-    }
-  }
+      });
+    };
+  };
 
   getCategories(): void{
     this.categorieService.getAllCategories().subscribe({
       next: (response => {
         this.categoriesDatas = response;
       })
-    })
-  }
+    });
+  };
 
   getSellers(): void{
     this.sellerService.getAllSellers().subscribe({
       next: (response => {
         this.sellersDatas = response;
       })
-    })
-  }
+    });
+  };
+
   closeCarForm(): void{
     this.dialogRef.close()
-  }
+  };
 
 }
 

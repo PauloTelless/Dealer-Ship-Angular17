@@ -1,8 +1,8 @@
 <app-tool-bar></app-tool-bar>
 <h1 style="text-align: center; margin-top: 2%;">Quadro de funcionários</h1>
-<div class="quadro-funcionarios" style="display: flex; justify-content: space-evenly;">
+<div class="quadro-funcionarios" style="display: flex; flex-wrap: wrap; padding: 2% 2%;">
   @for (seller of sellersDatas; track $index) {
-    <p-card [header]="seller.nomeVendedor.length > 20 ? seller.nomeVendedor.substring(0, 20) + '...': seller.nomeVendedor" subheader="Vendedor"  [style]="{ width: '360px', height: '550px'}">
+    <p-card [header]="seller.nomeVendedor.length > 20 ? seller.nomeVendedor.substring(0, 20) + '...': seller.nomeVendedor" subheader="Vendedor"  [style]="{ width: '360px', height: '550px', margin:'2%'}">
       <ng-template pTemplate="header">
           <img src="{{seller.fotoVendedor}}" style="width: 90%; height: 200px; display: flex; justify-content: center; align-items: center;" />
       </ng-template>

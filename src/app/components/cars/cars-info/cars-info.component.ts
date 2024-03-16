@@ -41,8 +41,8 @@ export class CarsInfoComponent implements OnInit{
   ngOnInit(): void {
     this.getSellers();
     this.getCategories();
-    this.data.anoLancamento =  this.data.anoLancamento.split('T')[0];
-  }
+    this.data.anoLancamento = this.data.anoLancamento.split('T')[0]
+  };
 
 
   getSellers(): void{
@@ -55,11 +55,11 @@ export class CarsInfoComponent implements OnInit{
             this.contatoVendedor = vendendor.contatoVendedor;
             this.emailVendedor = vendendor.emailVendedor;
             this.fotoVendedor = vendendor.fotoVendedor;
-          }
-        })
+          };
+        });
       })
-    })
-  }
+    });
+  };
 
   getCategories(): void{
     this.categorieService.getAllCategories().subscribe({
@@ -67,9 +67,9 @@ export class CarsInfoComponent implements OnInit{
         this.categories = response.filter(categoriaFiltrada => {
           if (categoriaFiltrada.categoriaId == this.data.categoriaId) {
             this.categoria = categoriaFiltrada.nomeCategoria;
-          }
-        })
+          };
+        });
       })
-    })
-  }
+    });
+  };
 }
