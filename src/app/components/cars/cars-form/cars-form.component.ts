@@ -7,13 +7,13 @@ import { MatInputModule } from '@angular/material/input'
 import { Car } from '../../../models/car/car';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import {MatSelectChange, MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { Categorie } from '../../../models/categorie/categorie';
 import { CategorieService } from '../../../services/categorie/categorie.service';
 import { SellerService } from '../../../services/seller/seller.service';
 import { Seller } from '../../../models/seller/seller';
-import {provideNativeDateAdapter} from '@angular/material/core';
-import {MatDatepickerInputEvent, MatDatepickerModule} from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-cars-form',
@@ -44,6 +44,7 @@ export class CarsFormComponent implements OnInit{
     this.getCategories();
     this.getSellers();
   }
+
   private formBuilder = inject(FormBuilder);
   private carService = inject(CarService);
   private categorieService = inject(CategorieService);
@@ -64,7 +65,6 @@ export class CarsFormComponent implements OnInit{
     motorCarro: ['', Validators.required],
     consumoCarro: ['', Validators.required],
     quilometragemCarro: ['', Validators.required],
-    descricaoCarro: ['', Validators.required],
     estadoCarro: ['', Validators.required],
     imagemCarro: ['', Validators.required],
     precoCarro: ['', Validators.required],
@@ -76,11 +76,12 @@ export class CarsFormComponent implements OnInit{
     vendedorId: [''],
   })
 
+
   carFormSubmit(): void{
     if (this.carForm.value && this.carForm.valid) {
       this.carService.postCar(this.carForm.value as Car).subscribe({
-        next: (response => {
-          console.log(response);
+        next: (() => {
+          this.dialogRef.close();
         }),
         error: (err => {
           console.log(err)

@@ -2,14 +2,15 @@
   <h1 style="text-align: center; margin-top: 2%;">Anunciar veículo</h1>
 
   <button
-  style="background-color: #101820;"
-  mat-mini-fab
-  >
-  <mat-icon
-  style="color: #fff;"
-  >
-    close
-  </mat-icon>
+    (click)="closeCarForm()"
+    style="background-color: #101820;"
+    mat-mini-fab
+    >
+    <mat-icon
+    style="color: #fff;"
+    >
+      close
+    </mat-icon>
   </button>
 </div>
 
@@ -43,11 +44,6 @@
     <mat-form-field>
       <mat-label>Quilometragem</mat-label>
       <input type="text" matInput placeholder="Quilômetros rodados" required formControlName="quilometragemCarro">
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Descrição</mat-label>
-      <input type="text" matInput placeholder="Breve descrição" required formControlName="descricaoCarro">
     </mat-form-field>
 
     <mat-form-field>
@@ -110,21 +106,20 @@
       </mat-select>
     </mat-form-field>
 
-  <div class="button-group">
-    <button
-    type="submit"
-    mat-raised-button
-    style="
-    background-color: #101820;
-    color: #fff;
-    "
-    >
-    <mat-icon>
-      payments
-    </mat-icon>
-    Anunciar veículo
-    </button>
-  </div>
+    <div class="button-group">
+      <button
+      type="submit"
+      mat-raised-button
+      style="
+      background-color: #101820;
+      color: #fff;"
+      >
+      <mat-icon>
+        payments
+      </mat-icon>
+      Anunciar veículo
+      </button>
+    </div>
   </form>
 
 </div>

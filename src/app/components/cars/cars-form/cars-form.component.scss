@@ -1,17 +1,33 @@
+.title{
+  button{
+    display: flex;
+    transform: translateX(52vw) translateY(-4vh);
+  }
+}
+
 .car-form{
+  height: 100vh;
+
   form{
-    mat-form-field{
-      margin: 0.5%;
-      width: 160px;
-    }
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 
+    mat-form-field{
+      margin: 0.5%;
+      width: 160px;
+    }
   }
+
   .button-group{
     display: flex;
     justify-content: center;
     align-items: center;
+
+    button{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }

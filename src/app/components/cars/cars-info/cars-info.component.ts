@@ -1,6 +1,6 @@
 import { CategorieService } from './../../../services/categorie/categorie.service';
 import { Component, Inject, OnInit, inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { Car } from '../../../models/car/car';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,6 +15,7 @@ import { Categorie } from '../../../models/categorie/categorie';
   imports: [
     MatIconModule,
     MatButtonModule,
+    MatDialogModule,
     CommonModule
   ],
   providers:[
@@ -36,6 +37,7 @@ export class CarsInfoComponent implements OnInit{
   public categoria!: string;
   private sellerService = inject(SellerService);
   private categorieService = inject(CategorieService);
+  private dialogRef = inject(MatDialogRef)
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:Car){}
   ngOnInit(): void {
@@ -71,5 +73,9 @@ export class CarsInfoComponent implements OnInit{
         });
       })
     });
+  };
+
+  closeModalCarInfo(): void{
+    this.dialogRef.close()
   };
 }

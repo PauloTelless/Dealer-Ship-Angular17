@@ -30,21 +30,20 @@ export class CarsComponent implements OnInit{
 
   ngOnInit(): void {
     this.getCars();
-    this.openCarsForm();
-  }
+  };
 
   getCars(): void{
     this.carService.getAllCars().subscribe({
       next: (response => {
         this.carsDatas = response
       })
-    })
-  }
+    });
+  };
 
   openCarsForm(): void{
     this.dialogService.open(CarsFormComponent, {
       width: '900px',
       height: '550px'
-    })
-  }
+    });
+  };
 }

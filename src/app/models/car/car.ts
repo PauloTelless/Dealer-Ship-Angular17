@@ -6,7 +6,6 @@ export interface Car{
   motorCarro: string,
   consumoCarro: string,
   quilometragemCarro: string,
-  descricaoCarro: string,
   estadoCarro: string,
   imagemCarro: string,
   precoCarro: string,
