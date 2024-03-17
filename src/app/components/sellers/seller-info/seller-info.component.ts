@@ -30,12 +30,17 @@ export class SellerInfoComponent implements OnInit{
   private dialogRef = inject(MatDialogRef);
   public carsData!: Array<Car>;
   public cars: Array<Car> = [];
+  public dataNascimentoVendedorFormatada: string = '';
+  public dataAdmissaoFormatada: string = '';
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:Seller){}
   ngOnInit(): void {
     this.getCars();
-    this.data.dataNascimentoVendedor = this.data.dataNascimentoVendedor.split('T')[0]
-    this.data.dataAdmissao = this.data.dataNascimentoVendedor.split('T')[0]
+    this.data.dataNascimentoVendedor = this.data.dataNascimentoVendedor.split('T')[0];
+    this.dataNascimentoVendedorFormatada = `${this.data.dataNascimentoVendedor.split('-')[2]}/${this.data.dataNascimentoVendedor.split('-')[1]}/${this.data.dataNascimentoVendedor.split('-')[0]}`
+
+    this.data.dataAdmissao = this.data.dataAdmissao.split('T')[0]
+    this.dataAdmissaoFormatada = `${this.data.dataAdmissao.split('-')[2]}/${this.data.dataAdmissao.split('-')[1]}/${this.data.dataAdmissao.split('-')[0]}`
   };
 
   getCars(): void {

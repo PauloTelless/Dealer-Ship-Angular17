@@ -35,6 +35,7 @@ export class CarsInfoComponent implements OnInit{
   public sellers!: Array<Seller>;
   public categories!: Array<Categorie>;
   public categoria!: string;
+  public anoLancamentoFormatada: string = '';
   private sellerService = inject(SellerService);
   private categorieService = inject(CategorieService);
   private dialogRef = inject(MatDialogRef)
@@ -44,6 +45,8 @@ export class CarsInfoComponent implements OnInit{
     this.getSellers();
     this.getCategories();
     this.data.anoLancamento = this.data.anoLancamento.split('T')[0]
+
+    this.anoLancamentoFormatada = `${this.data.anoLancamento.split('-')[2]}/${this.data.anoLancamento.split('-')[1]}/${this.data.anoLancamento.split('-')[0]}`
   };
 
 

@@ -47,7 +47,7 @@ export class AdministrationComponent implements OnInit{
 
   openModalSellerInfo(seller: Seller): void{
     this.dialogService.open(SellerInfoComponent, {
-      width: '900px',
+      maxWidth: '900px',
       height: '500px',
       data: seller
     });
