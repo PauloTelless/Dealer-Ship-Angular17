@@ -82,4 +82,8 @@ export class SellerFormComponent {
     };
   };
 
+  closeModalSellerForm(): void{
+    this.dialoRef.close()
+  }
+
 }
