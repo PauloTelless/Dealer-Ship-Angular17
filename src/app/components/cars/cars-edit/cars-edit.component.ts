@@ -86,29 +86,31 @@ export class CarsEditComponent implements OnInit{
   })
 
   carFormEditSubmit(): void{
-    this.carService.putCar(this.carFormEdit.value.carroId as string, this.carFormEdit.value as Car).subscribe({
-      next: () => {
-        this.messageService.add({
-          severity: 'success',
-          summary:'Editado',
-          detail: 'Dados editados !',
-          life: 2000
-        });
-        setTimeout(() => {
-          this.dialogRef.close()
-        }, 1500);
-      },
-      error: (erro => {
-        console.log(erro)
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Erro',
-          detail: 'Erro ao editar',
-          life: 2000
-        });
-      })
-    });
-  };
+    if (this.carFormEdit.value && this.carFormEdit.valid) {
+      this.carService.putCar(this.carFormEdit.value.carroId as string, this.carFormEdit.value as Car).subscribe({
+        next: () => {
+          this.messageService.add({
+            severity: 'success',
+            summary:'Editado',
+            detail: 'Dados editados !',
+            life: 2000
+          });
+          setTimeout(() => {
+            this.dialogRef.close()
+          }, 1500);
+        },
+        error: (erro => {
+          console.log(erro)
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: 'Erro ao editar',
+            life: 2000
+          });
+        })
+      });
+    };
+  }
 
   getCategories(): void{
     this.categorieService.getAllCategories().subscribe({

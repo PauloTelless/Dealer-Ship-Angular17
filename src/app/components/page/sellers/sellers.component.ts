@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SellerInfoComponent } from '../../sellers/seller-info/seller-info.component';
+import { SellerFormComponent } from '../../sellers/seller-form/seller-form.component';
 
 @Component({
   selector: 'app-administration',
@@ -51,5 +52,12 @@ export class AdministrationComponent implements OnInit{
       data: seller
     });
   };
+
+  openModalSellerForm(): void{
+    this.dialogService.open(SellerFormComponent, {
+      width: '980px',
+      height: '450px'
+    })
+  }
 
 }

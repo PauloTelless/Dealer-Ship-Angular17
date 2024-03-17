@@ -18,4 +18,8 @@ export class SellerService {
     return this.httpClient.get<Array<Seller>>(`${this.API_URL}/vendedores`)
   }
 
+  postSeller(seller: Seller): Observable<Seller>{
+    return this.httpClient.post<Seller>(`${this.API_URL}/vendedores`, seller);
+  }
+
 }

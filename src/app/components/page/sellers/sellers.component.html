@@ -1,5 +1,25 @@
 <app-tool-bar></app-tool-bar>
-<h1 style="text-align: center; margin-top: 2%;">Quadro de funcionários</h1>
+
+<div class="title">
+  <h1 style="text-align: center; margin-top: 2%;">Quadro de funcionários</h1>
+
+  <button
+  (click)="openModalSellerForm()"
+  style="
+  background-color: #101820;
+  color: #fff;
+  "
+  mat-raised-button
+  >
+  Contratar vendedor
+  <mat-icon
+  style="color: #fff;"
+  >
+    person
+  </mat-icon>
+  </button>
+</div>
+
 <div class="quadro-funcionarios">
   @for (seller of sellersDatas; track $index) {
     <p-card [header]="seller.nomeVendedor.length > 20 ? seller.nomeVendedor.substring(0, 20) + '...': seller.nomeVendedor" subheader="Vendedor"  [style]="{ width: '360px', height: '450px'}">
