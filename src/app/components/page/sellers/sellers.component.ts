@@ -5,7 +5,7 @@ import { SellerService } from '../../../services/seller/seller.service';
 import { Seller } from '../../../models/seller/seller';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SellerInfoComponent } from '../../sellers/seller-info/seller-info.component';
 
@@ -29,11 +29,12 @@ export class AdministrationComponent implements OnInit{
   private dialogService = inject(MatDialog);
   public sellersDatas!: Array<Seller>;
 
-
   constructor(){}
+
   ngOnInit(): void {
-   this.getSellers();
-  }
+    this.getSellers();
+
+  };
 
   getSellers(): void{
     this.sellerService.getAllSellers().subscribe({
@@ -45,9 +46,10 @@ export class AdministrationComponent implements OnInit{
 
   openModalSellerInfo(seller: Seller): void{
     this.dialogService.open(SellerInfoComponent, {
-      width: '400px',
-      height: '600px',
+      width: '900px',
+      height: '500px',
       data: seller
-    })
-  }
+    });
+  };
+
 }

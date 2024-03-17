@@ -1,0 +1,39 @@
+<div class="vendedor-info">
+  <div class="vendedor">
+    <h2>{{data.nomeVendedor}}</h2>
+    <h3>Data admissão: {{data.dataAdmissao}}</h3>
+    <h3>CPF: {{data.cpfVendedor}}</h3>
+    <h3>Nascimento: {{data.dataNascimentoVendedor}}</h3>
+    <h3>Endereço: {{data.enderecoVendedor}}</h3>
+    <h3>Contato: {{data.contatoVendedor}}</h3>
+    <h3>Email: {{data.emailVendedor}}</h3>
+    <h3>Estado: {{data.estadoVendedor}}</h3>
+    <h3>Cidade: {{data.cidadeVendedor}}</h3>
+    <h3 style="font-weight: bolder;">Salário: {{data.salarioVendedor | currency:'BRL'}}</h3>
+  </div>
+
+  <div class="vendedor-carro">
+    <h2>Carros relacionados</h2>
+    @for (car of cars; track $index) {
+      <h3>{{car.marcaCarro}} {{car.modeloCarro}} | Placa: {{car.placaCarro}}</h3>
+    }
+
+    <button
+    (click)="closeModalSellerInfo()"
+      style="
+      background-color: #101820;
+      color: #fff;
+      width: 120px;"
+      mat-raised-button
+      >
+      <mat-icon
+      style="color: #fff;"
+      >
+      close
+      </mat-icon>
+      Fechar
+    </button>
+  </div>
+
+</div>
+

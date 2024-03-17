@@ -1,0 +1,19 @@
+.vendedor-info{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2% 2%;
+  width: 100vh;
+
+  .vendedor{
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .vendedor-carro{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+}
