@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CarsFormComponent } from '../../cars/cars-form/cars-form.component';
 import { CarsEditComponent } from '../../cars/cars-edit/cars-edit.component';
+import { CarsDeleteComponent } from '../../cars/cars-delete/cars-delete.component';
 
 @Component({
   selector: 'app-cars',
@@ -52,6 +53,14 @@ export class CarsComponent implements OnInit{
     this.dialogService.open(CarsEditComponent, {
       width: '900px',
       height: '550px',
+      data: car
+    });
+  };
+
+  openModalCarDelete(car: Car): void{
+    this.dialogService.open(CarsDeleteComponent, {
+      width: '500px',
+      height: '300px',
       data: car
     })
   }
