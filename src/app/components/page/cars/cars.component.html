@@ -1,7 +1,7 @@
 <app-tool-bar></app-tool-bar>
 <h1 style="text-align: center; margin-top: 2%;">Carros disponíveis para venda</h1>
 
-<div class="button-add" style="padding: 2% 2%;">
+<div class="button-add" style="display: flex; justify-content: center;">
   <button
   (click)="openCarsForm()"
   style="
@@ -27,6 +27,7 @@
       </ng-template>
 
       <button
+      (click)="openModalCarEdit(car)"
       color="warn"
       mat-mini-fab
       >

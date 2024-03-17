@@ -1,0 +1,23 @@
+.title{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2%;
+}
+
+.car-form{
+  height: 100vh;
+
+  form{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 2% 2%;
+
+    mat-form-field{
+      width: 160px;
+      margin: 0.5%;
+    }
+  }
+
+}

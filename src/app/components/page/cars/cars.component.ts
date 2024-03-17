@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CarsFormComponent } from '../../cars/cars-form/cars-form.component';
+import { CarsEditComponent } from '../../cars/cars-edit/cars-edit.component';
 
 @Component({
   selector: 'app-cars',
@@ -46,4 +47,12 @@ export class CarsComponent implements OnInit{
       height: '550px'
     });
   };
+
+  openModalCarEdit(car: Car): void{
+    this.dialogService.open(CarsEditComponent, {
+      width: '900px',
+      height: '550px',
+      data: car
+    })
+  }
 }

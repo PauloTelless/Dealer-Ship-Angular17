@@ -1,0 +1,116 @@
+<p-toast position="center"></p-toast>
+
+<div class="car-form">
+  <div class="title">
+    <h1>Editando: {{data.modeloCarro}}</h1>
+  </div>
+
+  <form [formGroup]="carFormEdit" (submit)="carFormEditSubmit()">
+
+    <mat-form-field>
+      <mat-label>Modelo</mat-label>
+      <input type="text" matInput placeholder="Modelo do carro" required formControlName="modeloCarro">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Marca</mat-label>
+      <input type="text" matInput placeholder="Marca do carro" required formControlName="marcaCarro">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Cor</mat-label>
+      <input type="text" matInput placeholder="Cor do carro" required formControlName="corCarro">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Motor</mat-label>
+      <input type="text" matInput placeholder="Motorização" required formControlName="motorCarro">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Consumo médio</mat-label>
+      <input type="text" matInput placeholder="Consumo médio geral" required formControlName="consumoCarro">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Quilometragem</mat-label>
+      <input type="text" matInput placeholder="Quilômetros rodados" required formControlName="quilometragemCarro">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Imagem</mat-label>
+      <input type="text" matInput placeholder="Imagem" required formControlName="imagemCarro">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Preço</mat-label>
+      <input type="text" matInput placeholder="Preço para anúncio" required formControlName="precoCarro">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Placa</mat-label>
+      <input type="text" matInput placeholder="Placa do carro" required formControlName="placaCarro">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Ano</mat-label>
+      <input type="text" matInput placeholder="Ano do carro" required formControlName="anoCarro">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Lançamento</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="anoLancamento">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker endView="year"></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Quantidade</mat-label>
+      <input type="text" matInput placeholder="Quandidade a ser vendida" required formControlName="quantidadeDisponivel">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Categoria</mat-label>
+      <mat-select formControlName="categoriaId">
+        @for (category of categoriesDatas; track $index) {
+          <mat-option [value]="category.categoriaId">{{category.nomeCategoria}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Vendedor</mat-label>
+      <mat-select formControlName="vendedorId">
+        @for (seller of sellersDatas; track $index) {
+          <mat-option [value]="seller.vendedorId">{{seller.nomeVendedor}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Condição</mat-label>
+      <mat-select formControlName="estadoCarro">
+        @for (state of statesOptions; track $index) {
+          <mat-option [value]="state.estado">{{state.estado}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <div class="button-group">
+      <button
+      type="submit"
+      mat-raised-button
+      style="
+      background-color: #101820;
+      color: #fff;"
+      >
+      <mat-icon>
+        edit
+      </mat-icon>
+      Editar veículo
+      </button>
+    </div>
+  </form>
+
+</div>

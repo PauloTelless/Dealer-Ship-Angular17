@@ -21,4 +21,8 @@ export class CarService {
     return this.httpClient.post<Car>(`${this.API_URL}/carros`, car);
   }
 
+  putCar(carId: string, car: Car): Observable<Car>{
+    return this.httpClient.put<Car>(`${this.API_URL}/carros/${carId}`, car);
+  }
+
 }

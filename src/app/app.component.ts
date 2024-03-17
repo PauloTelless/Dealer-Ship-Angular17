@@ -5,7 +5,6 @@ import { CarService } from './services/car/car.service';
 import { SellerService } from './services/seller/seller.service';
 import { CategorieService } from './services/categorie/categorie.service';
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
