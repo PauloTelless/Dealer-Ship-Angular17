@@ -9,6 +9,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SellerInfoComponent } from '../../sellers/seller-info/seller-info.component';
 import { SellerFormComponent } from '../../sellers/seller-form/seller-form.component';
+import { SellersEditComponent } from '../../sellers/sellers-edit/sellers-edit.component';
 
 @Component({
   selector: 'app-administration',
@@ -57,6 +58,14 @@ export class AdministrationComponent implements OnInit{
     this.dialogService.open(SellerFormComponent, {
       width: '980px',
       height: '450px'
+    });
+  };
+
+  openOpenSellerEdit(seller: Seller): void{
+    this.dialogService.open(SellersEditComponent, {
+      width: '980px',
+      height: '450px',
+      data: seller
     })
   }
 

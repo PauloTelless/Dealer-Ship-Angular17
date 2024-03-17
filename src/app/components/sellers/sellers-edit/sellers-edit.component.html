@@ -1,0 +1,101 @@
+<p-toast
+  position="center"
+></p-toast>
+
+<div class="title">
+  <h1>Editando : {{data.nomeVendedor}}</h1>
+</div>
+
+<div class="seller-form">
+
+  <form [formGroup]="formEditSeller" (submit)="putSellerSubmit()">
+    <mat-form-field>
+      <mat-label>Nome</mat-label>
+      <input type="text" matInput placeholder="Nome do vendedor" formControlName="nomeVendedor">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>CPF</mat-label>
+      <input type="text" matInput placeholder="Cpf do vendedor" formControlName="cpfVendedor">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Contato</mat-label>
+      <input type="text" matInput placeholder="Contato do vendedor" formControlName="contatoVendedor">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="email" matInput placeholder="Email do vendedor" formControlName="emailVendedor">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Endereço</mat-label>
+      <input type="text" matInput placeholder="Endereço do vendedor" formControlName="enderecoVendedor">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Estado</mat-label>
+      <input type="text" matInput placeholder="Estado do vendedor" formControlName="estadoVendedor">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Cidade</mat-label>
+      <input type="text" matInput placeholder="Cidade do vendedor" formControlName="cidadeVendedor">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Foto</mat-label>
+      <input type="text" matInput placeholder="Foto do vendedor" formControlName="fotoVendedor">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Data nascimento</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dataNascimentoVendedor">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Data admissão</mat-label>
+      <input matInput [matDatepicker]="pickerAdmissao" formControlName="dataAdmissao">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="pickerAdmissao"></mat-datepicker-toggle>
+      <mat-datepicker #pickerAdmissao></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Salário</mat-label>
+      <input type="text" matInput placeholder="Salário do vendedor" formControlName="salarioVendedor">
+    </mat-form-field>
+
+    <div class="button-group">
+      <button
+      type="submit"
+      mat-raised-button
+      style="
+      margin-right: 2%;
+      background-color: #101820;
+      color: #fff;"
+      >
+      <mat-icon>
+        person
+      </mat-icon>
+      Editar vendedor
+      </button>
+
+      <button
+      (click)="closeModalEditSeller()"
+      mat-raised-button
+      color="warn"
+      >
+      <mat-icon>
+        close
+      </mat-icon>
+      Voltar
+      </button>
+    </div>
+  </form>
+
+</div>

@@ -15,11 +15,15 @@ export class SellerService {
   constructor() { }
 
   getAllSellers(): Observable<Array<Seller>>{
-    return this.httpClient.get<Array<Seller>>(`${this.API_URL}/vendedores`)
+    return this.httpClient.get<Array<Seller>>(`${this.API_URL}/vendedores`);
   }
 
   postSeller(seller: Seller): Observable<Seller>{
     return this.httpClient.post<Seller>(`${this.API_URL}/vendedores`, seller);
+  }
+
+  putSeller(sellerId: string, seller: Seller): Observable<Seller>{
+    return this.httpClient.put<Seller>(`${this.API_URL}/vendedores/${sellerId}`, seller);
   }
 
 }
