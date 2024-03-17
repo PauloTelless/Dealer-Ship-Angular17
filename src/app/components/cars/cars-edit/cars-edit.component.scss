@@ -18,6 +18,15 @@
       width: 160px;
       margin: 0.5%;
     }
+
+    .button-group{
+      display: flex;
+      flex-direction: row;
+
+      button{
+        width: 180px;
+      }
+    }
   }
 
 }

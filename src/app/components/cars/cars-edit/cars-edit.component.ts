@@ -97,7 +97,6 @@ export class CarsEditComponent implements OnInit{
         setTimeout(() => {
           this.dialogRef.close()
         }, 1500);
-
       },
       error: (erro => {
         console.log(erro)
@@ -126,5 +125,9 @@ export class CarsEditComponent implements OnInit{
       })
     });
   };
+
+  closeModalCarEdit(): void{
+    this.dialogRef.close();
+  }
 
 }

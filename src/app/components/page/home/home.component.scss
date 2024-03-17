@@ -1,10 +1,19 @@
-.carousel{
+.carousel-container{
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-  .car-info{
-    width: 90px;
+  .carousel{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .car-info{
+      width: 90px;
+
+      .button-group{
+        margin: 2% 2%;
+      }
+    }
   }
 }
+

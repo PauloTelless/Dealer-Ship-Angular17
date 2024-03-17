@@ -1,23 +1,29 @@
 <app-tool-bar></app-tool-bar>
-<div class="carousel">
-  <p-carousel  [value]="carsDatas" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+<div class="carousel-container">
+  <p-carousel [value]="carsDatas" [numVisible]="3" [circular]="false" [numScroll]="3" [responsiveOptions]="responsiveOptions">
     <ng-template let-car pTemplate="item">
-        <div class="border-1 surface-border border-round m-2 text-center py-5 px-3" style="width: 100%;">
-            <div style="display: flex; justify-content: center; align-items: center;">
-                <img src="{{ car.imagemCarro }}" style="max-width: 100%; height: 250px;" />
+      <div class="carousel-item">
+        <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+          <div style="display: flex; justify-content: center; align-items: center;">
+            <img src="{{ car.imagemCarro }}" style="max-width: 100%; height: 250px;" />
+          </div>
+          <div class="car-info">
+            <h4 style="font-weight: bolder;">{{ car.modeloCarro }}</h4>
+            <h4>{{ car.marcaCarro }}</h4>
+            <h4 style="font-weight: bolder;">{{ car.precoCarro | currency:'BRL' }}</h4>
+            <div class="mt-5 flex align-items-center justify-content-center gap-2">
+              <div class="button-group">
+                <button (click)="openModalCarInfo(car)" mat-mini-fab style="margin-right: 2%; background-color: #2563EB; box-shadow: none;">
+                  <mat-icon style="color: #fff;">visibility</mat-icon>
+                </button>
+                <button mat-mini-fab style="background-color: #f97316; box-shadow: none;">
+                  <mat-icon style="color: #fff;">star</mat-icon>
+                </button>
+              </div>
             </div>
-            <div class="car-info">
-                <h4 style="font-weight: bolder;">{{ car.modeloCarro }}</h4>
-                <h4>{{car.marcaCarro}}</h4>
-                <h4 style="font-weight: bolder;">{{ car.precoCarro | currency:'BRL'}}</h4>
-                <div class="mt-5 flex align-items-center justify-content-center gap-2">
-                  <div class="button-group" style="margin: 2% 2%;">
-                      <button (click)="openModalCarInfo(car)" mat-mini-fab style="margin-right: 2%; background-color: #2563EB; box-shadow: none;"><mat-icon style="color: #fff;">visibility</mat-icon></button>
-                      <button mat-mini-fab style="background-color: #f97316; box-shadow: none;"><mat-icon style="color: #fff;">star</mat-icon></button>
-                  </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </ng-template>
   </p-carousel>
 </div>

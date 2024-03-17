@@ -26,27 +26,39 @@
           <img style="width: 350px; height: 250px;" alt="Card" src="{{car.imagemCarro}}" />
       </ng-template>
 
-      <button
-      (click)="openModalCarEdit(car)"
-      color="warn"
-      mat-mini-fab
-      >
-      <mat-icon>
-        edit
-      </mat-icon>
-      </button>
+      <div class="button-group">
+        <button
+        (click)="openModalCarEdit(car)"
+        color="accent"
+        mat-mini-fab
+        >
+        <mat-icon
+        style="color: #fff;">
+          edit
+        </mat-icon>
+        </button>
 
-      <button
-      style="margin-left: 2%;
-      background-color: #101820;"
-      mat-mini-fab
-      >
-      <mat-icon
-      style="
-      color: #fff;">
-        shopping_cart
-      </mat-icon>
-      </button>
+        <button
+        color="warn"
+        mat-mini-fab
+        >
+        <mat-icon>
+          delete
+        </mat-icon>
+        </button>
+
+        <button
+        style="
+        background-color: #101820;"
+        mat-mini-fab
+        >
+        <mat-icon
+        style="
+        color: #fff;">
+          shopping_cart
+        </mat-icon>
+        </button>
+      </div>
 
     </p-card>
   }

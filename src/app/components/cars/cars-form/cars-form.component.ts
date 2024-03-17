@@ -14,6 +14,8 @@ import { SellerService } from '../../../services/seller/seller.service';
 import { Seller } from '../../../models/seller/seller';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-cars-form',
@@ -28,12 +30,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatButtonModule,
     MatIconModule,
     MatSelectModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    ToastModule
   ],
   providers: [
     CarService,
     CategorieService,
     SellerService,
+    MessageService,
     provideNativeDateAdapter()
   ],
   templateUrl: './cars-form.component.html',
@@ -45,6 +49,7 @@ export class CarsFormComponent implements OnInit{
     this.getSellers();
   }
 
+  private messageService = inject(MessageService);
   private formBuilder = inject(FormBuilder);
   private carService = inject(CarService);
   private categorieService = inject(CategorieService);
@@ -81,10 +86,24 @@ export class CarsFormComponent implements OnInit{
     if (this.carForm.value && this.carForm.valid) {
       this.carService.postCar(this.carForm.value as Car).subscribe({
         next: (() => {
-          this.dialogRef.close();
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Adicionado',
+            detail: 'Veículo adicionado !',
+            life: 2000
+          })
+          setTimeout(() => {
+            this.dialogRef.close()
+          }, 1500);
         }),
-        error: (err => {
-          console.log(err)
+        error: (erro => {
+          console.log(erro)
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: 'Erro ao editar',
+            life: 2000
+          });
         })
       });
     };
