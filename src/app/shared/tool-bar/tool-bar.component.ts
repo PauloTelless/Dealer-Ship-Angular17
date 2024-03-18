@@ -27,7 +27,7 @@ export class ToolBarComponent {
   }
 
   redirecionarAdministracao(): void{
-    this.routerService.navigate(['administration'])
+    this.routerService.navigate(['sellers'])
   }
 
   redirecionarCarros(): void{
