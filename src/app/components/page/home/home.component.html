@@ -6,7 +6,7 @@
 
 <div class="home-container">
 
-  <div class="carousel-container">
+  < class="carousel-container">
 
     <p-carousel
     [value]="carsDatas"
@@ -69,6 +69,17 @@
         </ng-template>
       </p-carousel>
     </div>
-  </div>
 
+    <div class="vendedor-session">
+      <div class="title" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <h1>Entre em contato com um dos nossos vendedores e realize o seus sonhos</h1>
+        <h2>Olha só como é fácil !</h2>
+      </div>
+        <p-timeline [value]="etapas">
+          <ng-template pTemplate="content" let-etapa>
+              {{ etapa.etapa }} <i class="{{etapa.icon}}"></i>
+          </ng-template>
+        </p-timeline>
+
+    </div>
 </div>

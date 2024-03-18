@@ -31,15 +31,41 @@
           flex-wrap: wrap;
 
         }
-
-        p-carousel{
-          img{
-            margin-bottom: 1%;
-          }
-        }
       }
     }
 
+    .vendedor-session{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin-top: 10%;
+
+      .title{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-wrap: wrap;
+      }
+
+      .main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .processo-contato{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+    }
+
+
   }
+
 }
 

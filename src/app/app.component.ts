@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CarService } from './services/car/car.service';
@@ -18,6 +18,7 @@ import { CategorieService } from './services/categorie/categorie.service';
     CarService,
     CategorieService,
     SellerService
+
   ],
   host: { ngSkipHydration: 'true'},
   templateUrl: './app.component.html',

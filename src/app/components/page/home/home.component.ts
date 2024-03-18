@@ -10,6 +10,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog'
 import { CarsInfoComponent } from '../../cars/cars-info/cars-info.component';
 import { MarcaService } from '../../../services/marca/marca.service';
 import { Marca } from '../../../models/marca/marca';
+import { TimelineModule } from 'primeng/timeline';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,8 @@ import { Marca } from '../../../models/marca/marca';
     MatButtonModule,
     MatIconModule,
     ToolBarComponent,
-    MatDialogModule
+    MatDialogModule,
+    TimelineModule
   ],
   providers:[
     CarService,
@@ -31,6 +33,7 @@ import { Marca } from '../../../models/marca/marca';
 })
 export class HomeComponent implements OnInit{
 
+  etapas: Array<any> = [];
   public responsiveOptions: any[] | undefined;
   public carsDatas!: Array<Car>;
   public marcasDatas!: Array<Marca>;
@@ -57,6 +60,13 @@ export class HomeComponent implements OnInit{
           numVisible: 1,
           numScroll: 1
       }
+    ];
+
+    this.etapas = [
+      { etapa: 'Pesquise', date: '15/10/2020 10:30', icon: 'pi pi-search', color: '#9C27B0', image: 'game-controller.jpg' },
+      { etapa: 'Escolha', date: '15/10/2020 14:00', icon: 'pi pi-check', color: '#673AB7' },
+      { etapa: 'Entre em contato', date: '15/10/2020 16:15', icon: 'pi pi-user', color: '#FF9800' },
+      { etapa: 'Venda feita', date: '16/10/2020 10:00', icon: 'pi pi-money-bill', color: '#607D8B' }
   ];
   }
 
