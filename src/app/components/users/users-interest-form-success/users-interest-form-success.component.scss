@@ -1,0 +1,16 @@
+.interest-success-container{
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2%;
+
+  .title{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+  }
+}

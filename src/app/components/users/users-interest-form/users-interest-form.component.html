@@ -1,0 +1,55 @@
+<div class="interest-container">
+
+  <div class="title">
+    <h1>Entre em contato</h1>
+  </div>
+
+  <form [formGroup]="interestForm">
+
+    <mat-form-field>
+      <mat-label>Nome</mat-label>
+      <input type="text" matInput placeholder="Digite o seu nome" required formControlName="nameUser">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Contato</mat-label>
+      <input type="text" matInput placeholder="Celular para contato" required formControlName="contactUser">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="email" matInput placeholder="Email para contato" required formControlName="emailUser">
+    </mat-form-field>
+
+    <div class="button-group">
+
+      <button
+      (click)="interestFormSubmit()"
+      style="
+      color: #fff;
+      background-color: greenyellow;"
+      mat-raised-button
+      >
+      <mat-icon
+      style="color: #fff;"
+      >
+        phone
+      </mat-icon>
+      Contactar
+      </button>
+
+      <button
+      color="warn"
+      mat-raised-button
+      >
+      <mat-icon>
+        close
+      </mat-icon>
+      Voltar
+      </button>
+
+    </div>
+
+  </form>
+
+</div>

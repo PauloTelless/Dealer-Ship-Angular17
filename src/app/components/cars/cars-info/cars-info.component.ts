@@ -8,6 +8,7 @@ import { SellerService } from '../../../services/seller/seller.service';
 import { Seller } from '../../../models/seller/seller';
 import { CommonModule } from '@angular/common';
 import { Categorie } from '../../../models/categorie/categorie';
+import { UsersInterestFormComponent } from '../../users/users-interest-form/users-interest-form.component';
 
 @Component({
   selector: 'app-cars-info',
@@ -39,6 +40,7 @@ export class CarsInfoComponent implements OnInit{
   private sellerService = inject(SellerService);
   private categorieService = inject(CategorieService);
   private dialogRef = inject(MatDialogRef)
+  private dialogService = inject(MatDialog)
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:Car){}
   ngOnInit(): void {
@@ -77,6 +79,14 @@ export class CarsInfoComponent implements OnInit{
       })
     });
   };
+
+  openModalInterestContact(nomeVendedor: string): void{
+    this.dialogService.open(UsersInterestFormComponent, {
+      width: '500px',
+      height: '450px',
+      data: nomeVendedor
+    })
+  }
 
   closeModalCarInfo(): void{
     this.dialogRef.close()
