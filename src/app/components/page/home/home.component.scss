@@ -3,24 +3,43 @@
   justify-content: center;
   margin: 2%;
 }
-
-.carousel-container{
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-
-  .carousel{
-    display: flex;
+.home-container{
+  .carousel-container{
+    height: 100vh;
     justify-content: center;
     align-items: center;
 
-    .car-info{
-      width: 90px;
+    .carousel{
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-      .button-group{
-        margin: 2% 2%;
+      .car-info{
+        width: 90px;
+
+        .button-group{
+          margin: 2% 2%;
+        }
+      }
+
+      .carousel-container-logos{
+        .title{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          flex-wrap: wrap;
+
+        }
+
+        p-carousel{
+          img{
+            margin-bottom: 1%;
+          }
+        }
       }
     }
+
   }
 }
 

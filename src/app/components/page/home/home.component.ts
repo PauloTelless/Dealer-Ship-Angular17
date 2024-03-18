@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon'
 import { ToolBarComponent } from '../../../shared/tool-bar/tool-bar.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog'
 import { CarsInfoComponent } from '../../cars/cars-info/cars-info.component';
+import { MarcaService } from '../../../services/marca/marca.service';
+import { Marca } from '../../../models/marca/marca';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +23,8 @@ import { CarsInfoComponent } from '../../cars/cars-info/cars-info.component';
     MatDialogModule
   ],
   providers:[
-    CarService
+    CarService,
+    MarcaService
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -29,12 +32,15 @@ import { CarsInfoComponent } from '../../cars/cars-info/cars-info.component';
 export class HomeComponent implements OnInit{
 
   public responsiveOptions: any[] | undefined;
-  private carService = inject(CarService);
-  private dialogService = inject(MatDialog);
   public carsDatas!: Array<Car>;
+  public marcasDatas!: Array<Marca>;
+  private carService = inject(CarService);
+  private marcaService = inject(MarcaService);
+  private dialogService = inject(MatDialog);
 
   ngOnInit(): void {
     this.getCars();
+    this.getMarcas();
     this.responsiveOptions = [
       {
           breakpoint: '1199px',
@@ -59,14 +65,22 @@ export class HomeComponent implements OnInit{
       next: (carsReponse => {
         this.carsDatas = carsReponse;
       })
-    })
-  }
+    });
+  };
+
+  getMarcas(): void{
+    this.marcaService.getAllMarcas().subscribe({
+      next: (response => {
+        this.marcasDatas = response
+      })
+    });
+  };
 
   openModalCarInfo(carInfo: Car): void{
     this.dialogService.open(CarsInfoComponent, {
       width: '600px',
       height: '550px',
       data: carInfo
-    })
-  }
+    });
+  };
 }
