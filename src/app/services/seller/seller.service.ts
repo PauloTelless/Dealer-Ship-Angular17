@@ -26,4 +26,8 @@ export class SellerService {
     return this.httpClient.put<Seller>(`${this.API_URL}/vendedores/${sellerId}`, seller);
   }
 
+  deleteSeller(sellerId: string): Observable<Seller>{
+    return this.httpClient.delete<Seller>(`${this.API_URL}/vendedores/${sellerId}`);
+  }
+
 }

@@ -58,7 +58,6 @@ export class HomeComponent implements OnInit{
     this.carService.getAllCars().subscribe({
       next: (carsReponse => {
         this.carsDatas = carsReponse;
-        console.log(this.carsDatas)
       })
     })
   }

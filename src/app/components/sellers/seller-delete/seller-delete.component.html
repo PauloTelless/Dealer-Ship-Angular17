@@ -1,0 +1,40 @@
+<p-toast
+  position="center"
+></p-toast>
+
+<div class="seller-delete-container">
+  <div class="title">
+    <h2>Desligando</h2>
+    <mat-icon style="color: red;">warning</mat-icon>
+    <h2>{{data.nomeVendedor}}</h2>
+  </div>
+
+  <div class="button-group">
+    <button
+    (click)="deleteSeller()"
+    color="warn"
+    mat-raised-button
+    >
+    <mat-icon
+    style="color: #fff;"
+    >delete
+    </mat-icon>
+    Desligar
+    </button>
+
+    <button
+    (click)="closeModalSeller()"
+    style="background-color: #101820;
+    color: #fff;
+    "
+    mat-raised-button
+    >
+    <mat-icon
+    style="color: #fff;"
+    >close
+    </mat-icon>
+    Cancelar
+    </button>
+  </div>
+
+</div>

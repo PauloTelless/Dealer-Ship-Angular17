@@ -10,6 +10,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SellerInfoComponent } from '../../sellers/seller-info/seller-info.component';
 import { SellerFormComponent } from '../../sellers/seller-form/seller-form.component';
 import { SellersEditComponent } from '../../sellers/sellers-edit/sellers-edit.component';
+import { SellerDeleteComponent } from '../../sellers/seller-delete/seller-delete.component';
 
 @Component({
   selector: 'app-administration',
@@ -65,6 +66,14 @@ export class AdministrationComponent implements OnInit{
     this.dialogService.open(SellersEditComponent, {
       width: '980px',
       height: '450px',
+      data: seller
+    })
+  };
+
+  OpenSellerDelete(seller: Seller): void{
+    this.dialogService.open(SellerDeleteComponent, {
+      width: '500px',
+      height: '300px',
       data: seller
     })
   }
