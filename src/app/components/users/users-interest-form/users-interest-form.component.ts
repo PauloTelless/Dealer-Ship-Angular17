@@ -47,4 +47,9 @@ export class UsersInterestFormComponent {
       this.dialogRef.close();
     };
   };
+
+  closeModalInterest(): void{
+    this.dialogRef.close();
+  };
+
 };

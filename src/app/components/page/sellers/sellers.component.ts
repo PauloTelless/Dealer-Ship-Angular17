@@ -11,6 +11,7 @@ import { SellerInfoComponent } from '../../sellers/seller-info/seller-info.compo
 import { SellerFormComponent } from '../../sellers/seller-form/seller-form.component';
 import { SellersEditComponent } from '../../sellers/sellers-edit/sellers-edit.component';
 import { SellerDeleteComponent } from '../../sellers/seller-delete/seller-delete.component';
+import { MatTooltipModule } from '@angular/material/tooltip'
 
 @Component({
   selector: 'app-administration',
@@ -21,7 +22,8 @@ import { SellerDeleteComponent } from '../../sellers/seller-delete/seller-delete
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule
   ],
   templateUrl: './sellers.component.html',
   styleUrl: './sellers.component.scss'

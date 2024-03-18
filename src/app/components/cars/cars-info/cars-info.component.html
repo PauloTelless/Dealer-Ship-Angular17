@@ -18,7 +18,7 @@
   <div class="vendedor-info">
     <h3 style="font-weight: bolder;">Vendedor responsável</h3>
     <img style="width: 120px; height: 100px; margin-left: 7%;" src="{{fotoVendedor}}">
-    <h4 style="margin-top: 2%;" class="name-seller">Nome: {{nomeVendedor.length > 15 ? nomeVendedor.substring(0, 15) + '...': nomeVendedor}}</h4>
+    <h4 [matTooltip]="nomeVendedor" style="margin-top: 2%;" class="name-seller">Nome: {{nomeVendedor.length > 15 ? nomeVendedor.substring(0, 15) + '...': nomeVendedor}}</h4>
     <h4>Contato: {{contatoVendedor}}</h4>
     <h4>Email: {{emailVendedor}}</h4>
 

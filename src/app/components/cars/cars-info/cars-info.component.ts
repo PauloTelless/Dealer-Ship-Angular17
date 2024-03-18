@@ -9,6 +9,7 @@ import { Seller } from '../../../models/seller/seller';
 import { CommonModule } from '@angular/common';
 import { Categorie } from '../../../models/categorie/categorie';
 import { UsersInterestFormComponent } from '../../users/users-interest-form/users-interest-form.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-cars-info',
@@ -17,7 +18,8 @@ import { UsersInterestFormComponent } from '../../users/users-interest-form/user
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
-    CommonModule
+    CommonModule,
+    MatTooltipModule
   ],
   providers:[
     SellerService,
