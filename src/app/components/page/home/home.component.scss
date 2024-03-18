@@ -25,29 +25,28 @@
       .carousel-container-logos{
         .title{
           display: flex;
+          flex-direction: column;
           justify-content: center;
           align-items: center;
           text-align: center;
           flex-wrap: wrap;
 
+          .vendedor-session{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 10%;
+
+            .title{
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+              flex-wrap: wrap;
+            }
+          }
         }
-      }
-    }
-
-    .vendedor-session{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      margin-top: 10%;
-
-      .title{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        flex-wrap: wrap;
       }
 
       .main{
@@ -61,10 +60,26 @@
           align-items: center;
         }
       }
+    }
+  }
 
+  .footer-container{
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center ;
+    margin-top: 0.5%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    h1{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
     }
 
-
+    background-color: #101820;
+    height: 80px;
   }
 
 }

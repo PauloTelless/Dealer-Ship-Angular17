@@ -6,8 +6,6 @@
 
 <div class="home-container">
 
-  < class="carousel-container">
-
     <p-carousel
     [value]="carsDatas"
     [numVisible]="3"
@@ -71,15 +69,31 @@
     </div>
 
     <div class="vendedor-session">
-      <div class="title" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-        <h1>Entre em contato com um dos nossos vendedores e realize o seus sonhos</h1>
-        <h2>Olha só como é fácil !</h2>
+      <div class="title">
+        <h1>Entre em contato com um dos nossos vendedores e realize o seu sonho</h1>
       </div>
-        <p-timeline [value]="etapas">
-          <ng-template pTemplate="content" let-etapa>
-              {{ etapa.etapa }} <i class="{{etapa.icon}}"></i>
-          </ng-template>
-        </p-timeline>
+      <p-timeline [value]="etapas" align="alternate" styleClass="customized-timeline">
+        <ng-template pTemplate="marker" let-etapa>
+            <span class="custom-marker shadow-2" [style.backgroundColor]="etapa.color">
+                <i [ngClass]="etapa.icon"></i>
+            </span>
+        </ng-template>
+        <ng-template pTemplate="content" let-etapa>
+            <p-card  [subheader]="etapa.titulo">
+                <p>
+                    {{etapa.text}}
+                </p>
+            </p-card>
+        </ng-template>
+    </p-timeline>
 
     </div>
+
+    <div class="footer-container">
+      <footer>
+        <h1>Autocar ©</h1>
+      </footer>
+    </div>
+
 </div>
+

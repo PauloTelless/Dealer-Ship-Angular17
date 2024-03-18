@@ -11,6 +11,7 @@ import { CarsInfoComponent } from '../../cars/cars-info/cars-info.component';
 import { MarcaService } from '../../../services/marca/marca.service';
 import { Marca } from '../../../models/marca/marca';
 import { TimelineModule } from 'primeng/timeline';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,8 @@ import { TimelineModule } from 'primeng/timeline';
     MatIconModule,
     ToolBarComponent,
     MatDialogModule,
-    TimelineModule
+    TimelineModule,
+    CardModule
   ],
   providers:[
     CarService,
@@ -63,10 +65,10 @@ export class HomeComponent implements OnInit{
     ];
 
     this.etapas = [
-      { etapa: 'Pesquise', date: '15/10/2020 10:30', icon: 'pi pi-search', color: '#9C27B0', image: 'game-controller.jpg' },
-      { etapa: 'Escolha', date: '15/10/2020 14:00', icon: 'pi pi-check', color: '#673AB7' },
-      { etapa: 'Entre em contato', date: '15/10/2020 16:15', icon: 'pi pi-user', color: '#FF9800' },
-      { etapa: 'Venda feita', date: '16/10/2020 10:00', icon: 'pi pi-money-bill', color: '#607D8B' }
+      { titulo: 'Pesquise', text: 'Explore nossa ampla seleção de carros disponíveis imediatamente para entrega. Encontre o veículo dos seus sonhos entre nossas opções variadas e prontas para serem conduzidas.', icon: 'pi pi-search', image: 'game-controller.jpg' },
+      { titulo: 'Selecione', text: 'Escolha com confiança o carro que mais combina com você. Navegue pelas opções e selecione aquele que realmente atende às suas necessidades e desejos.', icon: 'pi pi-check' },
+      { titulo: 'Entre em contato', text: 'Entre em contato conosco para mais detalhes. Clique no ícone de visualização para se conectar diretamente com nosso vendedor e obter todas as informações que você precisa.', icon: 'pi pi-user' },
+      { titulo: 'Vendido', text: 'Parabéns pela escolha! Avalie suas opções de compra com nosso vendedor para tornar seu sonho realidade. Estamos aqui para tornar sua experiência de compra excepcional.',  icon: 'pi pi-car' }
   ];
   }
 
