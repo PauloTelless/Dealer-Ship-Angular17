@@ -1,12 +1,15 @@
 .title{
-  button{
-    display: flex;
-    transform: translateX(52vw) translateY(-4vh);
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
 }
 
 .car-form{
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   form{
     display: flex;
