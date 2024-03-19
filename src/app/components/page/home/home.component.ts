@@ -12,6 +12,7 @@ import { MarcaService } from '../../../services/marca/marca.service';
 import { Marca } from '../../../models/marca/marca';
 import { TimelineModule } from 'primeng/timeline';
 import { CardModule } from 'primeng/card';
+import { StepText } from '../../../models/enums/enumText';
 
 @Component({
   selector: 'app-home',
@@ -65,10 +66,10 @@ export class HomeComponent implements OnInit{
     ];
 
     this.etapas = [
-      { titulo: 'Pesquise', text: 'Explore nossa ampla seleção de carros disponíveis imediatamente para entrega. Encontre o veículo dos seus sonhos entre nossas opções variadas e prontas para serem conduzidas.', icon: 'pi pi-search', image: 'game-controller.jpg' },
-      { titulo: 'Selecione', text: 'Escolha com confiança o carro que mais combina com você. Navegue pelas opções e selecione aquele que realmente atende às suas necessidades e desejos.', icon: 'pi pi-check' },
-      { titulo: 'Entre em contato', text: 'Entre em contato conosco para mais detalhes. Clique no ícone de visualização para se conectar diretamente com nosso vendedor e obter todas as informações que você precisa.', icon: 'pi pi-user' },
-      { titulo: 'Vendido', text: 'Parabéns pela escolha! Avalie suas opções de compra com nosso vendedor para tornar seu sonho realidade. Estamos aqui para tornar sua experiência de compra excepcional.',  icon: 'pi pi-car' }
+      { titulo: 'Pesquise', text: StepText['Texto-Pesquise'], icon: 'pi pi-search', image: 'game-controller.jpg' },
+      { titulo: 'Selecione', text: StepText['Texto-Selecione'], icon: 'pi pi-check' },
+      { titulo: 'Entre em contato', text: StepText['Texto-Entre-Contato'], icon: 'pi pi-user' },
+      { titulo: 'Vendido', text: StepText['Texto-Vendido'],  icon: 'pi pi-car' }
   ];
   }
 
@@ -95,4 +96,11 @@ export class HomeComponent implements OnInit{
       data: carInfo
     });
   };
+
+  saveFavoriteCar(): void{
+    if(!localStorage.getItem('token')){
+      alert('Você não está autenticado')
+    }
+  };
+
 }
