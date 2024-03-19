@@ -13,10 +13,11 @@ import { Car } from '../../../models/car/car';
 })
 export class UsersComponent implements OnInit{
 
+  public carsListFavorite!: Array<Car>;
   public userName!: string;
 
   ngOnInit(): void {
-    localStorage.getItem('userName');
-    this.userName = localStorage.getItem('userName')?.toUpperCase() as string;
+
   };
+
 }
