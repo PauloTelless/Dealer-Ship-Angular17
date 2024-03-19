@@ -40,7 +40,9 @@ export class UsersLoginComponent {
     this.userService.loginUser(this.formUserLogin.value as UserLogin).subscribe({
       next: (response: TokenUserResponse) => {
         localStorage.setItem('token', response.token);
+        localStorage.setItem('userName', this.formUserLogin.value.userName as string);
         alert('Logado com sucesso!')
+        this.routerService.navigate(['home']);
       },
       error: (() => {
         alert('Não autorizado')

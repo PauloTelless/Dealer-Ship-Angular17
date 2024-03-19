@@ -97,10 +97,11 @@ export class HomeComponent implements OnInit{
     });
   };
 
-  saveFavoriteCar(): void{
+  saveFavoriteCar(car: Car): void{
     if(!localStorage.getItem('token')){
-      alert('Você não está autenticado')
+      return alert('Você não está autenticado')
     }
+    return alert(`${car.marcaCarro} ${car.modeloCarro} favoritado com sucesso!`)
   };
 
 }

@@ -21,17 +21,20 @@ export class ToolBarComponent {
 
   constructor(){}
 
-
   redirecionarHome(): void{
     this.routerService.navigate(['home']);
-  }
+  };
 
   redirecionarAdministracao(): void{
     this.routerService.navigate(['sellers'])
-  }
+  };
 
   redirecionarCarros(): void{
     this.routerService.navigate(['cars'])
-  }
+  };
+
+  redirecionarUsuario(): void{
+    this.routerService.navigate(['user'])
+  };
 
 }

@@ -28,6 +28,7 @@
     </button>
 
     <button
+    (click)="redirecionarUsuario()"
     mat-raised-button
     >
     <i
@@ -44,6 +45,7 @@
     admin_panel_settings
     </mat-icon>
     </button>
+
     <mat-menu #menu="matMenu">
       <button
       mat-menu-item
@@ -59,5 +61,6 @@
         <span>Veículos</span>
       </button>
     </mat-menu>
+
   </header>
 </div>

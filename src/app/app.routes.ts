@@ -4,6 +4,7 @@ import { AdministrationComponent } from './components/page/sellers/sellers.compo
 import { CarsComponent } from './components/page/cars/cars.component';
 import { UsersLoginComponent } from './components/users/users-login/users-login.component';
 import { UsersRegisterComponent } from './components/users/users-register/users-register.component';
+import { UsersComponent } from './components/page/users/users.component';
 
 
 export const routes: Routes = [
@@ -36,5 +37,10 @@ export const routes: Routes = [
     title: 'Register',
     path: 'register',
     component: UsersRegisterComponent
+  },
+  {
+    title: 'Usuário',
+    path: 'user',
+    component: UsersComponent
   }
 ];
