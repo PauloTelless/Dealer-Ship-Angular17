@@ -1,0 +1,39 @@
+<div class="form-user-register-container" (submit)="registerFormSubmit()">
+  <form [formGroup]="formUserRegister">
+    <h1 style="color: #fff;">Cadastre-se</h1>
+
+    <mat-form-field>
+      <mat-label>Nome</mat-label>
+      <input type="text" matInput placeholder="Nome de usuário" formControlName="userName">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="text" matInput placeholder="Email" formControlName="email">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Senha</mat-label>
+      <input type="password" matInput placeholder="Senha" formControlName="password">
+    </mat-form-field>
+
+    <div class="button-group">
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+      >
+      Cadastrar
+      </button>
+
+      <button
+      (click)="redirecionarLogin()"
+      mat-raised-button
+      color="warn"
+      >
+      Voltar
+      </button>
+    </div>
+
+  </form>
+</div>

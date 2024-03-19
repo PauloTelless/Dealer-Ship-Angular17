@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { UsersInterestFormSuccessComponent } from '../users-interest-form-success/users-interest-form-success.component';
+import { UsersInterestFormSuccessComponent } from './users-interest-form-success/users-interest-form-success.component';
 
 @Component({
   selector: 'app-users-interest-form',
