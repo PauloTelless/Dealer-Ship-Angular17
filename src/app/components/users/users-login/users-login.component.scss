@@ -1,5 +1,6 @@
 .form-user-login-container{
   height: 100vh;
+  background-color: #0d1318;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -35,6 +36,10 @@
       align-items: center;
       color: #fff;
       margin: 2%;
+
+      span{
+        cursor: pointer;
+      }
     }
   }
 }

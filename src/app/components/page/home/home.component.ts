@@ -13,6 +13,7 @@ import { Marca } from '../../../models/marca/marca';
 import { TimelineModule } from 'primeng/timeline';
 import { CardModule } from 'primeng/card';
 import { StepText } from '../../../models/enums/enumText';
+import { UsersNotLoggedComponent } from '../users/users-not-logged/users-not-logged.component';
 
 @Component({
   selector: 'app-home',
@@ -45,6 +46,7 @@ export class HomeComponent implements OnInit{
   private dialogService = inject(MatDialog);
 
   ngOnInit(): void {
+    this.saveFavoriteCar();
     this.getCars();
     this.getMarcas();
     this.responsiveOptions = [
@@ -97,8 +99,13 @@ export class HomeComponent implements OnInit{
     });
   };
 
-  saveFavoriteCar(car: Car): void{
-
+  saveFavoriteCar(): void{
+    if (!localStorage.getItem('token')) {
+      this.dialogService.open(UsersNotLoggedComponent, {
+        width: '400px',
+        height: '350px'
+      })
+    }
   };
 
 

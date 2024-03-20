@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { UserLogin } from '../../../models/user/userLogin';
 import { Router } from '@angular/router';
 import { TokenUserResponse } from '../../../models/user/tokenUserResponse';
+import { MatDialog } from '@angular/material/dialog';
+import { UsersLoginSucessComponent } from './users-login-sucess/users-login-sucess.component';
 
 @Component({
   selector: 'app-users-login',
@@ -30,6 +32,7 @@ export class UsersLoginComponent {
   private userService = inject(UserService);
   private formBuilder = inject(FormBuilder);
   private routerService = inject(Router);
+  private dialogService = inject(MatDialog);
 
   formUserLogin = this.formBuilder.group({
     userName: ['', Validators.required],
@@ -39,10 +42,13 @@ export class UsersLoginComponent {
   loginSubmit(): void{
     this.userService.loginUser(this.formUserLogin.value as UserLogin).subscribe({
       next: (response: TokenUserResponse) => {
+        console.log(response.token)
         localStorage.setItem('token', response.token);
         localStorage.setItem('userName', this.formUserLogin.value.userName as string);
-        alert('Logado com sucesso!')
-        this.routerService.navigate(['home']);
+        this.dialogService.open(UsersLoginSucessComponent, {
+          width: '300px',
+          height: '300px'
+        })
       },
       error: (() => {
         alert('Não autorizado')

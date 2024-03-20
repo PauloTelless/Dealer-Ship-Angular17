@@ -1,0 +1,17 @@
+.not-logged-container{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .button-group{
+    display: flex;
+    flex-direction: row;
+
+    button{
+      width: 150px;
+      margin: 0.5%;
+    }
+  }
+}

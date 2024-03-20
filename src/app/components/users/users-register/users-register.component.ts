@@ -8,6 +8,9 @@ import { UserService } from '../../../services/user/user.service';
 import { UserRegister } from '../../../models/user/userRegister';
 import { response } from 'express';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { UsersInterestFormSuccessComponent } from '../users-interest-form/users-interest-form-success/users-interest-form-success.component';
+import { UsersRegisterSuccessComponent } from './users-register-success/users-register-success.component';
 
 @Component({
   selector: 'app-users-register',
@@ -30,6 +33,7 @@ export class UsersRegisterComponent {
   private userService = inject(UserService);
   private formBuilder = inject(FormBuilder);
   private routerService = inject(Router);
+  private dialogService = inject(MatDialog);
 
   formUserRegister = this.formBuilder.group({
     userName: ['', Validators.required],
@@ -39,11 +43,15 @@ export class UsersRegisterComponent {
 
   registerFormSubmit(): void{
     this.userService.registerUser(this.formUserRegister.value as UserRegister).subscribe({
-      next: (response => {
-        console.log(response)
+      next: (() => {
+        this.dialogService.open(UsersRegisterSuccessComponent, {
+          width: '300px',
+          height: '300px'
+        })
       })
     });
   };
+
 
   redirecionarLogin(): void{
     this.routerService.navigate(['/login'])
