@@ -8,6 +8,9 @@ import { CardModule } from 'primeng/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialog } from '@angular/material/dialog';
+import { UsersLogoutComponent } from './users-logout/users-logout.component';
+
 
 @Component({
   selector: 'app-users',
@@ -30,15 +33,16 @@ export class UsersComponent implements OnInit{
 
   constructor(){}
 
+  private dialogService = inject(MatDialog);
+  private userService = inject(UserService);
   public carsListFavorite: Array<Car> = [];
   public userName!: string;
-  private userService = inject(UserService);
   public carsFavorite!: Array<UserfavoriteCarResponse>;
   public usuarioId!: string;
 
   ngOnInit(): void {
-    this.getUserName();
     this.getFavoritesCars();
+    this.getUserName();
   };
 
   getUserName(): void{
@@ -67,7 +71,11 @@ export class UsersComponent implements OnInit{
   };
 
   logout(): void{
-
+    this.dialogService.open(UsersLogoutComponent, {
+      width: '300px',
+      height: '300px',
+      data: this.userName
+    })
   };
 
 }

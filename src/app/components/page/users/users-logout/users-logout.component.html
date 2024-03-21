@@ -1,0 +1,43 @@
+<div class="logout-container">
+
+  <mat-icon
+  style="color: red;"
+  >
+    warning
+  </mat-icon>
+
+  <h2>Você está saindo</h2>
+
+  <h3>Tem certeza ?</h3>
+
+  <div class="button-group">
+    <button
+    (click)="openModalSuccessLogout()"
+    color="warn"
+    style="margin-right: 2%;"
+    mat-raised-button
+    >
+    <mat-icon>
+      logout
+    </mat-icon>
+    Sair
+    </button>
+
+    <button
+    (click)="closeModalLogout()"
+    style="
+    background-color: black;
+    color: #fff;
+    "
+    mat-raised-button
+    >
+    <mat-icon
+    style="color: #fff;"
+    >
+      close
+    </mat-icon>
+    Voltar
+    </button>
+
+  </div>
+</div>

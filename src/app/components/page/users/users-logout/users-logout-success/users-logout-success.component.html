@@ -1,0 +1,54 @@
+<div class="logout-success">
+
+  <mat-icon>
+    person
+  </mat-icon>
+
+  <h2>Faça o login novamente</h2>
+
+  <form [formGroup]="logoutForm" (submit)="logoutSubmit()">
+
+    <mat-form-field>
+      <mat-label>Usuário</mat-label>
+      <input type="text" matInput placeholder="Usuário" formControlName="userName">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Senha</mat-label>
+      <input type="password" matInput placeholder="Senha" formControlName="password" required="true">
+    </mat-form-field>
+
+    <div class="button-group">
+
+      <button
+      type="submit"
+      style="margin-right: 2%;"
+      color="warn"
+      mat-raised-button
+      >
+      <mat-icon>
+        logout
+      </mat-icon>
+      Sair
+      </button>
+
+      <button
+      (click)="closeModalLogout()"
+      style="color: #fff;
+      background-color: black;
+      "
+      color="warn"
+      mat-raised-button
+      >
+      <mat-icon
+      style="color: #fff;"
+      >
+        close
+      </mat-icon>
+      Fechar
+      </button>
+
+    </div>
+  </form>
+
+</div>
