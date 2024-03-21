@@ -17,14 +17,16 @@ import {MatMenuModule} from '@angular/material/menu';
 })
 export class ToolBarComponent implements OnInit{
 
+  public userId!: string;
   public token!: string;
   private routerService = inject(Router);
 
   constructor(){}
 
   ngOnInit(): void {
-    if (typeof localStorage != undefined) {
+    if (typeof localStorage != 'undefined') {
       this.token = localStorage.getItem('token') as string;
+      this.userId = localStorage.getItem('userId') as string;
     }
   }
 

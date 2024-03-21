@@ -42,18 +42,23 @@ export class HomeComponent implements OnInit{
 
   etapas: Array<any> = [];
   public responsiveOptions: any[] | undefined;
+  public userId!: string;
   public carsDatas!: Array<Car>;
   public marcasDatas!: Array<Marca>;
   private carService = inject(CarService);
   private marcaService = inject(MarcaService);
   private dialogService = inject(MatDialog);
   private userService = inject(UserService);
-  public userId!: string;
 
   ngOnInit(): void {
     this.getCars();
+
     this.getMarcas();
-    this.userId = localStorage.getItem('userId') as string;
+
+    if (typeof localStorage !== 'undefined') {
+      this.userId = localStorage.getItem('userId') as string;
+    }
+
     this.responsiveOptions = [
       {
           breakpoint: '1199px',
@@ -77,7 +82,7 @@ export class HomeComponent implements OnInit{
       { titulo: 'Selecione', text: StepText['Texto-Selecione'], icon: 'pi pi-check' },
       { titulo: 'Entre em contato', text: StepText['Texto-Entre-Contato'], icon: 'pi pi-user' },
       { titulo: 'Vendido', text: StepText['Texto-Vendido'],  icon: 'pi pi-car' }
-  ];
+    ];
   }
 
   getCars(): void{
@@ -111,7 +116,7 @@ export class HomeComponent implements OnInit{
           next: (() => {
             this.openModalFavoriteCarSucess();
           })
-        })
+        });
 
       } catch (error) {
 
