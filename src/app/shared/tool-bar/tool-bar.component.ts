@@ -18,6 +18,7 @@ import {MatMenuModule} from '@angular/material/menu';
 export class ToolBarComponent {
 
   private routerService = inject(Router);
+  public token = localStorage.getItem('token');
 
   constructor(){}
 

@@ -1,3 +1,4 @@
+import { UserfavoriteCarResponse } from './../../../models/user/userFavoriteCarResponse';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,6 +34,7 @@ export class UsersLoginComponent {
   private formBuilder = inject(FormBuilder);
   private routerService = inject(Router);
   private dialogService = inject(MatDialog);
+  private userId!: string;
 
   formUserLogin = this.formBuilder.group({
     userName: ['', Validators.required],
@@ -45,6 +47,7 @@ export class UsersLoginComponent {
         console.log(response.token)
         localStorage.setItem('token', response.token);
         localStorage.setItem('userName', this.formUserLogin.value.userName as string);
+        this.getUsers();
         this.dialogService.open(UsersLoginSucessComponent, {
           width: '300px',
           height: '300px'
@@ -55,6 +58,24 @@ export class UsersLoginComponent {
       })
     });
   };
+
+  getUsers(): void {
+    this.userService.getCarsFavorite().subscribe({
+      next: (response: UserfavoriteCarResponse[]) => {
+        const user = response.find((user) => user.usuarioNome === this.formUserLogin.value.userName);
+        if (user) {
+          this.userId = user.usuarioId;
+          localStorage.setItem('userId', this.userId);
+        } else {
+          console.error('Usuário não encontrado com o nome fornecido:', this.formUserLogin.value.userName);
+        }
+      },
+      error: (error) => {
+        console.error('Ocorreu um erro ao obter os carros favoritos:', error);
+      }
+    });
+  }
+
 
   redirecionarLogin(): void{
     this.routerService.navigate(['/register'])

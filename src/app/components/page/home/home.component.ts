@@ -14,6 +14,7 @@ import { TimelineModule } from 'primeng/timeline';
 import { CardModule } from 'primeng/card';
 import { StepText } from '../../../models/enums/enumText';
 import { UsersNotLoggedComponent } from '../users/users-not-logged/users-not-logged.component';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +31,8 @@ import { UsersNotLoggedComponent } from '../users/users-not-logged/users-not-log
   ],
   providers:[
     CarService,
-    MarcaService
+    MarcaService,
+    UserService
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -44,11 +46,13 @@ export class HomeComponent implements OnInit{
   private carService = inject(CarService);
   private marcaService = inject(MarcaService);
   private dialogService = inject(MatDialog);
+  private userService = inject(UserService);
+  public userId!: string;
 
   ngOnInit(): void {
-    this.saveFavoriteCar();
     this.getCars();
     this.getMarcas();
+    this.userId = localStorage.getItem('userId') as string;
     this.responsiveOptions = [
       {
           breakpoint: '1199px',
@@ -99,14 +103,21 @@ export class HomeComponent implements OnInit{
     });
   };
 
-  saveFavoriteCar(): void{
+  saveFavoriteCar(userId: string, carId: string): void{
     if (!localStorage.getItem('token')) {
       this.dialogService.open(UsersNotLoggedComponent, {
         width: '400px',
         height: '350px'
       })
-    }
+    };
+
+    this.userService.favoriteCar(userId, carId).subscribe({
+      next: (response => {
+        console.log(response);
+      })
+    })
   };
+
 
 
 }

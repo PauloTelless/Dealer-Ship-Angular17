@@ -1,2 +1,21 @@
 <app-tool-bar></app-tool-bar>
 
+<div class="user-container">
+
+  <div class="title">
+    <h1>Olá, {{userName}}</h1>
+  </div>
+
+  <div class="car-favorite-list">
+
+    <div class="title">
+      Carros favoritados
+    </div>
+
+    <p>
+      @for (car of carsListFavorite; track $index) {
+        {{car.modeloCarro}}
+      }
+    </p>
+  </div>
+</div>

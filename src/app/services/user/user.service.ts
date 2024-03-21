@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserLogin } from '../../models/user/userLogin';
 import { TokenUserResponse } from '../../models/user/tokenUserResponse';
+import { UserfavoriteCarResponse } from '../../models/user/userFavoriteCarResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -20,4 +21,13 @@ export class UserService {
   registerUser(user: UserRegister): Observable<UserRegister> {
     return this.httpClient.post<UserRegister>(`${this.API_URL}/Auth/Register`, user);
   };
+
+  favoriteCar(userId: string, carId: string): Observable<Array<UserfavoriteCarResponse>>{
+    return this.httpClient.put<Array<UserfavoriteCarResponse>>(`${this.API_URL}/Users/${userId}/${carId}`, userId);
+  };
+
+  getCarsFavorite(): Observable<Array<UserfavoriteCarResponse>>{
+    return this.httpClient.get<Array<UserfavoriteCarResponse>>(`${this.API_URL}/users`);
+  };
+
 }

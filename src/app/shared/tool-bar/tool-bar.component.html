@@ -27,23 +27,26 @@
     </mat-icon>
     </button>
 
+    @if (token) {
+      <button
+      (click)="redirecionarUsuario()"
+      mat-raised-button
+      >
+      <i
+      class="pi pi-user"
+      >
+      </i>
+      Usuário
+      </button>
+    }
+
     <button
-    (click)="redirecionarUsuario()"
-    mat-raised-button
-    >
-    <i
-    class="pi pi-user"
-    >
-    </i>
-    Usuário
-    </button>
-    <button
-    [matMenuTriggerFor]="menu"
-    mat-mini-fab
-    >
-    <mat-icon>
-    admin_panel_settings
-    </mat-icon>
+      [matMenuTriggerFor]="menu"
+      mat-mini-fab
+      >
+      <mat-icon>
+      admin_panel_settings
+      </mat-icon>
     </button>
 
     <mat-menu #menu="matMenu">

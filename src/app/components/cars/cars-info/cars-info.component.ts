@@ -48,6 +48,7 @@ export class CarsInfoComponent implements OnInit{
   ngOnInit(): void {
     this.getSellers();
     this.getCategories();
+
     this.data.anoLancamento = this.data.anoLancamento.split('T')[0]
 
     this.anoLancamentoFormatada = `${this.data.anoLancamento.split('-')[2]}/${this.data.anoLancamento.split('-')[1]}/${this.data.anoLancamento.split('-')[0]}`
