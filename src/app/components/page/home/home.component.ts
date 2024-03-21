@@ -15,6 +15,7 @@ import { CardModule } from 'primeng/card';
 import { StepText } from '../../../models/enums/enumText';
 import { UsersNotLoggedComponent } from '../users/users-not-logged/users-not-logged.component';
 import { UserService } from '../../../services/user/user.service';
+import { UsersCarFavoriteSuccessComponent } from '../users/users-car-favorite-success/users-car-favorite-success.component';
 
 @Component({
   selector: 'app-home',
@@ -104,20 +105,30 @@ export class HomeComponent implements OnInit{
   };
 
   saveFavoriteCar(userId: string, carId: string): void{
-    if (!localStorage.getItem('token')) {
-      this.dialogService.open(UsersNotLoggedComponent, {
-        width: '400px',
-        height: '350px'
-      })
-    };
+      try {
 
-    this.userService.favoriteCar(userId, carId).subscribe({
-      next: (response => {
-        console.log(response);
-      })
-    })
+        this.userService.favoriteCar(userId, carId).subscribe({
+          next: (() => {
+            this.openModalFavoriteCarSucess();
+          })
+        })
+
+      } catch (error) {
+
+        if (!localStorage.getItem('token')) {
+          this.dialogService.open(UsersNotLoggedComponent, {
+             width: '400px',
+             height: '350px'
+          });
+        };
+    };
   };
 
-
+  openModalFavoriteCarSucess(): void{
+    this.dialogService.open(UsersCarFavoriteSuccessComponent,{
+      width: '300px',
+      height: '300px'
+    });
+  };
 
 }

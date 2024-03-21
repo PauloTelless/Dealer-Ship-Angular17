@@ -50,4 +50,7 @@ export class UsersRegisterComponent {
     });
   };
 
+  redirecionarLogin(): void{
+    this.routerService.navigate(['login'])
+  }
 }
