@@ -9,6 +9,8 @@ import { UserRegister } from '../../../models/user/userRegister';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { UsersRegisterSuccessComponent } from './users-register-success/users-register-success.component';
+import { UsersRegisterPasswordErrorComponent } from './users-register-password-error/users-register-password-error.component';
+import { UsersRegisterErrorComponent } from './users-register-error/users-register-error.component';
 
 @Component({
   selector: 'app-users-register',
@@ -36,21 +38,37 @@ export class UsersRegisterComponent {
   formUserRegister = this.formBuilder.group({
     userName: ['', Validators.required],
     email: ['', Validators.required],
-    password: ['', Validators.required]
+    password: ['', Validators.required],
+    confirmPassword: ['', Validators.required]
   })
 
   registerFormSubmit(): void{
-    this.userService.registerUser(this.formUserRegister.value as UserRegister).subscribe({
-      next: (() => {
-        this.dialogService.open(UsersRegisterSuccessComponent, {
-          width: '300px',
-          height: '300px'
-        })
+    if (this.formUserRegister.value.password != this.formUserRegister.value.confirmPassword) {
+      this.dialogService.open(UsersRegisterPasswordErrorComponent, {
+        width: '250px',
+        height: '250px'
       })
-    });
+    }
+    else{
+      this.userService.registerUser(this.formUserRegister.value as UserRegister).subscribe({
+        next: (() => {
+          this.dialogService.open(UsersRegisterSuccessComponent, {
+            width: '300px',
+            height: '300px'
+          })
+        }),
+        error: (() => {
+          this.dialogService.open(UsersRegisterErrorComponent, {
+            width: '2500px',
+            height: '250px'
+          })
+        })
+      });
+    }
   };
 
   redirecionarLogin(): void{
     this.routerService.navigate(['login'])
-  }
+  };
+
 }

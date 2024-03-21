@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 import { TokenUserResponse } from '../../../models/user/tokenUserResponse';
 import { MatDialog } from '@angular/material/dialog';
 import { UsersLoginSucessComponent } from './users-login-sucess/users-login-sucess.component';
+import { UsersLoginErrorComponent } from './users-login-error/users-login-error.component';
+import { HttpBackend, HttpContext } from '@angular/common/http';
 
 @Component({
   selector: 'app-users-login',
@@ -42,21 +44,30 @@ export class UsersLoginComponent {
   })
 
   loginSubmit(): void{
-    this.userService.loginUser(this.formUserLogin.value as UserLogin).subscribe({
-      next: (response: TokenUserResponse) => {
-        console.log(response.token)
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('userName', this.formUserLogin.value.userName as string);
-        this.getUsers();
-        this.dialogService.open(UsersLoginSucessComponent, {
-          width: '300px',
-          height: '300px'
+    try {
+      this.userService.loginUser(this.formUserLogin.value as UserLogin).subscribe({
+        next: (response: TokenUserResponse) => {
+          console.log(response.token)
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('userName', this.formUserLogin.value.userName as string);
+          this.getUsers();
+          this.dialogService.open(UsersLoginSucessComponent, {
+            width: '300px',
+            height: '300px'
+          })
+        },
+        error: (() => {
+          this.dialogService.open(UsersLoginErrorComponent, {
+            width: '250px',
+            height: '250px'
+          });
         })
-      },
-      error: (() => {
-        alert('Não autorizado')
-      })
-    });
+      });
+
+    } catch (error) {
+      console.log(error);
+    }
+
   };
 
   getUsers(): void {
