@@ -1,9 +1,18 @@
 .user-container{
+  padding: 0% 2%;
+
   .title{
     margin-top: 2%;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+
+    .button-user{
+      display: flex;
+      justify-content: right;
+      margin-top: 2% 2%;
+    }
   }
 
   .car-favorite-list{
@@ -11,6 +20,17 @@
       display: flex;
       justify-content: left;
       margin: 2% 5%;
+    }
+
+    .content{
+      display: flex;
+      flex-direction: column;
+
+      p-card{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
     }
   }
 }

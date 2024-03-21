@@ -4,18 +4,85 @@
 
   <div class="title">
     <h1>Olá, {{userName}}</h1>
+
+    <div class="button-user">
+
+      <button
+       mat-icon-button
+       [matMenuTriggerFor]="menu"
+       style="background-color: #101820;"
+       >
+        <mat-icon
+        style="color: #fff;"
+        >person</mat-icon>
+      </button>
+
+    </div>
   </div>
+
+
+  <mat-menu #menu="matMenu">
+
+    <button mat-menu-item>
+      <mat-icon>toggle_on</mat-icon>
+      <span>Configurações</span>
+    </button>
+
+    <button
+    mat-menu-item>
+      <mat-icon
+      style="color: red;"
+      >logout</mat-icon>
+      <span
+      >Sair</span>
+    </button>
+
+  </mat-menu>
 
   <div class="car-favorite-list">
 
     <div class="title">
-      Carros favoritados
+      <h1>Carros favoritados</h1>
     </div>
+    <div class="content">
+      <p>
+        @for (car of carsListFavorite; track $index) {
+          <p-card header={{car.modeloCarro}} subheader={{car.marcaCarro}} [style]="{ width: '360px', margin: '1%' }">
+            <ng-template pTemplate="header">
+                <img src={{car.imagemCarro}} />
+            </ng-template>
 
-    <p>
-      @for (car of carsListFavorite; track $index) {
-        {{car.modeloCarro}}
-      }
-    </p>
+            <div class="button-group">
+
+              <button
+              style="background-color: blue;
+              margin-right: 1%;
+              "
+              mat-mini-fab
+              >
+              <mat-icon
+              style="color: #fff;"
+              >
+                visibility
+              </mat-icon>
+              </button>
+
+              <button
+              style="background-color: #101820;"
+              mat-mini-fab
+              >
+              <mat-icon
+              style="color: #fff;"
+              >
+                contact_phone
+              </mat-icon>
+              </button>
+
+            </div>
+        </p-card>
+        }
+      </p>
+    </div>
   </div>
+
 </div>

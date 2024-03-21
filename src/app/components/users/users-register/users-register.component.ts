@@ -6,10 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { UserService } from '../../../services/user/user.service';
 import { UserRegister } from '../../../models/user/userRegister';
-import { response } from 'express';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { UsersInterestFormSuccessComponent } from '../users-interest-form/users-interest-form-success/users-interest-form-success.component';
 import { UsersRegisterSuccessComponent } from './users-register-success/users-register-success.component';
 
 @Component({
@@ -52,8 +50,4 @@ export class UsersRegisterComponent {
     });
   };
 
-
-  redirecionarLogin(): void{
-    this.routerService.navigate(['/login'])
-  };
 }

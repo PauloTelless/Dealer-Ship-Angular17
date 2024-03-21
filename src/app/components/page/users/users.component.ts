@@ -3,15 +3,22 @@ import { ToolBarComponent } from '../../../shared/tool-bar/tool-bar.component';
 import { Car } from '../../../models/car/car';
 import { UserService } from '../../../services/user/user.service';
 import { UserfavoriteCarResponse } from '../../../models/user/userFavoriteCarResponse';
-import { response } from 'express';
 import { CommonModule } from '@angular/common';
+import { CardModule } from 'primeng/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-users',
   standalone: true,
   imports: [
     ToolBarComponent,
-    CommonModule
+    CommonModule,
+    CardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule
   ],
   providers:[
     UserService
@@ -20,6 +27,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './users.component.scss'
 })
 export class UsersComponent implements OnInit{
+
+  constructor(){}
 
   public carsListFavorite: Array<Car> = [];
   public userName!: string;
@@ -41,10 +50,8 @@ export class UsersComponent implements OnInit{
   getFavoritesCars(): void{
     this.userService.getCarsFavorite().subscribe({
       next: (response) => {
-
-
-
-        this.carsFavorite = response.filter((user) => user.usuarioId === localStorage.getItem('userId') as string);
+        this.carsFavorite = response.filter((user) => user.usuarioId ===
+        localStorage.getItem('userId') as string);
 
         this.carsFavorite.forEach((user) => {
           user.carrosFavoritados.forEach((car) => {
@@ -57,6 +64,10 @@ export class UsersComponent implements OnInit{
         console.error('Ocorreu um erro ao obter os carros favoritos:', error);
       }
     });
-  }
+  };
+
+  logout(): void{
+
+  };
 
 }

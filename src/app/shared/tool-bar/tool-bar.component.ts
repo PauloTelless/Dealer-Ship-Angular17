@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
@@ -15,12 +15,18 @@ import {MatMenuModule} from '@angular/material/menu';
   templateUrl: './tool-bar.component.html',
   styleUrl: './tool-bar.component.scss'
 })
-export class ToolBarComponent {
+export class ToolBarComponent implements OnInit{
 
+  public token!: string;
   private routerService = inject(Router);
-  public token = localStorage.getItem('token');
 
   constructor(){}
+
+  ngOnInit(): void {
+    if (typeof localStorage != undefined) {
+      this.token = localStorage.getItem('token') as string;
+    }
+  }
 
   redirecionarHome(): void{
     this.routerService.navigate(['home']);

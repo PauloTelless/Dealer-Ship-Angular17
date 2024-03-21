@@ -74,7 +74,7 @@ export class UsersLoginComponent {
         console.error('Ocorreu um erro ao obter os carros favoritos:', error);
       }
     });
-  }
+  };
 
 
   redirecionarLogin(): void{

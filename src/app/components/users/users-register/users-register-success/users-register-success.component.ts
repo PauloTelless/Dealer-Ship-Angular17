@@ -20,12 +20,13 @@ export class UsersRegisterSuccessComponent implements OnInit{
 
   ngOnInit(): void {
     this.closeModalRegisterSuccess();
-  }
+  };
 
   closeModalRegisterSuccess():void{
     setTimeout(() => {
       this.routerService.navigate(['login'])
       this.dialogRef.close();
     }, 2500);
-  }
+  };
+
 }
