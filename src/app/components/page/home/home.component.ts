@@ -134,7 +134,7 @@ export class HomeComponent implements OnInit{
   openModalFavoriteCarSucess(): void{
     this.dialogService.open(UsersCarFavoriteSuccessComponent,{
       width: '300px',
-      height: '300px'
+      height: '300px',
     });
   };
 
