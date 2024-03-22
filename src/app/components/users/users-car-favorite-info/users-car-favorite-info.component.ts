@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Car } from '../../../../models/car/car';
+import { Car } from '../../../models/car/car';
 
 @Component({
   selector: 'app-users-car-favorite-info',

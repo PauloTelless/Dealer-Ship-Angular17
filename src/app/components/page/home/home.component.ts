@@ -15,7 +15,7 @@ import { CardModule } from 'primeng/card';
 import { StepText } from '../../../models/enums/enumText';
 import { UsersNotLoggedComponent } from '../users/users-not-logged/users-not-logged.component';
 import { UserService } from '../../../services/user/user.service';
-import { UsersCarFavoriteSuccessComponent } from '../users/users-car-favorite-success/users-car-favorite-success.component';
+import { UsersCarFavoriteSuccessComponent } from '../../users/users-car-favorite-success/users-car-favorite-success.component';
 
 @Component({
   selector: 'app-home',

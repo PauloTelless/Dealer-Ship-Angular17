@@ -14,7 +14,8 @@ import { UsersConfigurationComponent } from './users-configuration/users-configu
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { UsersCarFavoriteInfoComponent } from './users-car-favorite-info/users-car-favorite-info.component';
+import { UsersCarFavoriteInfoComponent } from '../../users/users-car-favorite-info/users-car-favorite-info.component';
+import { UsersContactInfoComponent } from '../../users/users-contact-info/users-contact-info.component';
 
 
 
@@ -114,7 +115,14 @@ export class UsersComponent implements OnInit{
       width: '500px',
       height: '550px',
       data: carro
+    });
+  };
+
+  openModalContactInfo(carro: Car): void{
+    this.dialogService.open(UsersContactInfoComponent, {
+      width: '500px',
+      height: '550px',
+      data: carro
     })
   }
-
 }
