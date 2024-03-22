@@ -1,0 +1,32 @@
+.users-configuration{
+  .title{
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .user-configuration-form{
+    display: flex;
+    padding: 2% 2%;
+
+    form{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+
+      mat-form-field{
+        margin: 1%;
+      }
+    }
+  }
+}

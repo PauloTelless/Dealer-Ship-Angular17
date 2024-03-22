@@ -115,17 +115,19 @@ export class HomeComponent implements OnInit{
         this.userService.favoriteCar(userId, carId).subscribe({
           next: (() => {
             this.openModalFavoriteCarSucess();
+          }),
+          error: (() => {
+            if (!localStorage.getItem('token')) {
+              this.dialogService.open(UsersNotLoggedComponent, {
+                 width: '400px',
+                 height: '350px'
+              });
+            };
           })
-        });
+        })
 
       } catch (error) {
-
-        if (!localStorage.getItem('token')) {
-          this.dialogService.open(UsersNotLoggedComponent, {
-             width: '400px',
-             height: '350px'
-          });
-        };
+        console.log(error);
     };
   };
 

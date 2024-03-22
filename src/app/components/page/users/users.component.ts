@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { UsersLogoutComponent } from './users-logout/users-logout.component';
+import { UsersConfigurationComponent } from './users-configuration/users-configuration.component';
 
 
 @Component({
@@ -37,16 +38,18 @@ export class UsersComponent implements OnInit{
   private userService = inject(UserService);
   public carsListFavorite: Array<Car> = [];
   public userName!: string;
+  public userId!: string;
   public carsFavorite!: Array<UserfavoriteCarResponse>;
   public usuarioId!: string;
 
   ngOnInit(): void {
     this.getFavoritesCars();
     this.getUserName();
+    this.userId = localStorage.getItem('userId') as string
   };
 
   getUserName(): void{
-    if (typeof localStorage != undefined) {
+    if (typeof localStorage != 'undefined') {
       this.userName = localStorage.getItem('userName')?.toUpperCase() as string
     };
   };
@@ -54,8 +57,7 @@ export class UsersComponent implements OnInit{
   getFavoritesCars(): void{
     this.userService.getCarsFavorite().subscribe({
       next: (response) => {
-        this.carsFavorite = response.filter((user) => user.usuarioId ===
-        localStorage.getItem('userId') as string);
+        this.carsFavorite = response.filter((user) => user.usuarioId === localStorage.getItem('userId') as string);
 
         this.carsFavorite.forEach((user) => {
           user.carrosFavoritados.forEach((car) => {
@@ -70,12 +72,20 @@ export class UsersComponent implements OnInit{
     });
   };
 
+  openModelUserConfiguration(): void{
+    this.dialogService.open(UsersConfigurationComponent, {
+      width: '900px',
+      height: '500px',
+      data: this.userId
+    })
+  };
+
   logout(): void{
     this.dialogService.open(UsersLogoutComponent, {
       width: '300px',
       height: '300px',
-      data: this.userName
-    })
+      data: {userId: this.userId, userName: this.userName}
+    });
   };
 
 }

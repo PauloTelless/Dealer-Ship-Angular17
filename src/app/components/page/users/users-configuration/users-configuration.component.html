@@ -1,0 +1,67 @@
+<div class="users-configuration">
+
+  <div class="title">
+    <h1>Dados do usuário</h1>
+  </div>
+
+  <div class="user-configuration-form">
+    <form [formGroup]="userConfiguration">
+
+      <mat-form-field>
+        <mat-label>Nome completo</mat-label>
+        <input type="text" matInput placeholder="Nome completo" formControlName="usuarioNomeCompleto">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>CPF</mat-label>
+        <input type="text" matInput placeholder="Cpf" formControlName="usuarioCpf">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="text" matInput placeholder="Nome completo" formControlName="usuarioEmail">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Contato</mat-label>
+        <input type="text" matInput placeholder="Nome completo" formControlName="usuarioContato">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Endereço</mat-label>
+        <input type="text" matInput placeholder="Nome completo" formControlName="usuarioEndereco">
+      </mat-form-field>
+
+    </form>
+  </div>
+
+  <div class="button-group">
+    <button
+    (click)="saveConfigurationUser()"
+    style="
+    color: #fff;
+    background-color: black;
+    margin-right: 2%;
+    "
+    mat-raised-button
+    >
+    <mat-icon
+    style="color: #fff;"
+    >
+      save
+    </mat-icon>
+    Salvar dados
+    </button>
+
+    <button
+    (click)="closeModalUserConfiguration()"
+    color="warn"
+    mat-raised-button
+    >
+    <mat-icon>
+      close
+    </mat-icon>
+    Voltar
+    </button>
+  </div>
+</div>

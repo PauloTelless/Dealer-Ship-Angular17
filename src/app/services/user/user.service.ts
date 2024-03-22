@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { UserLogin } from '../../models/user/userLogin';
 import { TokenUserResponse } from '../../models/user/tokenUserResponse';
 import { UserfavoriteCarResponse } from '../../models/user/userFavoriteCarResponse';
+import { UserConfiguration } from '../../models/user/userConfiguration';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,14 @@ export class UserService {
 
   getCarsFavorite(): Observable<Array<UserfavoriteCarResponse>>{
     return this.httpClient.get<Array<UserfavoriteCarResponse>>(`${this.API_URL}/users`);
+  };
+
+  getUser(userId: string): Observable<UserConfiguration>{
+    return this.httpClient.get<UserConfiguration>(`${this.API_URL}/Users/${userId}`);
+  }
+
+  putUserConfiguration(userId: string, user: UserConfiguration): Observable<UserConfiguration> {
+    return this.httpClient.put<UserConfiguration>(`${this.API_URL}/Users/${userId}`, user);
   };
 
 }

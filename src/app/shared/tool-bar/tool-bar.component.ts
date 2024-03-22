@@ -35,15 +35,15 @@ export class ToolBarComponent implements OnInit{
   };
 
   redirecionarAdministracao(): void{
-    this.routerService.navigate(['sellers'])
+    this.routerService.navigate(['sellers']);
   };
 
   redirecionarCarros(): void{
-    this.routerService.navigate(['cars'])
+    this.routerService.navigate(['cars']);
   };
 
   redirecionarUsuario(): void{
-    this.routerService.navigate(['user'])
+    this.routerService.navigate(['user']);
   };
 
 }
