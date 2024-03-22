@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, model } from '@angular/core';
 import { ToolBarComponent } from '../../../shared/tool-bar/tool-bar.component';
 import { Car } from '../../../models/car/car';
 import { UserService } from '../../../services/user/user.service';
@@ -11,6 +11,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { UsersLogoutComponent } from './users-logout/users-logout.component';
 import { UsersConfigurationComponent } from './users-configuration/users-configuration.component';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 
 @Component({
@@ -22,10 +26,13 @@ import { UsersConfigurationComponent } from './users-configuration/users-configu
     CardModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    ToastModule,
+    MatTooltipModule
   ],
   providers:[
-    UserService
+    UserService,
+    MessageService
   ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
@@ -41,6 +48,7 @@ export class UsersComponent implements OnInit{
   public userId!: string;
   public carsFavorite!: Array<UserfavoriteCarResponse>;
   public usuarioId!: string;
+  private messagService = inject(MessageService);
 
   ngOnInit(): void {
     this.getFavoritesCars();
@@ -83,8 +91,20 @@ export class UsersComponent implements OnInit{
   logout(): void{
     this.dialogService.open(UsersLogoutComponent, {
       width: '300px',
-      height: '300px',
-      data: {userId: this.userId, userName: this.userName}
+      height: '300px'
+    });
+  };
+
+  removeFavoriteCar(carroId: string, modeloCarro: string): void{
+    this.userService.deteleFavoriteCar(this.userId, carroId).subscribe({
+      next: (() => {
+        this.messagService.add({
+          severity: 'info',
+          summary: 'Removido',
+          detail: `${modeloCarro} foi removido da lista de favoritos`,
+          life: 3000
+        });
+      })
     });
   };
 

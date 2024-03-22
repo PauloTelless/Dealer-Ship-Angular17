@@ -30,13 +30,12 @@ import { Router } from '@angular/router';
   styleUrl: './users-logout-success.component.scss'
 })
 export class UsersLogoutSuccessComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public userName:string){}
 
   private formBuilder = inject(FormBuilder);
   private dialogRef = inject(MatDialogRef);
   private userService = inject(UserService);
   private routerService = inject(Router);
-
+  private userName = localStorage.getItem('userName') as string
 
   logoutForm = this.formBuilder.group({
     userName: [this.userName.toLowerCase(), Validators.required],

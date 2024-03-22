@@ -39,4 +39,8 @@ export class UserService {
     return this.httpClient.put<UserConfiguration>(`${this.API_URL}/Users/${userId}`, user);
   };
 
+  deteleFavoriteCar(userId: string, carId: string): Observable<UserfavoriteCarResponse>{
+    return this.httpClient.put<UserfavoriteCarResponse>(`${this.API_URL}/Users/Favorite/Car/Delete/${userId}/${carId}`, userId);
+  };
+
 }
