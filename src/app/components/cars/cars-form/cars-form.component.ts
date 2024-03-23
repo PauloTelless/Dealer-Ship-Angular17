@@ -57,6 +57,7 @@ export class CarsFormComponent implements OnInit{
   private dialogRef = inject(MatDialogRef);
   public categoriesDatas!: Array<Categorie>;
   public sellersDatas!: Array<Seller>;
+  public quilometragemFormatada!: string;
   public statesOptions: Array<any> =  [
     {estado: 'Novo'},
     {estado: 'Usado'},
@@ -124,6 +125,30 @@ export class CarsFormComponent implements OnInit{
       })
     });
   };
+
+  formatarPreco(event: any){
+    const input = event.target as HTMLInputElement;
+
+    let value = input.value.replace(/\D/g, '');
+    input.value = value;
+
+    this.carForm.patchValue({precoCarro: value});
+  };
+
+  formatarQuilometragem(event: any) {
+    const input = event.target as HTMLInputElement;
+    let value = input.value.replace(/\D/g, '');
+
+    this.quilometragemFormatada = parseFloat(value).toLocaleString('pt-BR')
+
+    if (this.quilometragemFormatada === 'NaN') {
+      this.quilometragemFormatada = '0'
+    }
+
+    input.value = this.quilometragemFormatada;
+    this.carForm.patchValue({ quilometragemCarro: this.quilometragemFormatada });
+  };
+
 
   closeCarForm(): void{
     this.dialogRef.close()
