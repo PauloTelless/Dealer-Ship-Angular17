@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { UserService } from '../../../services/user/user.service';
 import { UserRegister } from '../../../models/user/userRegister';
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { UsersRegisterSuccessComponent } from './users-register-success/users-register-success.component';
 import { UsersRegisterPasswordErrorComponent } from './users-register-password-error/users-register-password-error.component';
 import { UsersRegisterErrorComponent } from './users-register-error/users-register-error.component';
@@ -43,28 +43,30 @@ export class UsersRegisterComponent {
   })
 
   registerFormSubmit(): void{
-    if (this.formUserRegister.value.password != this.formUserRegister.value.confirmPassword) {
-      this.dialogService.open(UsersRegisterPasswordErrorComponent, {
-        width: '250px',
-        height: '250px'
-      })
-    }
-    else{
-      this.userService.registerUser(this.formUserRegister.value as UserRegister).subscribe({
-        next: (() => {
-          this.dialogService.open(UsersRegisterSuccessComponent, {
-            width: '300px',
-            height: '300px'
-          })
-        }),
-        error: (() => {
-          this.dialogService.open(UsersRegisterErrorComponent, {
-            width: '2500px',
-            height: '250px'
-          })
+    if (this.formUserRegister.valid) {
+      if (this.formUserRegister.value.password != this.formUserRegister.value.confirmPassword) {
+        this.dialogService.open(UsersRegisterPasswordErrorComponent, {
+          width: '250px',
+          height: '250px'
         })
-      });
-    }
+      }
+      else{
+        this.userService.registerUser(this.formUserRegister.value as UserRegister).subscribe({
+          next: (() => {
+            this.dialogService.open(UsersRegisterSuccessComponent, {
+              width: '300px',
+              height: '300px'
+            })
+          }),
+          error: (() => {
+            this.dialogService.open(UsersRegisterErrorComponent, {
+              width: '300px',
+              height: '300px'
+            });
+          })
+        });
+      };
+    };
   };
 
   redirecionarLogin(): void{

@@ -58,6 +58,7 @@ export class CarsFormComponent implements OnInit{
   public categoriesDatas!: Array<Categorie>;
   public sellersDatas!: Array<Seller>;
   public quilometragemFormatada!: string;
+  public precoFormatado!: string;
   public statesOptions: Array<any> =  [
     {estado: 'Novo'},
     {estado: 'Usado'},
@@ -130,9 +131,16 @@ export class CarsFormComponent implements OnInit{
     const input = event.target as HTMLInputElement;
 
     let value = input.value.replace(/\D/g, '');
-    input.value = value;
 
-    this.carForm.patchValue({precoCarro: value});
+    this.precoFormatado = parseFloat(value).toLocaleString('pt-BR');
+
+    if (this.precoFormatado === 'NaN') {
+      this.precoFormatado = '0';
+    };
+
+    input.value = this.precoFormatado;
+
+    this.carForm.patchValue({precoCarro: this.precoFormatado});
   };
 
   formatarQuilometragem(event: any) {
