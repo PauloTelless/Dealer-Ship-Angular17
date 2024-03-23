@@ -8,17 +8,20 @@
 
     <mat-form-field>
       <mat-label>Nome</mat-label>
-      <input type="text" matInput placeholder="Digite o seu nome" required formControlName="nameUser">
+      <input type="text" matInput placeholder="Digite o seu nome" required formControlName="nameUser" required>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Contato</mat-label>
-      <input type="text" matInput placeholder="Celular para contato" required formControlName="contactUser">
+      <input type="tel" matInput placeholder="Celular para contato" required formControlName="contactUser" required
+      minlength="15" maxlength="15"
+      (input)="formatarCelular($event)"
+      >
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input type="email" matInput placeholder="Email para contato" required formControlName="emailUser">
+      <input type="email" matInput placeholder="Email para contato" required formControlName="emailUser" required>
     </mat-form-field>
 
     <div class="button-group">

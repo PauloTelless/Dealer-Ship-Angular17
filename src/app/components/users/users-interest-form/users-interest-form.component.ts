@@ -37,7 +37,7 @@ export class UsersInterestFormComponent {
   });
 
   interestFormSubmit(): void{
-    if (this.interestForm.valid && this.interestForm.value) {
+    if (this.interestForm.valid) {
       this.dialogService.open(UsersInterestFormSuccessComponent, {
         width: '450px',
         height: '380px',
@@ -47,6 +47,20 @@ export class UsersInterestFormComponent {
       this.dialogRef.close();
     };
   };
+
+  formatarCelular(event: any): void{
+    const input = event.target as HTMLInputElement;
+
+    let value = input.value.replace(/\D/g, '');
+
+    if (value.length > 0) {
+      value = `(${value.substring(0,2)}) ${value.substring(2, 7)}-${value.substring(7, 11)}`
+    }
+
+    input.value = value;
+
+    this.interestForm.patchValue({contactUser: value})
+  }
 
   closeModalInterest(): void{
     this.dialogRef.close();
