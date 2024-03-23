@@ -41,6 +41,7 @@ export class SellerFormComponent {
   private formBuilder = inject(FormBuilder);
   private messageService = inject(MessageService);
   private dialoRef = inject(MatDialogRef);
+  public salarioFormatado!: string;
 
   formPostSeller = this.formBuilder.group({
     nomeVendedor: ['', Validators.required],
@@ -53,11 +54,11 @@ export class SellerFormComponent {
     fotoVendedor: ['', Validators.required],
     dataNascimentoVendedor: ['', Validators.required],
     dataAdmissao: ['', Validators.required],
-    salarioVendedor: [0, Validators.required],
+    salarioVendedor: ['', Validators.required],
   })
 
   postSellerSubmit(): void{
-    if (this.formPostSeller.value && this.formPostSeller.valid) {
+    if (this.formPostSeller.valid) {
       this.sellerService.postSeller(this.formPostSeller.value as Seller).subscribe({
         next: (() => {
           this.messageService.add({
@@ -82,7 +83,7 @@ export class SellerFormComponent {
     };
   };
 
-  formatarCpf(event: any){
+  formatarCpf(event: any): void{
     const input = event.target as HTMLInputElement;
 
     let value = input.value.replace(/\D/g, '');
@@ -96,7 +97,7 @@ export class SellerFormComponent {
     this.formPostSeller.patchValue({cpfVendedor: value})
   };
 
-  formatarContato(event: any){
+  formatarContato(event: any): void{
     const input = event.target as HTMLInputElement;
 
     let value = input.value.replace(/\D/g, '');
@@ -108,6 +109,21 @@ export class SellerFormComponent {
     input.value = value;
 
     this.formPostSeller.patchValue({contatoVendedor: value})
+  };
+
+  formatarSalario(event: any){
+    const input = event.target as HTMLInputElement;
+
+    let value = input.value.replace(/\D/g, '');
+
+    this.salarioFormatado = parseFloat(value).toLocaleString('pt-BR');
+
+    if (this.salarioFormatado === 'NaN') {
+      this.salarioFormatado = '0';
+    }
+
+    this.formPostSeller.patchValue({salarioVendedor: this.salarioFormatado});
+
   };
 
   closeModalSellerForm(): void{

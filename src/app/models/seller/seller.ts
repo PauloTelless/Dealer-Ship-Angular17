@@ -10,5 +10,5 @@ export interface Seller{
   fotoVendedor: string,
   dataNascimentoVendedor: string,
   dataAdmissao: string,
-  salarioVendedor: number
+  salarioVendedor: string
 }
