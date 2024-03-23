@@ -1,7 +1,14 @@
 <div class="users-configuration">
 
+
   <div class="title">
-    <h1>Dados do usuário</h1>
+    @if (!userConfiguration.valid) {
+      <h1>Complete os seus dados</h1>
+
+    } @else {
+      <h1>Dados do usuário</h1>
+    }
+
   </div>
 
   <div class="user-configuration-form">
@@ -9,27 +16,32 @@
 
       <mat-form-field>
         <mat-label>Nome completo</mat-label>
-        <input type="text" matInput placeholder="Nome completo" formControlName="usuarioNomeCompleto">
+        <input type="text" matInput placeholder="Nome completo" formControlName="usuarioNomeCompleto" required>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>CPF</mat-label>
-        <input type="text" matInput placeholder="Cpf" formControlName="usuarioCpf">
+        <input type="text" matInput placeholder="CPF" formControlName="usuarioCpf"
+        minlength="14" maxlength="14" required
+        (input)="formatarCpf($event)"
+        >
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Email</mat-label>
-        <input type="text" matInput placeholder="Nome completo" formControlName="usuarioEmail">
+        <input type="email" matInput placeholder="Email" formControlName="usuarioEmail" required>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Contato</mat-label>
-        <input type="text" matInput placeholder="Nome completo" formControlName="usuarioContato">
+        <input type="tel" matInput placeholder="Ex:. 99999999999" formControlName="usuarioContato"
+        minlength="15" maxlength="15"
+        required (input)="formatarTelefone($event)" required>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Endereço</mat-label>
-        <input type="text" matInput placeholder="Nome completo" formControlName="usuarioEndereco">
+        <input type="text" matInput placeholder="Endereço" formControlName="usuarioEndereco" required>
       </mat-form-field>
 
     </form>

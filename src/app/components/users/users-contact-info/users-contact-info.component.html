@@ -8,4 +8,32 @@
     <h3>Contato: {{contatoVendedor}}</h3>
   </div>
 
+  <div class="button-group">
+    <button
+    (click)="openModalContact()"
+    style="
+    margin-right: 2%;
+    background-color: black;
+    color: #fff;
+    "
+    mat-raised-button
+    >
+    <mat-icon>
+      phone
+    </mat-icon>
+    Contactar
+    </button>
+
+    <button
+    (click)="closeModalContactInfo()"
+    color="warn"
+    mat-raised-button
+    >
+    <mat-icon>
+      close
+    </mat-icon>
+    Fechar
+    </button>
+  </div>
+
 </div>

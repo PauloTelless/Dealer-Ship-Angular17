@@ -16,6 +16,7 @@ import { ToastModule } from 'primeng/toast';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { UsersCarFavoriteInfoComponent } from '../../users/users-car-favorite-info/users-car-favorite-info.component';
 import { UsersContactInfoComponent } from '../../users/users-contact-info/users-contact-info.component';
+import { UsersInterestFormComponent } from '../../users/users-interest-form/users-interest-form.component';
 
 
 
@@ -120,9 +121,11 @@ export class UsersComponent implements OnInit{
 
   openModalContactInfo(carro: Car): void{
     this.dialogService.open(UsersContactInfoComponent, {
-      width: '500px',
-      height: '550px',
+      width: '400px',
+      height: '450px',
       data: carro
-    })
-  }
+    });
+  };
+
+
 }

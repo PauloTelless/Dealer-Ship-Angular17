@@ -1,15 +1,21 @@
 import { Component, Inject, OnInit, inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { Car } from '../../../models/car/car';
 import { Seller } from '../../../models/seller/seller';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SellerService } from '../../../services/seller/seller.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { UsersInterestFormComponent } from '../users-interest-form/users-interest-form.component';
 
 @Component({
   selector: 'app-users-contact-info',
   standalone: true,
   imports: [
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDialogModule
   ],
   providers:[
     HttpClient,
@@ -33,6 +39,8 @@ export class UsersContactInfoComponent implements OnInit{
   public sellers!: Array<Seller>;
   private sellerService = inject(SellerService);
   public seller!: Seller;
+  private dialogRef = inject(MatDialogRef);
+  private dialogService = inject(MatDialog);
 
   getSellers(): void{
     this.sellerService.getAllSellers().subscribe({
@@ -50,5 +58,16 @@ export class UsersContactInfoComponent implements OnInit{
       })
     });
   };
+
+  closeModalContactInfo(): void{
+    this.dialogRef.close();
+  }
+
+  openModalContact(): void{
+    this.dialogService.open(UsersInterestFormComponent, {
+      width: '500px',
+      height: '450px'
+    })
+  }
 
 }
