@@ -1,11 +1,10 @@
-import { HttpClient, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CarService } from './services/car/car.service';
 import { SellerService } from './services/seller/seller.service';
 import { CategorieService } from './services/categorie/categorie.service';
 import { CommonModule } from '@angular/common';
-import { TransformToPhoneFormatPipe } from './shared/pipes/transform-to-phone-format.pipe';
 
 @Component({
   selector: 'app-root',
@@ -19,9 +18,7 @@ import { TransformToPhoneFormatPipe } from './shared/pipes/transform-to-phone-fo
     HttpClient,
     CarService,
     CategorieService,
-    SellerService,
-    TransformToPhoneFormatPipe
-
+    SellerService
   ],
   host: { ngSkipHydration: 'true'},
   templateUrl: './app.component.html',

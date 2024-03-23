@@ -82,8 +82,36 @@ export class SellerFormComponent {
     };
   };
 
+  formatarCpf(event: any){
+    const input = event.target as HTMLInputElement;
+
+    let value = input.value.replace(/\D/g, '');
+
+    if (value.length > 0) {
+      value = `${value.substring(0,3)}.${value.substring(3,6)}.${value.substring(6,9)}-${value.substring(9,11)}`;
+    };
+
+    input.value = value;
+
+    this.formPostSeller.patchValue({cpfVendedor: value})
+  };
+
+  formatarContato(event: any){
+    const input = event.target as HTMLInputElement;
+
+    let value = input.value.replace(/\D/g, '');
+
+    if (value.length > 0) {
+      value = `(${value.substring(0, 2)}) ${value.substring(2, 7)}-${value.substring(7, 15)}`;
+    };
+
+    input.value = value;
+
+    this.formPostSeller.patchValue({contatoVendedor: value})
+  };
+
   closeModalSellerForm(): void{
     this.dialoRef.close()
-  }
+  };
 
 }

@@ -11,47 +11,50 @@
   <form [formGroup]="formPostSeller" (submit)="postSellerSubmit()">
     <mat-form-field>
       <mat-label>Nome</mat-label>
-      <input type="text" matInput placeholder="Nome do vendedor" formControlName="nomeVendedor">
+      <input type="text" matInput placeholder="Nome do vendedor" formControlName="nomeVendedor" required>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>CPF</mat-label>
-      <input type="text" matInput placeholder="Cpf do vendedor" formControlName="cpfVendedor">
+      <input type="text" matInput placeholder="Cpf do vendedor" formControlName="cpfVendedor"
+      minlength="14" maxlength="14" required (input)="formatarCpf($event)">
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Contato</mat-label>
-      <input type="text" matInput placeholder="Contato do vendedor" formControlName="contatoVendedor">
+      <input type="text" matInput placeholder="Contato do vendedor" formControlName="contatoVendedor"
+      minlength="15" maxlength="15" required (input)="formatarContato($event)"
+      >
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input type="email" matInput placeholder="Email do vendedor" formControlName="emailVendedor">
+      <input type="email" matInput placeholder="Email do vendedor" formControlName="emailVendedor" required>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Endereço</mat-label>
-      <input type="text" matInput placeholder="Endereço do vendedor" formControlName="enderecoVendedor">
+      <input type="text" matInput placeholder="Endereço do vendedor" formControlName="enderecoVendedor" required>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Estado</mat-label>
-      <input type="text" matInput placeholder="Estado do vendedor" formControlName="estadoVendedor">
+      <input type="text" matInput placeholder="Estado do vendedor" formControlName="estadoVendedor" required>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Cidade</mat-label>
-      <input type="text" matInput placeholder="Cidade do vendedor" formControlName="cidadeVendedor">
+      <input type="text" matInput placeholder="Cidade do vendedor" formControlName="cidadeVendedor" required>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Foto</mat-label>
-      <input type="text" matInput placeholder="Foto do vendedor" formControlName="fotoVendedor">
+      <input type="text" matInput placeholder="Foto do vendedor" formControlName="fotoVendedor" required>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Data nascimento</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="dataNascimentoVendedor">
+      <input matInput [matDatepicker]="picker" formControlName="dataNascimentoVendedor" required>
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -59,7 +62,7 @@
 
     <mat-form-field>
       <mat-label>Data admissão</mat-label>
-      <input matInput [matDatepicker]="pickerAdmissao" formControlName="dataAdmissao">
+      <input matInput [matDatepicker]="pickerAdmissao" formControlName="dataAdmissao" required>
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="pickerAdmissao"></mat-datepicker-toggle>
       <mat-datepicker #pickerAdmissao></mat-datepicker>
@@ -67,7 +70,7 @@
 
     <mat-form-field>
       <mat-label>Salário</mat-label>
-      <input type="text" matInput placeholder="Salário do vendedor" formControlName="salarioVendedor">
+      <input type="text" matInput placeholder="Salário do vendedor" formControlName="salarioVendedor" required>
     </mat-form-field>
 
     <div class="button-group">

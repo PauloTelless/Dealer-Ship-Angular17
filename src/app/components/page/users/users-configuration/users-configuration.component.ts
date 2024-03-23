@@ -9,8 +9,6 @@ import { MatInputModule } from '@angular/material/input';
 import { UserService } from '../../../../services/user/user.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { UsersConfigurationSucessComponent } from './users-configuration-sucess/users-configuration-sucess.component';
-import { CommonModule } from '@angular/common';
-import { TransformToPhoneFormatPipe } from '../../../../shared/pipes/transform-to-phone-format.pipe';
 
 @Component({
   selector: 'app-users-configuration',
@@ -22,9 +20,7 @@ import { TransformToPhoneFormatPipe } from '../../../../shared/pipes/transform-t
     FormsModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    CommonModule,
-    TransformToPhoneFormatPipe
+    HttpClientModule
   ],
   providers: [
     UserService,
@@ -34,11 +30,11 @@ import { TransformToPhoneFormatPipe } from '../../../../shared/pipes/transform-t
   styleUrl: './users-configuration.component.scss'
 })
 export class UsersConfigurationComponent implements OnInit{
-  userConfiguration!: FormGroup;
-  userName!: string;
-  userId!: string;
-  user!: UserConfiguration;
-  public number = '75999632132'
+  public userConfiguration!: FormGroup;
+  public userName!: string;
+  public userId!: string;
+  public user!: UserConfiguration;
+
   constructor(
     private dialogRef: MatDialogRef<UsersConfigurationComponent>,
     private formBuilder: FormBuilder,
