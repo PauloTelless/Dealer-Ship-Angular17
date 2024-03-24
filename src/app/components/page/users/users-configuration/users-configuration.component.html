@@ -28,6 +28,13 @@
       </mat-form-field>
 
       <mat-form-field>
+        <mat-label>RG</mat-label>
+        <input type="text" matInput placeholder="Digite o RG" formControlName="usuarioRg" required
+        (input)="formatarRg($event)"
+        >
+      </mat-form-field>
+
+      <mat-form-field>
         <mat-label>Email</mat-label>
         <input type="email" matInput placeholder="Email" formControlName="usuarioEmail" required>
       </mat-form-field>

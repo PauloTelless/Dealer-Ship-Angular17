@@ -52,9 +52,10 @@ export class UsersConfigurationComponent implements OnInit{
       usuarioNomeCompleto: [this.user?.usuarioNomeCompleto || '', Validators.required],
       usuarioNome: [this.userName || ''],
       usuarioCpf: [this.user?.usuarioCpf || '', Validators.required],
+      usuarioRg: [this.user?.usuarioRg || '', Validators.required],
       usuarioEmail: [this.user?.usuarioEmail || '', Validators.required],
       usuarioContato: [this.user?.usuarioContato || '', Validators.required],
-      usuarioEndereco: [this.user?.usuarioEndereco || '', Validators.required],
+      usuarioEndereco: [this.user?.usuarioEndereco || '', Validators.required]
     });
   }
 
@@ -72,6 +73,7 @@ export class UsersConfigurationComponent implements OnInit{
           usuarioEmail: this.user?.usuarioEmail,
           usuarioContato: this.user?.usuarioContato,
           usuarioEndereco: this.user?.usuarioEndereco,
+          usuarioRg: this.user?.usuarioRg
         });
       },
       error: (error) => {
@@ -119,5 +121,20 @@ export class UsersConfigurationComponent implements OnInit{
     input.value = value;
     this.userConfiguration.patchValue({usuarioCpf: value});
   };
+
+  formatarRg(event: any): void{
+    const input = event.target as HTMLInputElement;
+
+    let value = input.value.replace(/\D/g, '');
+
+    if (value.length > 0) {
+      value = `${value.substring(0,2)}.${value.substring(2,5)}.${value.substring(5, 8)}-${value.substring(8, 9)}`
+    }
+
+    input.value = value;
+
+    this.userConfiguration.patchValue({usuarioRg: value});
+
+  }
 
 }
