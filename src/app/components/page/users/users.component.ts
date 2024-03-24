@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, model } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject, model } from '@angular/core';
 import { ToolBarComponent } from '../../../shared/tool-bar/tool-bar.component';
 import { Car } from '../../../models/car/car';
 import { UserService } from '../../../services/user/user.service';
@@ -16,8 +16,7 @@ import { ToastModule } from 'primeng/toast';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { UsersCarFavoriteInfoComponent } from '../../users/users-car-favorite-info/users-car-favorite-info.component';
 import { UsersContactInfoComponent } from '../../users/users-contact-info/users-contact-info.component';
-import { UsersInterestFormComponent } from '../../users/users-interest-form/users-interest-form.component';
-
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 
 @Component({
@@ -46,12 +45,13 @@ export class UsersComponent implements OnInit{
 
   private dialogService = inject(MatDialog);
   private userService = inject(UserService);
+  private messagService = inject(MessageService);
+  private destroyRef = inject(DestroyRef);
   public carsListFavorite: Array<Car> = [];
   public userName!: string;
   public userId!: string;
   public carsFavorite!: Array<UserfavoriteCarResponse>;
   public usuarioId!: string;
-  private messagService = inject(MessageService);
 
   ngOnInit(): void {
     this.getFavoritesCars();
@@ -66,7 +66,11 @@ export class UsersComponent implements OnInit{
   };
 
   getFavoritesCars(): void{
-    this.userService.getCarsFavorite().subscribe({
+    this.userService.getCarsFavorite().pipe(
+      takeUntilDestroyed(
+        this.destroyRef
+      )
+    ).subscribe({
       next: (response) => {
         this.carsFavorite = response.filter((user) => user.usuarioId === localStorage.getItem('userId') as string);
 
@@ -83,23 +87,12 @@ export class UsersComponent implements OnInit{
     });
   };
 
-  openModelUserConfiguration(): void{
-    this.dialogService.open(UsersConfigurationComponent, {
-      width: '900px',
-      height: '500px',
-      data: this.userId
-    })
-  };
-
-  logout(): void{
-    this.dialogService.open(UsersLogoutComponent, {
-      width: '300px',
-      height: '300px'
-    });
-  };
-
   removeFavoriteCar(carroId: string, modeloCarro: string): void{
-    this.userService.deteleFavoriteCar(this.userId, carroId).subscribe({
+    this.userService.deteleFavoriteCar(this.userId, carroId).pipe(
+      takeUntilDestroyed(
+        this.destroyRef
+      )
+    ).subscribe({
       next: (() => {
         this.messagService.add({
           severity: 'info',
@@ -110,6 +103,22 @@ export class UsersComponent implements OnInit{
       })
     });
   };
+
+  openModelUserConfiguration(): void{
+    this.dialogService.open(UsersConfigurationComponent, {
+      width: '900px',
+      height: '500px',
+      data: this.userId
+    });
+  };
+
+  logout(): void{
+    this.dialogService.open(UsersLogoutComponent, {
+      width: '300px',
+      height: '300px'
+    });
+  };
+
 
   openModalCarInfo(carro: Car): void{
     this.dialogService.open(UsersCarFavoriteInfoComponent, {

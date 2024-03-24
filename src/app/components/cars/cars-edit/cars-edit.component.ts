@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, Inject, OnInit, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { Car } from '../../../models/car/car';
 import { CarService } from '../../../services/car/car.service';
@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-cars-edit',
@@ -57,7 +58,8 @@ export class CarsEditComponent implements OnInit{
   private carService = inject(CarService);
   private categorieService = inject(CategorieService);
   private sellerService = inject (SellerService);
-  private messageService = inject(MessageService)
+  private messageService = inject(MessageService);
+  private destroyRef = inject(DestroyRef);
   public categoriesDatas!: Array<Categorie>;
   public sellersDatas!: Array<Seller>;
   public statesOptions: Array<any> =  [
@@ -87,7 +89,11 @@ export class CarsEditComponent implements OnInit{
 
   carFormEditSubmit(): void{
     if (this.carFormEdit.value && this.carFormEdit.valid) {
-      this.carService.putCar(this.carFormEdit.value.carroId as string, this.carFormEdit.value as Car).subscribe({
+      this.carService.putCar(this.carFormEdit.value.carroId as string, this.carFormEdit.value as Car).pipe(
+        takeUntilDestroyed(
+          this.destroyRef
+        )
+      ).subscribe({
         next: () => {
           this.messageService.add({
             severity: 'success',
@@ -110,10 +116,14 @@ export class CarsEditComponent implements OnInit{
         })
       });
     };
-  }
+  };
 
   getCategories(): void{
-    this.categorieService.getAllCategories().subscribe({
+    this.categorieService.getAllCategories().pipe(
+      takeUntilDestroyed(
+        this.destroyRef
+      )
+    ).subscribe({
       next: (response => {
         this.categoriesDatas = response;
       })
@@ -121,7 +131,11 @@ export class CarsEditComponent implements OnInit{
   };
 
   getSellers(): void{
-    this.sellerService.getAllSellers().subscribe({
+    this.sellerService.getAllSellers().pipe(
+      takeUntilDestroyed(
+        this.destroyRef
+      )
+    ).subscribe({
       next: (response => {
         this.sellersDatas = response;
       })
@@ -130,6 +144,6 @@ export class CarsEditComponent implements OnInit{
 
   closeModalCarEdit(): void{
     this.dialogRef.close();
-  }
+  };
 
 }

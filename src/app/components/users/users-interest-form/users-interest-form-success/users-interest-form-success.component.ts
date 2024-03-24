@@ -19,7 +19,7 @@ export class UsersInterestFormSuccessComponent implements OnInit{
 
   ngOnInit(): void {
     this.closeModals();
-  }
+  };
 
   private dialogService = inject(MatDialog);
 

@@ -1,4 +1,4 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, DestroyRef, Inject, inject } from '@angular/core';
 import { SellerService } from '../../../services/seller/seller.service';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,6 +12,7 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MessageService } from 'primeng/api';
 import { Seller } from '../../../models/seller/seller';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-sellers-edit',
@@ -43,6 +44,7 @@ export class SellersEditComponent {
   private formBuilder = inject(FormBuilder);
   private messageService = inject(MessageService);
   private dialoRef = inject(MatDialogRef);
+  private destroyRef = inject(DestroyRef);
 
   formEditSeller = this.formBuilder.group({
     vendedorId: [this.data.vendedorId],
@@ -62,7 +64,11 @@ export class SellersEditComponent {
   putSellerSubmit(): void {
     console.log(this.data.vendedorId)
     if (this.formEditSeller.value && this.formEditSeller.valid) {
-      this.sellerService.putSeller(this.data.vendedorId as string, this.formEditSeller.value as Seller).subscribe({
+      this.sellerService.putSeller(this.data.vendedorId as string, this.formEditSeller.value as Seller).pipe(
+        takeUntilDestroyed(
+          this.destroyRef
+        )
+      ).subscribe({
         next: (() => {
           this.messageService.add({
             severity: 'success',

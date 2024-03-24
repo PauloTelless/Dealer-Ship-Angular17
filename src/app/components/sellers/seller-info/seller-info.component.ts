@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, Inject, OnInit, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { Seller } from '../../../models/seller/seller';
 import { Car } from '../../../models/car/car';
@@ -7,6 +7,7 @@ import { SellerService } from '../../../services/seller/seller.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-seller-info',
@@ -28,6 +29,7 @@ export class SellerInfoComponent implements OnInit{
 
   private carService = inject(CarService);
   private dialogRef = inject(MatDialogRef);
+  private destroyRef = inject(DestroyRef);
   public carsData!: Array<Car>;
   public cars: Array<Car> = [];
   public dataNascimentoVendedorFormatada: string = '';
@@ -44,7 +46,11 @@ export class SellerInfoComponent implements OnInit{
   };
 
   getCars(): void {
-    this.carService.getAllCars().subscribe({
+    this.carService.getAllCars().pipe(
+      takeUntilDestroyed(
+        this.destroyRef
+      )
+    ).subscribe({
       next: (carros => {
         this.carsData = carros.filter(carro => {
           if (carro.vendedorId == this.data.vendedorId) {

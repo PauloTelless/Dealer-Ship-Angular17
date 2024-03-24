@@ -13,16 +13,17 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './users-car-favorite-success.component.scss'
 })
 export class UsersCarFavoriteSuccessComponent implements OnInit{
+  private dialogRef = inject(MatDialogRef);
 
   ngOnInit(): void {
     this.closeModalUserCarsFavoriteSuccess();
-  }
+  };
 
-  private dialogRef = inject(MatDialogRef);
 
   closeModalUserCarsFavoriteSuccess(): void{
     setTimeout(() => {
       this.dialogRef.close()
     }, 2500);
-  }
+  };
+
 }

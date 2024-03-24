@@ -1,5 +1,5 @@
 import { UserfavoriteCarResponse } from './../../../models/user/userFavoriteCarResponse';
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +12,7 @@ import { TokenUserResponse } from '../../../models/user/tokenUserResponse';
 import { MatDialog } from '@angular/material/dialog';
 import { UsersLoginSucessComponent } from './users-login-sucess/users-login-sucess.component';
 import { UsersLoginErrorComponent } from './users-login-error/users-login-error.component';
-import { HttpBackend, HttpContext } from '@angular/common/http';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-users-login',
@@ -36,6 +36,7 @@ export class UsersLoginComponent {
   private formBuilder = inject(FormBuilder);
   private routerService = inject(Router);
   private dialogService = inject(MatDialog);
+  private destroyRef = inject(DestroyRef);
   private userId!: string;
 
   formUserLogin = this.formBuilder.group({
@@ -46,7 +47,11 @@ export class UsersLoginComponent {
   loginSubmit(): void{
     try {
       if (this.formUserLogin.valid) {
-        this.userService.loginUser(this.formUserLogin.value as UserLogin).subscribe({
+        this.userService.loginUser(this.formUserLogin.value as UserLogin).pipe(
+          takeUntilDestroyed(
+            this.destroyRef
+          )
+        ).subscribe({
           next: (response: TokenUserResponse) => {
             console.log(response.token)
             localStorage.setItem('token', response.token);
@@ -73,7 +78,11 @@ export class UsersLoginComponent {
   };
 
   getUsers(): void {
-    this.userService.getCarsFavorite().subscribe({
+    this.userService.getCarsFavorite().pipe(
+      takeUntilDestroyed(
+        this.destroyRef
+      )
+    ).subscribe({
       next: (response: UserfavoriteCarResponse[]) => {
         const user = response.find((user) => user.usuarioNome === this.formUserLogin.value.userName);
         if (user) {

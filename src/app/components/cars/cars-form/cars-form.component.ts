@@ -1,5 +1,5 @@
 import { CarService } from './../../../services/car/car.service';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field'
@@ -16,6 +16,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-cars-form',
@@ -55,6 +56,7 @@ export class CarsFormComponent implements OnInit{
   private categorieService = inject(CategorieService);
   private sellerService = inject (SellerService);
   private dialogRef = inject(MatDialogRef);
+  private destroyRef = inject(DestroyRef);
   public categoriesDatas!: Array<Categorie>;
   public sellersDatas!: Array<Seller>;
   public quilometragemFormatada!: string;
@@ -86,7 +88,11 @@ export class CarsFormComponent implements OnInit{
 
   carFormSubmit(): void{
     if (this.carForm.value && this.carForm.valid) {
-      this.carService.postCar(this.carForm.value as Car).subscribe({
+      this.carService.postCar(this.carForm.value as Car).pipe(
+        takeUntilDestroyed(
+          this.destroyRef
+        )
+      ).subscribe({
         next: (() => {
           this.messageService.add({
             severity: 'success',
@@ -112,7 +118,11 @@ export class CarsFormComponent implements OnInit{
   };
 
   getCategories(): void{
-    this.categorieService.getAllCategories().subscribe({
+    this.categorieService.getAllCategories().pipe(
+      takeUntilDestroyed(
+        this.destroyRef
+      )
+    ).subscribe({
       next: (response => {
         this.categoriesDatas = response;
       })

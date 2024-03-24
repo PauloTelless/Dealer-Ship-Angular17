@@ -31,7 +31,7 @@ export class UsersLogoutComponent {
       width: '500px',
       height: '400px',
       data: this.userName
-    })
+    });
   };
 
 }

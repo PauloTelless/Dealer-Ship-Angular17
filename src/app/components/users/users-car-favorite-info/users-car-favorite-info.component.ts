@@ -11,6 +11,7 @@ import { Car } from '../../../models/car/car';
 })
 export class UsersCarFavoriteInfoComponent implements OnInit{
   constructor(@Inject(MAT_DIALOG_DATA) public data:Car){}
+
   public car!: Car;
   public dataLancamento!: string;
   public dataLancamentoFormatado!: string;
@@ -20,6 +21,6 @@ export class UsersCarFavoriteInfoComponent implements OnInit{
     this.dataLancamento = this.car.anoLancamento.split('T')[0];
 
     this.dataLancamentoFormatado = `${this.dataLancamento.split('-')[2]}/${this.dataLancamento.split('-')[1]}/${this.dataLancamento.split('-')[0]}`
-  }
+  };
 
 }

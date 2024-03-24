@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { ToolBarComponent } from '../../../shared/tool-bar/tool-bar.component';
 import { CardModule } from 'primeng/card';
 import { SellerService } from '../../../services/seller/seller.service';
@@ -11,7 +11,8 @@ import { SellerInfoComponent } from '../../sellers/seller-info/seller-info.compo
 import { SellerFormComponent } from '../../sellers/seller-form/seller-form.component';
 import { SellersEditComponent } from '../../sellers/sellers-edit/sellers-edit.component';
 import { SellerDeleteComponent } from '../../sellers/seller-delete/seller-delete.component';
-import { MatTooltipModule } from '@angular/material/tooltip'
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-administration',
@@ -32,6 +33,7 @@ export class AdministrationComponent implements OnInit{
 
   private sellerService = inject(SellerService);
   private dialogService = inject(MatDialog);
+  private destroyRef = inject(DestroyRef);
   public sellersDatas!: Array<Seller>;
 
   constructor(){}
@@ -42,7 +44,11 @@ export class AdministrationComponent implements OnInit{
   };
 
   getSellers(): void{
-    this.sellerService.getAllSellers().subscribe({
+    this.sellerService.getAllSellers().pipe(
+      takeUntilDestroyed(
+        this.destroyRef
+      )
+    ).subscribe({
       next: (sellerResponse => {
         this.sellersDatas = sellerResponse;
       })

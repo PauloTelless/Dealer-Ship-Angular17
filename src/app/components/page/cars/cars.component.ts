@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { ToolBarComponent } from '../../../shared/tool-bar/tool-bar.component';
 import { CardModule } from 'primeng/card';
 import { Car } from '../../../models/car/car';
@@ -10,6 +10,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CarsFormComponent } from '../../cars/cars-form/cars-form.component';
 import { CarsEditComponent } from '../../cars/cars-edit/cars-edit.component';
 import { CarsDeleteComponent } from '../../cars/cars-delete/cars-delete.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-cars',
@@ -26,6 +27,7 @@ import { CarsDeleteComponent } from '../../cars/cars-delete/cars-delete.componen
   styleUrl: './cars.component.scss'
 })
 export class CarsComponent implements OnInit{
+  private destroyRef = inject(DestroyRef);
   private carService = inject(CarService);
   private dialogService = inject(MatDialog);
   public carsDatas!: Array<Car>;
@@ -35,7 +37,11 @@ export class CarsComponent implements OnInit{
   };
 
   getCars(): void{
-    this.carService.getAllCars().subscribe({
+    this.carService.getAllCars().pipe(
+      takeUntilDestroyed(
+        this.destroyRef
+      )
+    ).subscribe({
       next: (response => {
         this.carsDatas = response
       })
@@ -62,6 +68,6 @@ export class CarsComponent implements OnInit{
       width: '500px',
       height: '300px',
       data: car
-    })
-  }
+    });
+  };
 }

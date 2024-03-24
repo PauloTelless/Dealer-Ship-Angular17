@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UsersRegisterSuccessComponent } from './users-register-success/users-register-success.component';
 import { UsersRegisterPasswordErrorComponent } from './users-register-password-error/users-register-password-error.component';
 import { UsersRegisterErrorComponent } from './users-register-error/users-register-error.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-users-register',
@@ -34,6 +35,7 @@ export class UsersRegisterComponent {
   private formBuilder = inject(FormBuilder);
   private routerService = inject(Router);
   private dialogService = inject(MatDialog);
+  private destroyRef = inject(DestroyRef);
 
   formUserRegister = this.formBuilder.group({
     userName: ['', Validators.required],
@@ -51,7 +53,11 @@ export class UsersRegisterComponent {
         })
       }
       else{
-        this.userService.registerUser(this.formUserRegister.value as UserRegister).subscribe({
+        this.userService.registerUser(this.formUserRegister.value as UserRegister).pipe(
+          takeUntilDestroyed(
+            this.destroyRef
+          )
+        ).subscribe({
           next: (() => {
             this.dialogService.open(UsersRegisterSuccessComponent, {
               width: '300px',

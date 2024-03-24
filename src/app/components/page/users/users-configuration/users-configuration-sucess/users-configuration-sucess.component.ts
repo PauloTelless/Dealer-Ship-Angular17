@@ -18,11 +18,12 @@ export class UsersConfigurationSucessComponent implements OnInit{
 
   ngOnInit(): void {
     this.closeModalConfigurationSuccess();
-  }
+  };
 
   closeModalConfigurationSuccess(): void{
     setTimeout(() => {
       this.dialogRef.close();
     }, 2500);
-  }
+  };
+
 }

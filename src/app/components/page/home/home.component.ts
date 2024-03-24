@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { Car } from '../../../models/car/car';
 import { CarService } from '../../../services/car/car.service';
 import { ButtonModule } from 'primeng/button';
@@ -17,6 +17,7 @@ import { UsersNotLoggedComponent } from '../users/users-not-logged/users-not-log
 import { UserService } from '../../../services/user/user.service';
 import { UsersCarFavoriteSuccessComponent } from '../../users/users-car-favorite-success/users-car-favorite-success.component';
 import { UsersPopUpLoginComponent } from '../../users/users-pop-up-login/users-pop-up-login.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-home',
@@ -42,6 +43,7 @@ import { UsersPopUpLoginComponent } from '../../users/users-pop-up-login/users-p
 export class HomeComponent implements OnInit{
 
   etapas: Array<any> = [];
+  private tokenId = localStorage.getItem('token') as string ?? '';
   public responsiveOptions: any[] | undefined;
   public userId!: string;
   public carsDatas!: Array<Car>;
@@ -50,7 +52,7 @@ export class HomeComponent implements OnInit{
   private marcaService = inject(MarcaService);
   private dialogService = inject(MatDialog);
   private userService = inject(UserService);
-  private tokenId = localStorage.getItem('token') as string;
+  private destroyRef$ = inject(DestroyRef);
 
   ngOnInit(): void {
     this.getCars();
@@ -96,7 +98,11 @@ export class HomeComponent implements OnInit{
   }
 
   getCars(): void{
-    this.carService.getAllCars().subscribe({
+    this.carService.getAllCars().pipe(
+      takeUntilDestroyed(
+        this.destroyRef$
+      )
+    ).subscribe({
       next: (carsReponse => {
         this.carsDatas = carsReponse;
       })
@@ -104,25 +110,25 @@ export class HomeComponent implements OnInit{
   };
 
   getMarcas(): void{
-    this.marcaService.getAllMarcas().subscribe({
+    this.marcaService.getAllMarcas().pipe(
+      takeUntilDestroyed(
+        this.destroyRef$
+      )
+    ).subscribe({
       next: (response => {
         this.marcasDatas = response;
       })
     });
   };
 
-  openModalCarInfo(carInfo: Car): void{
-    this.dialogService.open(CarsInfoComponent, {
-      width: '600px',
-      height: '550px',
-      data: carInfo
-    });
-  };
-
   saveFavoriteCar(userId: string, carId: string): void{
       try {
 
-        this.userService.favoriteCar(userId, carId).subscribe({
+        this.userService.favoriteCar(userId, carId).pipe(
+          takeUntilDestroyed(
+            this.destroyRef$
+          )
+        ).subscribe({
           next: (() => {
             this.openModalFavoriteCarSucess();
           }),
@@ -134,11 +140,19 @@ export class HomeComponent implements OnInit{
               });
             };
           })
-        })
+        });
 
       } catch (error) {
         console.log(error);
     };
+  };
+
+  openModalCarInfo(carInfo: Car): void{
+    this.dialogService.open(CarsInfoComponent, {
+      width: '600px',
+      height: '550px',
+      data: carInfo
+    });
   };
 
   openModalFavoriteCarSucess(): void{

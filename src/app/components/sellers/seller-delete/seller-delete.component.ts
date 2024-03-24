@@ -1,4 +1,4 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, DestroyRef, Inject, inject } from '@angular/core';
 import { ToolBarComponent } from '../../../shared/tool-bar/tool-bar.component';
 import { CardModule } from 'primeng/card';
 import { DataViewModule } from 'primeng/dataview';
@@ -9,6 +9,7 @@ import { Seller } from '../../../models/seller/seller';
 import { MessageService } from 'primeng/api';
 import { SellerService } from '../../../services/seller/seller.service';
 import { ToastModule } from 'primeng/toast';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-seller-delete',
@@ -36,10 +37,15 @@ export class SellerDeleteComponent {
   private sellerService = inject(SellerService);
   private dialogRef = inject(MatDialogRef);
   private messageService = inject (MessageService);
+  private destroyRef = inject(DestroyRef);
 
 
   deleteSeller(): void {
-    this.sellerService.deleteSeller(this.data.vendedorId as string).subscribe({
+    this.sellerService.deleteSeller(this.data.vendedorId as string).pipe(
+      takeUntilDestroyed(
+        this.destroyRef
+      )
+    ).subscribe({
       next: (response => {
         console.log(response)
         this.messageService.add({
@@ -58,7 +64,7 @@ export class SellerDeleteComponent {
           summary: 'Error',
           detail: 'Erro ao desligar',
           life: 2000
-        })
+        });
       })
     });
   };

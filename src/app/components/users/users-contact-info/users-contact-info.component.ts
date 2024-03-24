@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, Inject, OnInit, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { Car } from '../../../models/car/car';
 import { Seller } from '../../../models/seller/seller';
@@ -7,6 +7,7 @@ import { SellerService } from '../../../services/seller/seller.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { UsersInterestFormComponent } from '../users-interest-form/users-interest-form.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-users-contact-info',
@@ -27,23 +28,29 @@ import { UsersInterestFormComponent } from '../users-interest-form/users-interes
 export class UsersContactInfoComponent implements OnInit{
   constructor(@Inject(MAT_DIALOG_DATA) public data:Car){}
 
-  ngOnInit(): void {
-    this.vendedorId = this.data.vendedorId;
-    this.getSellers();
-  }
-  public nomeVendedor!: string;
+  private sellerService = inject(SellerService);
+  private dialogRef = inject(MatDialogRef);
+  private dialogService = inject(MatDialog);
+  private destroyRef = inject(DestroyRef);
   public contatoVendedor!: string;
+  public nomeVendedor!: string;
   public emailVendedor!: string;
   public fotoVendedor!: string;
   public vendedorId!: string;
   public sellers!: Array<Seller>;
-  private sellerService = inject(SellerService);
   public seller!: Seller;
-  private dialogRef = inject(MatDialogRef);
-  private dialogService = inject(MatDialog);
+
+  ngOnInit(): void {
+    this.vendedorId = this.data.vendedorId;
+    this.getSellers();
+  }
 
   getSellers(): void{
-    this.sellerService.getAllSellers().subscribe({
+    this.sellerService.getAllSellers().pipe(
+      takeUntilDestroyed(
+        this.destroyRef
+      )
+    ).subscribe({
       next: (response => {
         this.sellers = response;
 
@@ -61,13 +68,13 @@ export class UsersContactInfoComponent implements OnInit{
 
   closeModalContactInfo(): void{
     this.dialogRef.close();
-  }
+  };
 
   openModalContact(): void{
     this.dialogService.open(UsersInterestFormComponent, {
       width: '500px',
       height: '450px'
-    })
-  }
+    });
+  };
 
 }

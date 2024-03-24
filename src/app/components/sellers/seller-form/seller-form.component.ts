@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,6 +12,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MessageService } from 'primeng/api';
 import { MessagesModule } from 'primeng/messages';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-seller-form',
@@ -41,6 +42,7 @@ export class SellerFormComponent {
   private formBuilder = inject(FormBuilder);
   private messageService = inject(MessageService);
   private dialoRef = inject(MatDialogRef);
+  private destroyRef = inject(DestroyRef);
   public salarioFormatado!: string;
 
   formPostSeller = this.formBuilder.group({
@@ -59,7 +61,11 @@ export class SellerFormComponent {
 
   postSellerSubmit(): void{
     if (this.formPostSeller.valid) {
-      this.sellerService.postSeller(this.formPostSeller.value as Seller).subscribe({
+      this.sellerService.postSeller(this.formPostSeller.value as Seller).pipe(
+        takeUntilDestroyed(
+          this.destroyRef
+        )
+      ).subscribe({
         next: (() => {
           this.messageService.add({
             severity: 'success',
@@ -94,7 +100,7 @@ export class SellerFormComponent {
 
     input.value = value;
 
-    this.formPostSeller.patchValue({cpfVendedor: value})
+    this.formPostSeller.patchValue({cpfVendedor: value});
   };
 
   formatarContato(event: any): void{
@@ -108,10 +114,10 @@ export class SellerFormComponent {
 
     input.value = value;
 
-    this.formPostSeller.patchValue({contatoVendedor: value})
+    this.formPostSeller.patchValue({contatoVendedor: value});
   };
 
-  formatarSalario(event: any){
+  formatarSalario(event: any): void{
     const input = event.target as HTMLInputElement;
 
     let value = input.value.replace(/\D/g, '');
@@ -127,7 +133,7 @@ export class SellerFormComponent {
   };
 
   closeModalSellerForm(): void{
-    this.dialoRef.close()
+    this.dialoRef.close();
   };
 
 }
