@@ -1,0 +1,27 @@
+.users-pop-up-login{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #101820;
+  color: #fff;
+
+  .title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    button{
+      width: 230px;
+    }
+  }
+}

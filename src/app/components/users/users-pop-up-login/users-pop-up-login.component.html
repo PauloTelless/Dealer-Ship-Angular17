@@ -1,0 +1,38 @@
+<div class="users-pop-up-login">
+
+  <div class="title">
+    <h2>Ei, você aí... <img src="https://i.pinimg.com/originals/f5/cd/01/f5cd019c3a3d5ba788f60cb5236a2246.png"  style=" width: 20px; margin-top: 4%;"></h2>
+    <h1>Ainda não é cadastrado ?</h1>
+    <h2>Se registre e utilize os nossos serviços !</h2>
+  </div>
+
+  <div class="button-group">
+
+    <button
+    (click)="redirecionarCadastro()"
+    style="
+    margin-right: 1%;
+    background-color: #fff;
+    color: black;"
+    mat-raised-button
+    >
+    <mat-icon>
+      login
+    </mat-icon>
+    Cadastre-se
+    </button>
+
+    <button
+    (click)="closePopUpLogin()"
+    style="background-color: orange;
+    color: #fff;"
+    mat-raised-button
+    >
+    <mat-icon>
+      visibility
+    </mat-icon>
+    Continuar olhando
+    </button>
+
+  </div>
+</div>

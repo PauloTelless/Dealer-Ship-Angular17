@@ -3,10 +3,10 @@ import { Car } from '../../../models/car/car';
 import { CarService } from '../../../services/car/car.service';
 import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
-import { MatButtonModule } from '@angular/material/button'
-import { MatIconModule } from '@angular/material/icon'
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { ToolBarComponent } from '../../../shared/tool-bar/tool-bar.component';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog'
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CarsInfoComponent } from '../../cars/cars-info/cars-info.component';
 import { MarcaService } from '../../../services/marca/marca.service';
 import { Marca } from '../../../models/marca/marca';
@@ -16,6 +16,7 @@ import { StepText } from '../../../models/enums/enumText';
 import { UsersNotLoggedComponent } from '../users/users-not-logged/users-not-logged.component';
 import { UserService } from '../../../services/user/user.service';
 import { UsersCarFavoriteSuccessComponent } from '../../users/users-car-favorite-success/users-car-favorite-success.component';
+import { UsersPopUpLoginComponent } from '../../users/users-pop-up-login/users-pop-up-login.component';
 
 @Component({
   selector: 'app-home',
@@ -49,11 +50,20 @@ export class HomeComponent implements OnInit{
   private marcaService = inject(MarcaService);
   private dialogService = inject(MatDialog);
   private userService = inject(UserService);
+  private tokenId = localStorage.getItem('token') as string;
 
   ngOnInit(): void {
     this.getCars();
-
     this.getMarcas();
+
+    if (!this.tokenId) {
+      setTimeout(() => {
+        this.dialogService.open(UsersPopUpLoginComponent, {
+          width: '550px',
+          height: '320px'
+        })
+      }, 15000);
+    }
 
     if (typeof localStorage !== 'undefined') {
       this.userId = localStorage.getItem('userId') as string;
@@ -78,7 +88,7 @@ export class HomeComponent implements OnInit{
     ];
 
     this.etapas = [
-      { titulo: 'Pesquise', text: StepText['Texto-Pesquise'], icon: 'pi pi-search', image: 'game-controller.jpg' },
+      { titulo: 'Pesquise', text: StepText['Texto-Pesquise'], icon: 'pi pi-search' },
       { titulo: 'Selecione', text: StepText['Texto-Selecione'], icon: 'pi pi-check' },
       { titulo: 'Entre em contato', text: StepText['Texto-Entre-Contato'], icon: 'pi pi-user' },
       { titulo: 'Vendido', text: StepText['Texto-Vendido'],  icon: 'pi pi-car' }
@@ -96,7 +106,7 @@ export class HomeComponent implements OnInit{
   getMarcas(): void{
     this.marcaService.getAllMarcas().subscribe({
       next: (response => {
-        this.marcasDatas = response
+        this.marcasDatas = response;
       })
     });
   };
