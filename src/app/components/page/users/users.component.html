@@ -22,92 +22,97 @@
       </button>
 
     </div>
-  </div>
-
-  <mat-menu #menu="matMenu">
-
-    <button mat-menu-item
-    (click)="openModelUserConfiguration()"
-    >
-      <mat-icon>toggle_on</mat-icon>
-      <span>Configurações</span>
-    </button>
-
-    <button
-    (click)="logout()"
-    mat-menu-item>
-      <mat-icon
-      style="color: red;"
-      >logout</mat-icon>
-      <span>Sair</span>
-    </button>
-
-  </mat-menu>
-
-  <div class="car-favorite-list">
-
-    <div class="title">
-      <h1>Carros favoritados</h1>
-    </div>
-    <div class="content">
-      <p>
-        @for (car of carsListFavorite; track $index) {
-          <p-card header={{car.modeloCarro}} subheader={{car.marcaCarro}} [style]="{ width: '360px', margin: '1%' }">
-            <ng-template pTemplate="header">
-                <img src={{car.imagemCarro}} />
-            </ng-template>
-
-            <div class="button-group">
-
-              <button
-              (click)="openModalCarInfo(car)"
-              matTooltip="Ver informações"
-              style="background-color: blue;
-              margin-right: 1%;
-              "
-              mat-mini-fab
-              >
-              <mat-icon
-              style="color: #fff;"
-              >
-                visibility
-              </mat-icon>
-              </button>
-
-              <button
-              matTooltip="Remover dos favoritos"
-              (click)="removeFavoriteCar(car.carroId, car.modeloCarro)"
-              color="warn"
-              style="
-              margin-right: 1%;
-              "
-              mat-mini-fab
-              >
-              <mat-icon
-              style="color: #fff;"
-              >
-              remove_circle_outline
-              </mat-icon>
-              </button>
-
-              <button
-              (click)="openModalContactInfo(car)"
-              matTooltip="Contactar vendedor"
-              style="background-color: #101820;"
-              mat-mini-fab
-              >
-              <mat-icon
-              style="color: #fff;"
-              >
-                contact_phone
-              </mat-icon>
-              </button>
-
-            </div>
-        </p-card>
-        }
-      </p>
-    </div>
-  </div>
 
 </div>
+
+<div class="title-cars-favorited"
+  style="
+  height: 2vh"
+  ></div>
+  <h1 style="
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;">
+  Carros favoritados</h1>
+</div>
+
+<div class="car-favorite-list">
+
+
+    @for (car of carsListFavorite; track $index) {
+      <p-card header={{car.modeloCarro}} subheader={{car.marcaCarro}} [style]="{ width: '360px', height: '450px'}">
+        <ng-template pTemplate="header">
+            <img src={{car.imagemCarro}} />
+        </ng-template>
+
+        <div class="button-group">
+
+          <button
+          (click)="openModalCarInfo(car)"
+          matTooltip="Ver informações"
+          style="background-color: blue;
+          margin-right: 1%;
+          "
+          mat-mini-fab
+          >
+          <mat-icon
+          style="color: #fff;"
+          >
+            visibility
+          </mat-icon>
+          </button>
+
+          <button
+          matTooltip="Remover dos favoritos"
+          (click)="removeFavoriteCar(car.carroId, car.modeloCarro)"
+          color="warn"
+          style="
+          margin-right: 1%;
+          "
+          mat-mini-fab
+          >
+          <mat-icon
+          style="color: #fff;"
+          >
+          remove_circle_outline
+          </mat-icon>
+          </button>
+
+          <button
+          (click)="openModalContactInfo(car)"
+          matTooltip="Contactar vendedor"
+          style="background-color: #101820;"
+          mat-mini-fab
+          >
+          <mat-icon
+          style="color: #fff;"
+          >
+            contact_phone
+          </mat-icon>
+          </button>
+
+        </div>
+    </p-card>
+    }
+
+</div>
+
+<mat-menu #menu="matMenu">
+
+  <button mat-menu-item
+  (click)="openModelUserConfiguration()">
+    <mat-icon>toggle_on</mat-icon>
+    <span>Configurações</span>
+  </button>
+
+  <button
+    (click)="logout()"
+    mat-menu-item>
+    <mat-icon
+    style="color: red;"
+    >logout</mat-icon>
+    <span>Sair</span>
+  </button>
+
+</mat-menu>

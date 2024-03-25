@@ -14,23 +14,16 @@
       margin-top: 2% 2%;
     }
   }
+}
 
-  .car-favorite-list{
-    .title{
-      display: flex;
-      justify-content: left;
-      margin: 2% 5%;
-    }
+.car-favorite-list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 
-    .content{
-      display: flex;
-      flex-direction: column;
-
-      p-card{
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-      }
-    }
+  p-card{
+    width: 360px;
+    margin: 0.5%
   }
 }
