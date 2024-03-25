@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit{
           width: '550px',
           height: '320px'
         })
-      }, 15000);
+      }, 30000);
     }
 
     if (typeof localStorage !== 'undefined') {

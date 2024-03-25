@@ -21,11 +21,24 @@
 
     <button
     mat-raised-button
-    >Contato
+    >
     <mat-icon>
-    support_agent
+      support_agent
     </mat-icon>
+    Contato
     </button>
+
+    @if (!token) {
+      <button
+      (click)="redirecionarLogin()"
+      mat-raised-button
+      >
+      <mat-icon>
+      login
+      </mat-icon>
+      Entrar
+      </button>
+    }
 
     @if (token) {
       <button
