@@ -44,7 +44,7 @@
     @for (car of carsListFavorite; track $index) {
       <p-card header={{car.modeloCarro}} subheader={{car.marcaCarro}} [style]="{ width: '360px', height: '450px'}">
         <ng-template pTemplate="header">
-            <img src={{car.imagemCarro}} />
+            <img style="width: 350px; height: 250px;" src={{car.imagemCarro}}>
         </ng-template>
 
         <div class="button-group">
