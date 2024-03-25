@@ -1,0 +1,33 @@
+.service-page-container{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+
+  .title{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 2%;
+  }
+
+  .main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .right-main {
+      display: flex;
+      justify-content: flex-end;
+      img {
+        width: 450px;
+        height: 350px;
+        position: relative;
+      }
+    }
+
+    .left-main {
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
+}

@@ -5,6 +5,7 @@ import { CarsComponent } from './components/page/cars/cars.component';
 import { UsersLoginComponent } from './components/users/users-login/users-login.component';
 import { UsersRegisterComponent } from './components/users/users-register/users-register.component';
 import { UsersComponent } from './components/page/users/users.component';
+import { ServicePageComponent } from './components/page/service-page/service-page.component';
 
 
 export const routes: Routes = [
@@ -42,5 +43,10 @@ export const routes: Routes = [
     title: 'Usuário',
     path: 'user',
     component: UsersComponent
+  },
+  {
+    title: 'Serviços',
+    path: 'services',
+    component: ServicePageComponent
   }
 ];

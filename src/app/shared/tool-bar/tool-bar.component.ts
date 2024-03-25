@@ -46,6 +46,10 @@ export class ToolBarComponent implements OnInit{
     this.routerService.navigate(['user']);
   };
 
+  redirecionarServicoes():void {
+    this.routerService.navigate(['services']);
+  };
+
   redirecionarLogin(): void{
     this.routerService.navigate(['login']);
   };
