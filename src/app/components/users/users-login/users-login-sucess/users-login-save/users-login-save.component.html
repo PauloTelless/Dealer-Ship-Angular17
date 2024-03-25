@@ -1,0 +1,27 @@
+<div class="users-login-save-container">
+  <h2>Deseja salvar seu login ?</h2>
+
+  <div class="check-button">
+    <p-triStateCheckbox inputId="tricheckbox"
+    [checkboxFalseIcon]="'false'"
+    (onChange)="isChecked($event)"
+    ></p-triStateCheckbox> <span style="margin-left: 10%;">Salvar</span>
+  </div>
+
+  <div class="button-group">
+    <button
+    (click)="closeModalLoginSave()"
+    style="
+    background-color: black;
+    color: #fff
+    "
+    mat-raised-button
+    >
+    <mat-icon
+    style="color: #fff;">
+      home
+    </mat-icon>
+    Home
+    </button>
+  </div>
+</div>

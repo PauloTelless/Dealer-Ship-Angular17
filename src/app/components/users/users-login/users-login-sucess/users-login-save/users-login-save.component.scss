@@ -1,0 +1,13 @@
+.users-login-save-container{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2%;
+
+  .check-button{
+    display: flex;
+    margin: 2%;
+  }
+}

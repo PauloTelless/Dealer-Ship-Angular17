@@ -18,6 +18,7 @@ import { UserService } from '../../../services/user/user.service';
 import { UsersCarFavoriteSuccessComponent } from '../../users/users-car-favorite-success/users-car-favorite-success.component';
 import { UsersPopUpLoginComponent } from '../../users/users-pop-up-login/users-pop-up-login.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { UsersLoginSaveComponent } from '../../users/users-login/users-login-sucess/users-login-save/users-login-save.component';
 
 @Component({
   selector: 'app-home',
@@ -43,7 +44,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class HomeComponent implements OnInit{
 
   etapas: Array<any> = [];
-  private tokenId = localStorage.getItem('token') as string ?? '';
+  private token = localStorage.getItem('token') as string ?? '';
   public responsiveOptions: any[] | undefined;
   public userId!: string;
   public carsDatas!: Array<Car>;
@@ -55,21 +56,29 @@ export class HomeComponent implements OnInit{
   private destroyRef$ = inject(DestroyRef);
 
   ngOnInit(): void {
+
     this.getCars();
     this.getMarcas();
 
-    if (!this.tokenId) {
+    if (this.token) {
+      this.dialogService.open(UsersLoginSaveComponent, {
+        width: '280px',
+        height: '250px'
+      });
+    };
+
+    if (!this.token) {
       setTimeout(() => {
         this.dialogService.open(UsersPopUpLoginComponent, {
           width: '550px',
           height: '320px'
         })
       }, 30000);
-    }
+    };
 
     if (typeof localStorage !== 'undefined') {
       this.userId = localStorage.getItem('userId') as string;
-    }
+    };
 
     this.responsiveOptions = [
       {
@@ -95,7 +104,7 @@ export class HomeComponent implements OnInit{
       { titulo: 'Entre em contato', text: StepText['Texto-Entre-Contato'], icon: 'pi pi-user' },
       { titulo: 'Vendido', text: StepText['Texto-Vendido'],  icon: 'pi pi-car' }
     ];
-  }
+  };
 
   getCars(): void{
     this.carService.getAllCars().pipe(
