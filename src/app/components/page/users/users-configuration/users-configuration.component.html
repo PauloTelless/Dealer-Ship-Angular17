@@ -1,6 +1,5 @@
 <div class="users-configuration">
 
-
   <div class="title">
     @if (!userConfiguration.valid) {
       <h1>Complete os seus dados</h1>
@@ -16,28 +15,31 @@
 
       <mat-form-field>
         <mat-label>Nome completo</mat-label>
-        <input type="text" matInput placeholder="Nome completo" formControlName="usuarioNomeCompleto" required>
+        <input type="text" matInput placeholder="Nome completo" formControlName="usuarioNomeCompleto"
+        required>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>CPF</mat-label>
         <input type="text" matInput placeholder="CPF" formControlName="usuarioCpf"
-        minlength="14" maxlength="14" required
+        minlength="14" maxlength="14" required="true"
         (input)="formatarCpf($event)"
         >
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>RG</mat-label>
-        <input type="text" matInput placeholder="Digite o RG" formControlName="usuarioRg" required
+        <input matInput placeholder="Digite o RG" formControlName="usuarioRg" required
         (input)="formatarRg($event)"
         >
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Email</mat-label>
-        <input type="email" matInput placeholder="Email" formControlName="usuarioEmail" required>
+        <input matInput type="email" placeholder="Email" formControlName="usuarioEmail" required
+               pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
       </mat-form-field>
+
 
       <mat-form-field>
         <mat-label>Contato</mat-label>
@@ -83,4 +85,5 @@
     Voltar
     </button>
   </div>
+
 </div>

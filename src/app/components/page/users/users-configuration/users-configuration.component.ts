@@ -48,16 +48,15 @@ export class UsersConfigurationComponent implements OnInit{
 
     this.userConfiguration = this.formBuilder.group({
       usuarioId: [this.userId],
-      usuarioNomeCompleto: [this.user?.usuarioNomeCompleto || '', Validators.required],
-      usuarioNome: [this.userName || ''],
-      usuarioCpf: [this.user?.usuarioCpf || '', Validators.required],
-      usuarioRg: [this.user?.usuarioRg || '', Validators.required],
-      usuarioEmail: [this.user?.usuarioEmail || '', Validators.required],
-      usuarioContato: [this.user?.usuarioContato || '', Validators.required],
-      usuarioEndereco: [this.user?.usuarioEndereco || '', Validators.required]
+      usuarioNomeCompleto: [this.user?.usuarioNomeCompleto, Validators.required],
+      usuarioNome: [this.userName, Validators.required],
+      usuarioCpf: [this.user?.usuarioCpf, Validators.required],
+      usuarioRg: [this.user?.usuarioRg, Validators.required],
+      usuarioEmail: [this.user?.usuarioEmail, Validators.required],
+      usuarioContato: [this.user?.usuarioContato, Validators.required],
+      usuarioEndereco: [this.user?.usuarioEndereco, Validators.required]
     });
   }
-
 
   getUser(userId: string): void {
     this.userService.getUser(userId).pipe(
@@ -83,7 +82,7 @@ export class UsersConfigurationComponent implements OnInit{
       };
 
       saveConfigurationUser(): void {
-        if (this.userConfiguration.valid && this.userConfiguration.value) {
+        if (this.userConfiguration.valid) {
           this.userService.putUserConfiguration(this.userId, this.userConfiguration.value).pipe(
             takeUntilDestroyed(
               this.destroyRef

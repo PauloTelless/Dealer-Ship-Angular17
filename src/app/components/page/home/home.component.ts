@@ -60,13 +60,6 @@ export class HomeComponent implements OnInit{
     this.getCars();
     this.getMarcas();
 
-    if (this.token) {
-      this.dialogService.open(UsersLoginSaveComponent, {
-        width: '280px',
-        height: '250px'
-      });
-    };
-
     if (!this.token) {
       setTimeout(() => {
         this.dialogService.open(UsersPopUpLoginComponent, {
