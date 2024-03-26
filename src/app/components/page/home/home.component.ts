@@ -18,7 +18,7 @@ import { UserService } from '../../../services/user/user.service';
 import { UsersCarFavoriteSuccessComponent } from '../../users/users-car-favorite-success/users-car-favorite-success.component';
 import { UsersPopUpLoginComponent } from '../../users/users-pop-up-login/users-pop-up-login.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { UsersLoginSaveComponent } from '../../users/users-login/users-login-sucess/users-login-save/users-login-save.component';
+
 
 @Component({
   selector: 'app-home',
@@ -44,16 +44,16 @@ import { UsersLoginSaveComponent } from '../../users/users-login/users-login-suc
 export class HomeComponent implements OnInit{
 
   etapas: Array<any> = [];
-  private token = localStorage.getItem('token') as string ?? '';
-  public responsiveOptions: any[] | undefined;
-  public userId!: string;
-  public carsDatas!: Array<Car>;
-  public marcasDatas!: Array<Marca>;
   private carService = inject(CarService);
   private marcaService = inject(MarcaService);
   private dialogService = inject(MatDialog);
   private userService = inject(UserService);
   private destroyRef$ = inject(DestroyRef);
+  private token = localStorage.getItem('token') as string ?? '';
+  public responsiveOptions: any[] | undefined;
+  public userId!: string;
+  public carsDatas!: Array<Car>;
+  public marcasDatas!: Array<Marca>;
 
   ngOnInit(): void {
 

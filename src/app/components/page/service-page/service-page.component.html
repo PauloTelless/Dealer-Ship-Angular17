@@ -1,11 +1,26 @@
 <app-tool-bar></app-tool-bar>
 
 <div class="service-page-container">
-
   <div class="title">
-    <h2>
-      Nossos serviços
-    </h2>
+
+    <h2>Nossos serviços</h2>
+
+    <h3
+    style="margin: 2% 5%;"
+    >
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Perspiciatis perferendis iste minus aperiam fugiat maxime,
+      distinctio optio cum voluptatum impedit nobis enim sunt id
+      alias aliquid expedita consequuntur dolorem hic.It is a long established fact that a
+      reader will be distracted by the readable content of a page when looking
+      at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+      distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+      Many desktop publishing packages and web page editors now use Lorem Ipsum as their default
+      model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+      Various versions have evolved over the years, sometimes by accident, sometimes on purpose
+      (injected humour and the like).
+    </h3>
+
   </div>
 
   <div class="main">
@@ -14,9 +29,34 @@
       <img src="https://st.depositphotos.com/1075946/1827/i/450/depositphotos_18270913-stock-photo-car-seller-with-car-buyer.jpg" alt="">
     </div>
 
-    <div class="left-main">
-     <h2>dsdsds</h2>
-    </div>
+  </div>
+
+</div>
+
+<div class="left-main">
+
+  <div class="vendedor-session" style="margin-bottom: 5%;">
+
+    <p-timeline [value]="etapas" align="alternate" styleClass="customized-timeline"
+    [style]="{ width: '750px', height: '380px' }">
+
+      <ng-template pTemplate="marker" let-etapa>
+          <span class="custom-marker shadow-2" [style.backgroundColor]="etapa.color">
+              <i [ngClass]="etapa.icon"></i>
+          </span>
+      </ng-template>
+
+      <ng-template pTemplate="content" let-etapa style="margin: 0.5%">
+
+          <p-card  [subheader]="etapa.titulo">
+              <p style="font-size: 12px; font-weight: bolder;">
+                  {{etapa.textService}}
+              </p>
+          </p-card>
+
+      </ng-template>
+
+  </p-timeline>
 
   </div>
 
