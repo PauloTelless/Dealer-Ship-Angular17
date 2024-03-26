@@ -32,7 +32,7 @@ export class ServicePageComponent implements OnInit{
       { textService: TextService['textPagamentoService'],  icon: 'pi pi-dollar' },
       { textService: TextService['textEspecialistasService'], icon: 'pi pi-users' }
     ];
-  }
+  };
 
   displayedColumns: string[] = ['demo-position', 'demo-name', 'demo-weight', 'demo-symbol'];
   etapas: Array<any> = [];

@@ -6,6 +6,7 @@ import { UsersLoginComponent } from './components/users/users-login/users-login.
 import { UsersRegisterComponent } from './components/users/users-register/users-register.component';
 import { UsersComponent } from './components/page/users/users.component';
 import { ServicePageComponent } from './components/page/service-page/service-page.component';
+import { ContactComponent } from './components/page/contact/contact.component';
 
 
 export const routes: Routes = [
@@ -48,5 +49,10 @@ export const routes: Routes = [
     title: 'Serviços',
     path: 'services',
     component: ServicePageComponent
+  },
+  {
+    title: 'Contato',
+    path: 'contacts',
+    component: ContactComponent
   }
 ];
