@@ -7,6 +7,7 @@ import { UsersRegisterComponent } from './components/users/users-register/users-
 import { UsersComponent } from './components/page/users/users.component';
 import { ServicePageComponent } from './components/page/service-page/service-page.component';
 import { ContactComponent } from './components/page/contact/contact.component';
+import { authGuard } from './guards/auth-guard.guard';
 
 
 export const routes: Routes = [
@@ -23,12 +24,14 @@ export const routes: Routes = [
   {
     title: 'Vendedores',
     path: 'sellers',
-    component: AdministrationComponent
+    component: AdministrationComponent,
+    canActivate: [authGuard]
   },
   {
     title: 'Veículos',
     path: 'cars',
-    component: CarsComponent
+    component: CarsComponent,
+    canActivate: [authGuard]
   },
   {
     title: 'Login',
@@ -43,7 +46,8 @@ export const routes: Routes = [
   {
     title: 'Usuário',
     path: 'user',
-    component: UsersComponent
+    component: UsersComponent,
+    canActivate: [authGuard]
   },
   {
     title: 'Serviços',

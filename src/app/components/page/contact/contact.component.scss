@@ -1,0 +1,26 @@
+.contact-container{
+  .title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+  }
+
+  .contact-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    p-card{
+      margin: 1%;
+      transition: 0.5s;
+      text-align: justify;
+
+      &:hover{
+        margin-top: -2%;
+      }
+    }
+  }
+
+}

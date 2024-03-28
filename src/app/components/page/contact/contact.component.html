@@ -1,1 +1,68 @@
 <app-tool-bar></app-tool-bar>
+
+<div class="contact-container">
+
+  <div class="title">
+    <h1>Entre em contato conosco !</h1>
+  </div>
+
+  <div class="contact-content">
+
+      <p-card header="Email"  [style]="{ width: '360px', height: '420px'}">
+          <ng-template pTemplate="header">
+
+          </ng-template>
+          <mat-icon>
+            email
+          </mat-icon>
+          <p>
+              Tem alguma dúvida ?
+              Entre em contato conosco para receber
+              assistência rápida e personalizada! Tire suas dúvidas,
+              agende serviços ou solicite informações sobre nossos veículos.
+              Estamos aqui para ajudar você!
+          </p>
+
+          <h4>
+            Email: {{emailContato}}
+          </h4>
+
+      </p-card>
+
+      <p-card header="Telefone" [style]="{ width: '360px', height: '420px' }">
+        <mat-icon>
+          call
+        </mat-icon>
+          <p>
+            Fale diretamente conosco pelo telefone
+            e experimente um atendimento ágil e amigável.
+            Nossa equipe está pronta para atender suas necessidades automotivas e proporcionar
+            uma experiência excepcional.
+          </p>
+
+          <h4>
+            Telefone: {{telefoneContato}}
+          </h4>
+
+      </p-card>
+
+      <p-card header="Localização" [style]="{ width: '360px', height: '420px'}">
+        <mat-icon>
+          my_location
+        </mat-icon>
+          <p>
+            Visite-nos em nossa sede na Rua ABC e descubra a
+            excelência em serviços automotivos que a Autocar oferece.
+            Encontre-nos facilmente e aproveite para conhecer nossos produtos e
+            soluções personalizadas para você.
+          </p>
+
+          <h4>
+            Localização: {{localizaoContato}}
+          </h4>
+
+      </p-card>
+
+    </div>
+
+  </div>
