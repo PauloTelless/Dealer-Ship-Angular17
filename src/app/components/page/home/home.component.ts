@@ -18,7 +18,11 @@ import { UserService } from '../../../services/user/user.service';
 import { UsersCarFavoriteSuccessComponent } from '../../users/users-car-favorite-success/users-car-favorite-success.component';
 import { UsersPopUpLoginComponent } from '../../users/users-pop-up-login/users-pop-up-login.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
+import { sort } from 'fast-sort';
 
 @Component({
   selector: 'app-home',
@@ -31,7 +35,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     ToolBarComponent,
     MatDialogModule,
     TimelineModule,
-    CardModule
+    CardModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule
   ],
   providers:[
     CarService,
@@ -43,22 +52,33 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class HomeComponent implements OnInit{
 
-  etapas: Array<any> = [];
   private carService = inject(CarService);
   private marcaService = inject(MarcaService);
   private dialogService = inject(MatDialog);
   private userService = inject(UserService);
   private destroyRef$ = inject(DestroyRef);
+  private formBuilder = inject(FormBuilder);
   private token = localStorage.getItem('token') as string ?? '';
   public responsiveOptions: any[] | undefined;
   public userId!: string;
   public carsDatas!: Array<Car>;
   public marcasDatas!: Array<Marca>;
+  public etapas: Array<any> = [];
+  public optionsFilterCaras = [
+    {option: 'Nome'},
+    {option: 'Maior preço'},
+    {option: 'Menor preço'},
+    {option: 'Maior quilometragem'},
+    {option: 'Menor quilometragem'}
+  ]
 
   ngOnInit(): void {
 
     this.getCars();
     this.getMarcas();
+    this.searchModelCarForm.valueChanges.subscribe(() => {
+      this.searchModelCar();
+    });
 
     if (!this.token) {
       setTimeout(() => {
@@ -75,23 +95,23 @@ export class HomeComponent implements OnInit{
 
     this.responsiveOptions = [
       {
-          breakpoint: '1199px',
-          numVisible: 1,
-          numScroll: 1
+        breakpoint: '1199px',
+        numVisible: 1,
+        numScroll: 1
       },
       {
-          breakpoint: '991px',
-          numVisible: 2,
-          numScroll: 1
+        breakpoint: '991px',
+        numVisible: 2,
+        numScroll: 1
       },
       {
           breakpoint: '767px',
           numVisible: 1,
           numScroll: 1
-      }
-    ];
+        }
+      ];
 
-    this.etapas = [
+      this.etapas = [
       { titulo: 'Pesquise', text: StepText['Texto-Pesquise'], icon: 'pi pi-search' },
       { titulo: 'Selecione', text: StepText['Texto-Selecione'], icon: 'pi pi-check' },
       { titulo: 'Entre em contato', text: StepText['Texto-Entre-Contato'], icon: 'pi pi-user' },
@@ -99,45 +119,49 @@ export class HomeComponent implements OnInit{
     ];
   };
 
-  getCars(): void{
+  getCars(): void {
     this.carService.getAllCars().pipe(
-      takeUntilDestroyed(
-        this.destroyRef$
-      )
+      takeUntilDestroyed(this.destroyRef$)
     ).subscribe({
-      next: (carsReponse => {
-        this.carsDatas = carsReponse;
-      })
+      next: (carsResponse) => {
+        this.carsDatas = carsResponse.map(car => ({
+          ...car,
+          modeloCarro: car.modeloCarro.toUpperCase()
+        }));
+      },
+      error: (error) => {
+        console.error('Erro ao obter carros:', error);
+      }
     });
-  };
+  }
 
-  getMarcas(): void{
-    this.marcaService.getAllMarcas().pipe(
-      takeUntilDestroyed(
-        this.destroyRef$
-      )
-    ).subscribe({
-      next: (response => {
-        this.marcasDatas = response;
-      })
-    });
-  };
+    getMarcas(): void{
+      this.marcaService.getAllMarcas().pipe(
+        takeUntilDestroyed(
+          this.destroyRef$
+          )
+          ).subscribe({
+            next: (response => {
+              this.marcasDatas = response;
+            })
+          });
+        };
 
-  saveFavoriteCar(userId: string, carId: string): void{
-      try {
+        saveFavoriteCar(userId: string, carId: string): void{
+          try {
 
         this.userService.favoriteCar(userId, carId).pipe(
           takeUntilDestroyed(
             this.destroyRef$
           )
-        ).subscribe({
-          next: (() => {
-            this.openModalFavoriteCarSucess();
-          }),
-          error: (() => {
-            if (!localStorage.getItem('token')) {
-              this.dialogService.open(UsersNotLoggedComponent, {
-                 width: '400px',
+          ).subscribe({
+            next: (() => {
+              this.openModalFavoriteCarSucess();
+            }),
+            error: (() => {
+              if (!localStorage.getItem('token')) {
+                this.dialogService.open(UsersNotLoggedComponent, {
+                  width: '400px',
                  height: '350px'
               });
             };
@@ -146,11 +170,57 @@ export class HomeComponent implements OnInit{
 
       } catch (error) {
         console.log(error);
+      };
     };
-  };
 
-  openModalCarInfo(carInfo: Car): void{
-    this.dialogService.open(CarsInfoComponent, {
+    searchModelCarForm = this.formBuilder.group({
+      modeloCarro: ['']
+    });
+
+    searchModelCar(): void{
+      const modelCarSearch = this.searchModelCarForm.value.modeloCarro?.toUpperCase() as string;
+
+      if (!modelCarSearch || modelCarSearch.trim() == '') {
+        this.getCars();
+        return;
+      };
+
+      this.carsDatas = this.carsDatas.filter((modeloCarro) => {
+        return modeloCarro.modeloCarro.includes(modelCarSearch);
+      });
+    };
+
+    selectFilter(event: MatSelectChange): void{
+      const optionFilter = event.value;
+
+      switch (optionFilter) {
+        case 'Nome':
+          this.carsDatas = sort(this.carsDatas).asc(modeloCarro => modeloCarro.modeloCarro);
+          break;
+
+        case 'Maior preço':
+          this.carsDatas = sort(this.carsDatas).desc(precoCarro => parseFloat(precoCarro.precoCarro));
+          break;
+
+        case 'Menor preço':
+          this.carsDatas = sort(this.carsDatas).asc(precoCarro => parseFloat(precoCarro.precoCarro));
+          break;
+
+        case 'Maior quilometragem':
+          this.carsDatas = sort(this.carsDatas).desc(quilometragem =>  parseFloat(quilometragem.quilometragemCarro));
+          break;
+
+        case 'Menor quilometragem':
+          this.carsDatas = sort(this.carsDatas).asc(quilometragem => parseFloat(quilometragem.quilometragemCarro));
+          break;
+
+        default:
+          break;
+      };
+    };
+
+    openModalCarInfo(carInfo: Car): void{
+      this.dialogService.open(CarsInfoComponent, {
       width: '600px',
       height: '550px',
       data: carInfo

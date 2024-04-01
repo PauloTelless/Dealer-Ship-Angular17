@@ -2,6 +2,29 @@
 
 <div class="title">
   <h1>Conheça nossos veículos disponíveis</h1>
+
+  <div class="filter-container">
+
+    <form [formGroup]="searchModelCarForm">
+
+      <mat-form-field>
+        <mat-label>Procure um veículo</mat-label>
+        <input type="text" matInput placeholder="Nome do modelo" formControlName="modeloCarro">
+      </mat-form-field>
+
+    </form>
+
+    <mat-form-field style="margin-left: 2%;">
+      <mat-label>Ordene por</mat-label>
+      <mat-select (selectionChange)="selectFilter($event)">
+        @for (options of optionsFilterCaras; track $index) {
+          <mat-option [value]="options.option" >{{options.option}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+
 </div>
 
 <div class="home-container">
