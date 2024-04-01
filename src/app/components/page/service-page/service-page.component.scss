@@ -21,8 +21,15 @@
     right: 15px;
 
     img{
+      width: 450px;
+      height: 350px;
       border-radius: 15px;
+      margin-bottom: 5%;
     }
+  }
+
+  .left-main{
+    justify-content: flex-start;
   }
 
 }

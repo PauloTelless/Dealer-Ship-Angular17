@@ -64,7 +64,7 @@ export class AdministrationComponent implements OnInit{
         console.error('Erro ao obter vendedores:', error);
       }
     });
-  }
+  };
 
   searchSellerForm = this.formBuilder.group({
     nomeVendedor: ['']
