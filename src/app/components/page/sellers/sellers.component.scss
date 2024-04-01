@@ -1,9 +1,15 @@
 .title{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   margin: 1%;
+}
+
+.search-container{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 8%;
 }
 
 .quadro-funcionarios{

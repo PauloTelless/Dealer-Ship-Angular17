@@ -18,6 +18,20 @@
     person
   </mat-icon>
   </button>
+
+</div>
+
+<div class="search-container">
+
+  <form [formGroup]="searchSellerForm">
+    <mat-form-field>
+      <mat-label>
+        Procurar funcionário
+      </mat-label>
+      <input type="text" matInput placeholder="Nome" formControlName="nomeVendedor">
+    </mat-form-field>
+  </form>
+
 </div>
 
 <div class="quadro-funcionarios">
@@ -35,8 +49,8 @@
         height: 35px;
         box-shadow: none;"
         mat-mini-fab
-        color="accent"
-        >
+        color="accent">
+
         <mat-icon
         style="color: #fff;">
           edit

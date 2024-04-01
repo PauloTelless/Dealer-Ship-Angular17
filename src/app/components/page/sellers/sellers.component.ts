@@ -13,6 +13,9 @@ import { SellersEditComponent } from '../../sellers/sellers-edit/sellers-edit.co
 import { SellerDeleteComponent } from '../../sellers/seller-delete/seller-delete.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-administration',
@@ -24,7 +27,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     MatIconModule,
     MatMenuModule,
     MatDialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   templateUrl: './sellers.component.html',
   styleUrl: './sellers.component.scss'
@@ -34,24 +41,45 @@ export class AdministrationComponent implements OnInit{
   private sellerService = inject(SellerService);
   private dialogService = inject(MatDialog);
   private destroyRef = inject(DestroyRef);
+  private formBuilder = inject(FormBuilder);
   public sellersDatas!: Array<Seller>;
-
-  constructor(){}
 
   ngOnInit(): void {
     this.getSellers();
-
+    this.searchSellerForm.valueChanges.subscribe(() =>
+    this.searchSeller())
   };
 
-  getSellers(): void{
+  getSellers(): void {
     this.sellerService.getAllSellers().pipe(
-      takeUntilDestroyed(
-        this.destroyRef
-      )
+      takeUntilDestroyed(this.destroyRef)
     ).subscribe({
-      next: (sellerResponse => {
-        this.sellersDatas = sellerResponse;
-      })
+      next: (sellerResponse) => {
+        this.sellersDatas = sellerResponse.map((vendedor) => ({
+          ...vendedor,
+          nomeVendedor: vendedor.nomeVendedor.toUpperCase()
+        }));
+      },
+      error: (error) => {
+        console.error('Erro ao obter vendedores:', error);
+      }
+    });
+  }
+
+  searchSellerForm = this.formBuilder.group({
+    nomeVendedor: ['']
+  });
+
+  searchSeller(): void{
+    const nameSellerSearch = this.searchSellerForm.value.nomeVendedor?.toUpperCase() as string;
+
+    if (!nameSellerSearch || nameSellerSearch.trim() == '') {
+      this.getSellers();
+      return;
+    };
+
+    this.sellersDatas = this.sellersDatas.filter((nomeVendedorFiltrado) => {
+      return nomeVendedorFiltrado.nomeVendedor.includes(nameSellerSearch)
     });
   };
 
@@ -75,7 +103,7 @@ export class AdministrationComponent implements OnInit{
       width: '980px',
       height: '450px',
       data: seller
-    })
+    });
   };
 
   OpenSellerDelete(seller: Seller): void{
@@ -83,7 +111,7 @@ export class AdministrationComponent implements OnInit{
       width: '500px',
       height: '300px',
       data: seller
-    })
-  }
+    });
+  };
 
 }
