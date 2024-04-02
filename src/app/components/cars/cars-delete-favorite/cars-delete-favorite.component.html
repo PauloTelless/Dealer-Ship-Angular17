@@ -1,0 +1,39 @@
+<p-toast
+  position="top-right"
+></p-toast>
+
+<div class="cars-delete-favorite">
+
+  <div class="title">
+    <h2>Você deseja remover {{modeloCarro}} dos favoritos ?</h2>
+  </div>
+
+  <div class="button-group">
+
+    <button
+    (click)="removeCarFavorite()"
+    style="margin-right: 2%;"
+    color="warn"
+    mat-raised-button
+    >
+    <mat-icon>
+      check
+    </mat-icon>
+    Confirmar
+    </button>
+
+    <button
+    (click)="closeModalDeleteFavorite()"
+    mat-raised-button
+    style="
+    color: #fff;
+    background-color: #101820;">
+    <mat-icon>
+      close
+    </mat-icon>
+    Cancelar
+    </button>
+
+  </div>
+
+</div>

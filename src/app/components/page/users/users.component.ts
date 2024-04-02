@@ -42,11 +42,8 @@ import { CarsDeleteFavoriteComponent } from '../../cars/cars-delete-favorite/car
 })
 export class UsersComponent implements OnInit{
 
-  constructor(){}
-
   private dialogService = inject(MatDialog);
   private userService = inject(UserService);
-  private messagService = inject(MessageService);
   private destroyRef = inject(DestroyRef);
   public carsListFavorite: Array<Car> = [];
   public userName!: string;
@@ -88,28 +85,18 @@ export class UsersComponent implements OnInit{
     });
   };
 
-  openDeleteFavorite(carroId: string, modeloCarro: string): void{
-    this.dialogService.open(CarsDeleteFavoriteComponent, {
+  logout(): void{
+    this.dialogService.open(UsersLogoutComponent, {
       width: '300px',
-      height: '300px',
-      data: {carroIdData: carroId, modeloCarroData: modeloCarro}
-    })
+      height: '300px'
+    });
   };
 
-  removeFavoriteCar(carroId: string, modeloCarro: string): void{
-    this.userService.deteleFavoriteCar(this.userId, carroId).pipe(
-      takeUntilDestroyed(
-        this.destroyRef
-      )
-    ).subscribe({
-      next: (() => {
-        this.messagService.add({
-          severity: 'info',
-          summary: 'Removido',
-          detail: `${modeloCarro} foi removido da lista de favoritos`,
-          life: 3000
-        });
-      })
+  openDeleteFavorite(carroId: string, modeloCarro: string): void{
+    this.dialogService.open(CarsDeleteFavoriteComponent, {
+      width: 'auto',
+      height: '300px',
+      data: {carroIdData: carroId, modeloCarroData: modeloCarro}
     });
   };
 
@@ -120,14 +107,6 @@ export class UsersComponent implements OnInit{
       data: this.userId
     });
   };
-
-  logout(): void{
-    this.dialogService.open(UsersLogoutComponent, {
-      width: '300px',
-      height: '300px'
-    });
-  };
-
 
   openModalCarInfo(carro: Car): void{
     this.dialogService.open(UsersCarFavoriteInfoComponent, {
@@ -144,6 +123,5 @@ export class UsersComponent implements OnInit{
       data: carro
     });
   };
-
 
 }
