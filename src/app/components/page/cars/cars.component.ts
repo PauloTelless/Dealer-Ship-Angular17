@@ -14,6 +14,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CarsBuyComponent } from '../../cars/cars-buy/cars-buy.component';
 
 @Component({
   selector: 'app-cars',
@@ -82,6 +83,14 @@ export class CarsComponent implements OnInit{
       height: '300px',
       data: car
     });
+  };
+
+  openModalCarSell(car: Car): void{
+    this.dialogService.open(CarsBuyComponent, {
+      width: '280px',
+      height: '280px',
+      data: car
+    })
   };
 
   searchCarForm = this.formBuilder.group({

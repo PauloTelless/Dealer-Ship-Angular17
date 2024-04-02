@@ -1,0 +1,16 @@
+.cars-buy-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .title{
+    text-align: center;
+  }
+
+  .button-group{
+    display: flex;
+    flex-direction: row;
+  }
+}

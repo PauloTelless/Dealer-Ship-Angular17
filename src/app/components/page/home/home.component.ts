@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit{
   private userService = inject(UserService);
   private destroyRef$ = inject(DestroyRef);
   private formBuilder = inject(FormBuilder);
-  private token = localStorage.getItem('token') as string ?? '';
+  private token!: string;
   public responsiveOptions: any[] | undefined;
   public userId!: string;
   public carsDatas!: Array<Car>;
@@ -74,6 +74,7 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
 
+    this.token = localStorage.getItem('token') as string ?? '';
     this.getCars();
     this.getMarcas();
     this.searchModelCarForm.valueChanges.subscribe(() => {

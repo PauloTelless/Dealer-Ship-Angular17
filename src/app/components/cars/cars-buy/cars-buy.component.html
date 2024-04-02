@@ -1,0 +1,36 @@
+<div class="cars-buy-container">
+
+  <div class="title">
+    <h2>Você está vendendo</h2>
+    <h2>{{modeloCarro}}</h2>
+  </div>
+
+  <div class="button-group">
+
+    <button
+    (click)="openModalCarBuyForm()"
+    style="margin-right: 2%;
+    color: #fff;
+    background-color: #101820;"
+    mat-raised-button
+    >
+    <mat-icon>
+      check
+    </mat-icon>
+    Continuar
+    </button>
+
+    <button
+    (click)="closeModalCarsBuy()"
+    mat-raised-button
+    color="warn"
+    >
+    <mat-icon>
+      close
+    </mat-icon>
+    Voltar
+    </button>
+
+  </div>
+
+</div>
