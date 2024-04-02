@@ -17,6 +17,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { UsersCarFavoriteInfoComponent } from '../../users/users-car-favorite-info/users-car-favorite-info.component';
 import { UsersContactInfoComponent } from '../../users/users-contact-info/users-contact-info.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CarsDeleteFavoriteComponent } from '../../cars/cars-delete-favorite/cars-delete-favorite.component';
 
 
 @Component({
@@ -85,6 +86,14 @@ export class UsersComponent implements OnInit{
         console.error('Ocorreu um erro ao obter os carros favoritos:', error);
       }
     });
+  };
+
+  openDeleteFavorite(carroId: string, modeloCarro: string): void{
+    this.dialogService.open(CarsDeleteFavoriteComponent, {
+      width: '300px',
+      height: '300px',
+      data: {carroIdData: carroId, modeloCarroData: modeloCarro}
+    })
   };
 
   removeFavoriteCar(carroId: string, modeloCarro: string): void{
