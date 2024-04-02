@@ -1,12 +1,17 @@
+.search-container{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10%;
+}
+
 .cars-list{
   display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 2% 2%;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 2% 2%;
 
   p-card{
     margin: 1%;
-
   }
 
   .button-group{

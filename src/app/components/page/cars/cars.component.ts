@@ -11,6 +11,9 @@ import { CarsFormComponent } from '../../cars/cars-form/cars-form.component';
 import { CarsEditComponent } from '../../cars/cars-edit/cars-edit.component';
 import { CarsDeleteComponent } from '../../cars/cars-delete/cars-delete.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cars',
@@ -21,7 +24,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     DataViewModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   templateUrl: './cars.component.html',
   styleUrl: './cars.component.scss'
@@ -30,10 +37,13 @@ export class CarsComponent implements OnInit{
   private destroyRef = inject(DestroyRef);
   private carService = inject(CarService);
   private dialogService = inject(MatDialog);
+  private formBuilder = inject(FormBuilder);
   public carsDatas!: Array<Car>;
 
   ngOnInit(): void {
     this.getCars();
+    this.searchCarForm.valueChanges.subscribe(() =>
+    this.searchCar())
   };
 
   getCars(): void{
@@ -42,8 +52,11 @@ export class CarsComponent implements OnInit{
         this.destroyRef
       )
     ).subscribe({
-      next: (response => {
-        this.carsDatas = response
+      next: (carsResponse => {
+        this.carsDatas = carsResponse.map((car) => ({
+          ...car,
+          modeloCarro: car.modeloCarro.toUpperCase()
+        }));
       })
     });
   };
@@ -68,6 +81,23 @@ export class CarsComponent implements OnInit{
       width: '500px',
       height: '300px',
       data: car
+    });
+  };
+
+  searchCarForm = this.formBuilder.group({
+    modeloCarro: ['']
+  });
+
+  searchCar(): void{
+    const modeloCarro = this.searchCarForm.value.modeloCarro?.toUpperCase() as string;
+
+    if (!modeloCarro || modeloCarro.trim() == '') {
+      this.getCars();
+      return;
+    };
+
+    this.carsDatas = this.carsDatas.filter((modeloCarroFiltrado) => {
+      return modeloCarroFiltrado.modeloCarro.includes(modeloCarro);
     });
   };
 }

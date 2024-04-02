@@ -1,5 +1,21 @@
 <app-tool-bar></app-tool-bar>
-<h1 style="text-align: center; margin-top: 2%;">Carros disponíveis para venda</h1>
+
+<div class="title">
+
+  <h1 style="text-align: center; margin-top: 2%;">Carros disponíveis para venda</h1>
+
+</div>
+
+<div class="search-container">
+  <form [formGroup]="searchCarForm">
+
+    <mat-form-field>
+      <mat-label>Procurar veículo</mat-label>
+      <input type="text" matInput placeholder="Nome do modelo" formControlName="modeloCarro">
+    </mat-form-field>
+
+  </form>
+</div>
 
 <div class="button-add" style="display: flex; justify-content: center;">
   <button
