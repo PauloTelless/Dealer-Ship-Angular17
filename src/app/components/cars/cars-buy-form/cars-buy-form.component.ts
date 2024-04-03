@@ -2,7 +2,7 @@ import { Component, Inject, OnInit, inject, input } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ToastModule } from 'primeng/toast';
 import { Car } from '../../../models/car/car';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { CarsBuyFormSuccessComponent } from './cars-buy-form-success/cars-buy-form-success.component';
 
 @Component({
   selector: 'app-cars-buy-form',
@@ -37,6 +38,7 @@ export class CarsBuyFormComponent{
 
   private dialogRef = inject(MatDialogRef);
   private formBuilder = inject(FormBuilder);
+  private dialogService = inject(MatDialog);
   public rgFormatado!: string;
   public opcoesPagamento = [
     {opcao: 'À vista'},
@@ -109,6 +111,16 @@ export class CarsBuyFormComponent{
 
     this.buyerForm.patchValue({contactBuyer: value})
 
+  };
+
+  submitEmail(): void{
+    if (this.buyerForm.value && this.buyerForm.valid) {
+      this.dialogService.open(CarsBuyFormSuccessComponent, {
+        width: '250px',
+        height: '250px'
+      })
+      this.dialogRef.close();
+    }
   };
 
   closeModalBuyForm(): void{
