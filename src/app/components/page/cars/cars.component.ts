@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarsBuyComponent } from '../../cars/cars-buy/cars-buy.component';
+import { CarsBuyFormComponent } from '../../cars/cars-buy-form/cars-buy-form.component';
 
 @Component({
   selector: 'app-cars',

@@ -1,0 +1,42 @@
+.cars-buy-form-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .title{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2%;
+  }
+
+  .form-container-buyer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    mat-form-field{
+      width: 210px;
+      margin: 1%;
+    }
+
+  }
+
+  .form-container-car{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    mat-form-field{
+      margin: 1%;
+    }
+  }
+
+  .button-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}

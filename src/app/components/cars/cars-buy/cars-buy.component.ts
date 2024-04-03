@@ -18,9 +18,9 @@ import { CarsBuyFormComponent } from '../cars-buy-form/cars-buy-form.component';
 export class CarsBuyComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data:Car){}
 
-  public modeloCarro = this.data.modeloCarro;
   private dialogRef = inject(MatDialogRef);
   private dialogService = inject(MatDialog);
+  public modeloCarro = this.data.modeloCarro;
 
   closeModalCarsBuy(): void{
     this.dialogRef.close();
@@ -30,8 +30,9 @@ export class CarsBuyComponent {
     this.closeModalCarsBuy();
 
     this.dialogService.open(CarsBuyFormComponent, {
-      width: '850px',
-      height: '600px'
+      width: '950px',
+      height: '630px',
+      data: this.data
     });
   };
 

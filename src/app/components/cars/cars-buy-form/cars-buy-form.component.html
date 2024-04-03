@@ -1,1 +1,148 @@
-<p>cars-buy-form works!</p>
+<div class="cars-buy-form-container">
+
+  <div class="title">
+    <h1>Contrato de venda</h1>
+  </div>
+
+  <div class="form-container-buyer">
+
+    <div class="title">
+      <h3>Dados do comprador</h3>
+    </div>
+
+    <form [formGroup]="buyerForm">
+
+      <mat-form-field>
+        <mat-label>Nome completo</mat-label>
+        <input type="text" matInput placeholder="Nome do comprador" formControlName="nameBuyer" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Nascimento</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="anoLancamento" required>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker endView="year"></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email do comprador</mat-label>
+        <input type="text" matInput placeholder="Data de nascimento" formControlName="emailBuyer" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>RG</mat-label>
+        <input type="text" matInput placeholder="RG do comprador" formControlName="rgBuyer" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>CPF</mat-label>
+        <input type="text" matInput placeholder="Cpf do comprador" formControlName="cpfBuyer" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Endereço</mat-label>
+        <input type="text" matInput placeholder="Endereço do comprador" formControlName="addressBuyer" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Telefone</mat-label>
+        <input type="text" matInput placeholder="Telefone do comprador" formControlName="contactBuyer" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Forma de pagamento</mat-label>
+        <mat-select>
+          @for (opcao of opcoesPagamento; track $index) {
+            <mat-option [value]="opcao">
+              {{opcao.opcao}}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+    </form>
+
+  </div>
+
+  <div class="form-container-car">
+
+    <div class="title">
+      <h3>Dados do veículo</h3>
+    </div>
+
+    <form [formGroup]="carBuyForm">
+
+      <mat-form-field>
+        <mat-label>Modelo</mat-label>
+        <input type="text" matInput placeholder="Nome do comprador" formControlName="modeloCarro" required [readonly]="true">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Marca</mat-label>
+        <input type="text" matInput placeholder="Data de nascimento" formControlName="marcaCarro" required [readonly]="true">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Cor</mat-label>
+        <input type="text" matInput placeholder="Data de nascimento" formControlName="corCarro" required [readonly]="true">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Motor</mat-label>
+        <input type="text" matInput placeholder="RG do comprador" formControlName="motorCarro" required [readonly]="true">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Consumo</mat-label>
+        <input type="text" matInput placeholder="Cpf do comprador" formControlName="consumoCarro" required [readonly]="true">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Quilometragem</mat-label>
+        <input type="text" matInput placeholder="Endereço do comprador" formControlName="quilometragemCarro" required [readonly]="true">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Estado</mat-label>
+        <input type="text" matInput placeholder="Telefone do comprador" formControlName="estadoCarro" required [readonly]="true">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Ano de lançamento</mat-label>
+        <input type="text" matInput placeholder="Telefone do comprador" formControlName="anoCarro" required [readonly]="true">
+      </mat-form-field>
+
+    </form>
+
+  </div>
+
+  <div class="button-group">
+
+    <button
+    style="
+    margin-right: 2%;
+    background-color: #101820;
+    color: #fff;"
+    mat-raised-button
+    >
+    <mat-icon>
+      email
+    </mat-icon>
+      Enviar por email
+    </button>
+
+    <button
+    (click)="closeModalBuyForm()"
+    mat-raised-button
+    color="warn"
+    >
+    <mat-icon>
+      close
+    </mat-icon>
+      Voltar
+    </button>
+
+  </div>
+
+</div>
