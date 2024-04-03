@@ -20,7 +20,7 @@ import { UsersPopUpLoginComponent } from '../../users/users-pop-up-login/users-p
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { sort } from 'fast-sort';
 
@@ -74,21 +74,24 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.token = localStorage.getItem('token') as string ?? '';
+    if (typeof localStorage != 'undefined') {
+      this.token = localStorage.getItem('token') as string;
+    };
+
     this.getCars();
     this.getMarcas();
     this.searchModelCarForm.valueChanges.subscribe(() => {
       this.searchModelCar();
     });
 
-    if (!this.token) {
-      setTimeout(() => {
-        this.dialogService.open(UsersPopUpLoginComponent, {
-          width: '550px',
-          height: '320px'
-        })
-      }, 30000);
-    };
+    // if (!this.token) {
+    //   setTimeout(() => {
+    //     this.dialogService.open(UsersPopUpLoginComponent, {
+    //       width: '550px',
+    //       height: '320px'
+    //     })
+    //   }, 30000);
+    // };
 
     if (typeof localStorage !== 'undefined') {
       this.userId = localStorage.getItem('userId') as string;

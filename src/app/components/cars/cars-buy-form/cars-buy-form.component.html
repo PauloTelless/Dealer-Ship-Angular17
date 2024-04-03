@@ -27,17 +27,19 @@
 
       <mat-form-field>
         <mat-label>Email do comprador</mat-label>
-        <input type="text" matInput placeholder="Data de nascimento" formControlName="emailBuyer" required>
+        <input type="email" matInput placeholder="Data de nascimento" formControlName="emailBuyer" required>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>RG</mat-label>
-        <input type="text" matInput placeholder="RG do comprador" formControlName="rgBuyer" required>
+        <input type="text" matInput placeholder="RG do comprador"
+        formControlName="rgBuyer" required (input)="formatarRg($event)">
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>CPF</mat-label>
-        <input type="text" matInput placeholder="Cpf do comprador" formControlName="cpfBuyer" required>
+        <input type="text" matInput placeholder="Cpf do comprador"
+        formControlName="cpfBuyer" required (input)="formatarCpf($event)">
       </mat-form-field>
 
       <mat-form-field>
@@ -47,7 +49,8 @@
 
       <mat-form-field>
         <mat-label>Telefone</mat-label>
-        <input type="text" matInput placeholder="Telefone do comprador" formControlName="contactBuyer" required>
+        <input type="tel" matInput placeholder="Telefone do comprador"
+        formControlName="contactBuyer" (input)="formatarCelular($event)" required>
       </mat-form-field>
 
       <mat-form-field>

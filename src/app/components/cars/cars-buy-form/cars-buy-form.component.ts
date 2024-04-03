@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, inject } from '@angular/core';
+import { Component, Inject, OnInit, inject, input } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -37,6 +37,7 @@ export class CarsBuyFormComponent{
 
   private dialogRef = inject(MatDialogRef);
   private formBuilder = inject(FormBuilder);
+  public rgFormatado!: string;
   public opcoesPagamento = [
     {opcao: 'À vista'},
     {opcao: 'Parcelado'},
@@ -67,7 +68,51 @@ export class CarsBuyFormComponent{
     estadoCarro: [this.data.estadoCarro , Validators.required],
   });
 
+  formatarRg(event: any): void{
+    const input = event.target as HTMLInputElement;
+
+    let value = input.value.replace(/\D/g, '');
+
+    if (value.length > 0) {
+      value = `${value.substring(0, 2)}.${value.substring(2, 5)}.${value.substring(5, 8)}-${value.substring(7, 8)}`
+    };
+
+    input.value = value;
+
+    this.buyerForm.patchValue({rgBuyer: value});
+  };
+
+  formatarCpf(event: any): void{
+    const input = event.target as HTMLInputElement;
+
+    let value = input.value.replace(/\D/g, '');
+
+    if (value.length > 0) {
+      value = `${value.substring(0, 3)}.${value.substring(3, 6)}.${value.substring(6, 9)}-${value.substring(9, 11)}`;
+    };
+
+    input.value = value;
+
+    this.buyerForm.patchValue({cpfBuyer: value});
+  };
+
+  formatarCelular(event: any): void{
+    const input = event.target as HTMLInputElement;
+
+    let value = input.value.replace(/\D/g, '');
+
+    if (value.length > 0) {
+      value = `(${value.substring(0, 2)}) ${value.substring(2, 7)}-${value.substring(7, 11)}`;
+    };
+
+    input.value = value;
+
+    this.buyerForm.patchValue({contactBuyer: value})
+
+  };
+
   closeModalBuyForm(): void{
     this.dialogRef.close();
-  }
+  };
+
 }
