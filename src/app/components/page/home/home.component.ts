@@ -16,7 +16,6 @@ import { StepText } from '../../../models/enums/enumText';
 import { UsersNotLoggedComponent } from '../users/users-not-logged/users-not-logged.component';
 import { UserService } from '../../../services/user/user.service';
 import { UsersCarFavoriteSuccessComponent } from '../../users/users-car-favorite-success/users-car-favorite-success.component';
-import { UsersPopUpLoginComponent } from '../../users/users-pop-up-login/users-pop-up-login.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -56,7 +55,7 @@ export class HomeComponent implements OnInit{
   private marcaService = inject(MarcaService);
   private dialogService = inject(MatDialog);
   private userService = inject(UserService);
-  private destroyRef$ = inject(DestroyRef);
+  private destroyRef = inject(DestroyRef);
   private formBuilder = inject(FormBuilder);
   private token!: string;
   public responsiveOptions: any[] | undefined;
@@ -125,7 +124,7 @@ export class HomeComponent implements OnInit{
 
   getCars(): void {
     this.carService.getAllCars().pipe(
-      takeUntilDestroyed(this.destroyRef$)
+      takeUntilDestroyed(this.destroyRef)
     ).subscribe({
       next: (carsResponse) => {
         this.carsDatas = carsResponse.map(car => ({
@@ -142,7 +141,7 @@ export class HomeComponent implements OnInit{
     getMarcas(): void{
       this.marcaService.getAllMarcas().pipe(
         takeUntilDestroyed(
-          this.destroyRef$
+          this.destroyRef
           )
           ).subscribe({
             next: (response => {
@@ -156,7 +155,7 @@ export class HomeComponent implements OnInit{
 
         this.userService.favoriteCar(userId, carId).pipe(
           takeUntilDestroyed(
-            this.destroyRef$
+            this.destroyRef
           )
           ).subscribe({
             next: (() => {

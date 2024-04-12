@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, inject, input } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -11,6 +11,7 @@ import { ToastModule } from 'primeng/toast';
 import { Car } from '../../../models/car/car';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { CarsBuyFormSuccessComponent } from './cars-buy-form-success/cars-buy-form-success.component';
+import { CarService } from '../../../services/car/car.service';
 
 @Component({
   selector: 'app-cars-buy-form',
@@ -29,6 +30,7 @@ import { CarsBuyFormSuccessComponent } from './cars-buy-form-success/cars-buy-fo
     ToastModule
   ],
   providers: [
+    CarService,
     provideNativeDateAdapter()
   ],
   templateUrl: './cars-buy-form.component.html',
@@ -114,10 +116,11 @@ export class CarsBuyFormComponent{
   };
 
   submitEmail(): void{
-    if (this.buyerForm.value && this.buyerForm.valid) {
+    if (this.buyerForm.value) {
       this.dialogService.open(CarsBuyFormSuccessComponent, {
         width: '250px',
-        height: '250px'
+        height: '250px',
+        data: this.data
       })
       this.dialogRef.close();
     }
